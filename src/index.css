@@ -3,3 +3,8 @@
 body {
   margin: 0;
 }
+
+@theme {
+  --color-image: #F3F3F3;
+  --color-text: #BFB5B5;
+}

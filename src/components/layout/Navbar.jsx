@@ -4,7 +4,7 @@ function Navbar() {
     return(
         <nav className="bg-gray-200 outline shadow-lg max-w-6xl mx-auto my-5 py-2 px-16
         flex items-center justify-between rounded-full sticky top-0 z-50">
-
+            
             <h1 className="font-semibold">CareerBytes</h1>
 
             <ul className="flex gap-8">
