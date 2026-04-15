@@ -1,3 +1,5 @@
+import Button from "../../../components/ui/Button";
+
 function HeroSection() {
     return(
         <>
@@ -8,11 +10,12 @@ function HeroSection() {
                 <h1 className="text-7xl font-semibold tracking-tight">
                     Start Your <br /> <span className="text-[var(--color-text)]">Career </span>the Right Way
                 </h1>
-                <p className="text-xl"> CareerBytes helps you understand industry skills,<br />identify your gaps, and grow with a clear path forward.</p>
+                <p className="text-xl text-black/30"> CareerBytes helps you understand industry skills,<br />identify your gaps, and grow with a clear path forward.</p>
 
                 {/* Button Component */}
-                <div>
-                    <button></button>
+                <div className="flex gap-5">
+                    <Button text="Get Started" variant="primary"/>
+                    <Button text="Explore Roadmap" variant="secondary"/>
                 </div>
             </div>
 
