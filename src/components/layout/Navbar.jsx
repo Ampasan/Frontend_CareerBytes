@@ -8,15 +8,15 @@ function Navbar() {
             <h1 className="font-semibold">CareerBytes</h1>
 
             <ul className="flex gap-8">
-                <li><Link to="#">Home</Link></li>
-                <li><Link to="#">Roadmap</Link></li>
-                <li><Link to="#">Mission</Link></li>
-                <li><Link to="#">Trends</Link></li>
+                <li className="hover:text-black/40"><Link to="#">Home</Link></li>
+                <li className="hover:text-black/40"><Link to="#">Roadmap</Link></li>
+                <li className="hover:text-black/40"><Link to="#">Mission</Link></li>
+                <li className="hover:text-black/40"><Link to="#">Trends</Link></li>
             </ul>
 
-            <div className="flex items-center gap-4 font-semibold">
-                <Link to="#">Login</Link>
-                <Link to="#" className="flex items-center bg-black text-white px-4 py-1 rounded-full">Sign Up</Link>
+            <div className="flex items-center gap-4 font-semibold ">
+                <Link to="#" className="hover:text-black/40 transition">Login</Link>
+                <Link to="#" className="flex items-center bg-black hover:bg-black/20 transition text-white px-4 py-1 rounded-full">Sign Up</Link>
             </div>
         </nav>
     )
