@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     return(
-        <nav className="bg-[var(--color-image)]  outline shadow-lg max-w-6xl mx-auto my-5 py-3 px-16
-        flex items-center justify-between rounded-full sticky top-0 z-50 text-xl">
+        <nav className="bg-[var(--color-image)]/50 backdrop-blur-md outline shadow-lg max-w-6xl mx-auto my-5 py-3 px-16
+        flex items-center justify-between rounded-full sticky top-4 z-50 text-xl ">
             
             <h1 className="font-semibold">CareerBytes</h1>
 
