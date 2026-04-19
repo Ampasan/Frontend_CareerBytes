@@ -36,7 +36,7 @@ function RoadmapSection() {
   ];
 
     return(
-        <section>
+        <section className="mb-35">
                 <div className="pl-22 pt-10 flex justify-center items-center gap-10">
                     <h2 className="text-5xl font-semibold tracking-tight">Plan Your Career Path</h2>
                     <div className="flex-1 h-[3px] bg-black"></div>

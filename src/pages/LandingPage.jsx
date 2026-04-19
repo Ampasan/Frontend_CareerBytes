@@ -2,6 +2,7 @@ import Navbar from "../components/layout/Navbar"
 import HeroSection from "../features/landing/components/HeroSection"
 import AboutSection from "../features/landing/components/AboutSection"
 import RoadmapSection from "../features/landing/components/RoadmapSection"
+import MissionSection from "../features/landing/components/MissionSection"
 
 function LandingPage() {
     return(
@@ -10,6 +11,7 @@ function LandingPage() {
         <HeroSection />
         <AboutSection />
         <RoadmapSection />
+        <MissionSection />
         </>
 
     )
