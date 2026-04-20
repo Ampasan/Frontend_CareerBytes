@@ -22,7 +22,7 @@ function RoadmapCard({opacity, title, status, description, ChecklistItems, progr
             </div>
 
             {/* KANAN */}
-            <div className=" h-full flex flex-col font-bold justify-between text-black/40">
+            <div className="text-sm h-full flex flex-col font-bold justify-between text-black/40">
                 <div className="flex flex-col gap-2">
                     <h3 className="">Tools :</h3>
                     <div className="flex justify-between">

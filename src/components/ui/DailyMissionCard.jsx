@@ -9,6 +9,7 @@ function DailyMissionCard() {
             isCheck={true}
             text="Define landing page structure"
             />
+
         </div>
     )
 }
