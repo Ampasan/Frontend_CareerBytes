@@ -3,16 +3,23 @@ import SkillAsCard from "../../../components/ui/SkillAsCard";
 
 
 function MissionSection() {
+
+    const DailyCheckData = [
+        { isCheck: true, text: "Define landing page structure", variant: "with-status" },
+        { isCheck: false, text: "Create low-fidelity wireframe", variant: "with-status" },
+        { isCheck: false, text: "Design hero section", variant: "with-status" },
+    ]
+
     return(
         <section className="bg-[var(--color-image)]">
-            <div className="flex flex-col max-w-5xl mx-auto py-10 gap-15">
+            <div className="flex flex-col max-w-5xl mx-auto py-10 pb-25 gap-15">
                 <h1 className="text-5xl font-semibold tracking-tight mt-5">Track and Build Your Skills</h1>
-                <div className="bg-purple-500 grid grid-cols-[35%_65%] gap justify-center items-center">
-                    <div className="bg-green-400">
+                <div className="grid grid-cols-[35%_65%] justify-center">
+                    <div className="pr-2">
                         <SkillAsCard />
                     </div> 
-                    <div className="bg-sky-500 ml-20">
-                        <DailyMissionCard />
+                    <div className="ml-20">
+                        <DailyMissionCard data={DailyCheckData} />
                     </div>
 
                 </div>

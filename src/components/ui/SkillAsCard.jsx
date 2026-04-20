@@ -4,7 +4,7 @@ import Bar from "./Bar";
 
 function SkillAsCard() {
     return(
-        <div className="bg-white p-6 rounded-xl flex flex-col gap-3">
+        <div className="bg-white p-6 rounded-xl flex flex-col gap-3 shadow-md shadow-black/10">
             <div className="bg-black w-[12%] rounded-sm">
                 <div className="flex justify-center items-center">
                     <CircleQuestionMark color="#ffffff" size={20}/>
