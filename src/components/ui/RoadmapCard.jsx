@@ -15,6 +15,7 @@ function RoadmapCard({opacity, title, status, description, ChecklistItems, progr
                 {ChecklistItems?.map((item, index) => (
                     <Checklist 
                     key={index}
+                    bgColor="white"
                     isCheck={item.isCheck}
                     text={item.text}
                     />
