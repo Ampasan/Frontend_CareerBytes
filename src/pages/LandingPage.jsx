@@ -3,6 +3,7 @@ import HeroSection from "../features/landing/components/HeroSection"
 import AboutSection from "../features/landing/components/AboutSection"
 import RoadmapSection from "../features/landing/components/RoadmapSection"
 import MissionSection from "../features/landing/components/MissionSection"
+import TrendsSection from "../features/TrendsSection"
 
 function LandingPage() {
     return(
@@ -12,6 +13,7 @@ function LandingPage() {
         <AboutSection />
         <RoadmapSection />
         <MissionSection />
+        <TrendsSection />
         </>
 
     )
