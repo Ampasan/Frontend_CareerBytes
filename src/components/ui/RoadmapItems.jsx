@@ -3,7 +3,7 @@ import { getIcon, getOpacity } from "../../utils/RoadmapHelpers";
 
 function RoadmapItems({ data }) {
     return(
-    <div className="mx-25 relative">
+    <div className="relative">
         {/* LINE */}
         <div className="absolute left-[50px] top-0 w-[3px] h-full bg-black/50"></div>
 
