@@ -3,7 +3,7 @@ import Button from "../../../components/ui/Button";
 function HeroSection() {
     return(
         <>
-        <section className="max-w-5xl mx-auto mt-16 grid grid-cols-[55%_45%] gap-15 justify-center ">
+        <section className="max-w-6xl mx-auto px-15 mt-16 grid grid-cols-[55%_45%] gap-15 justify-center ">
 
             {/* LEFT */}
             <div className=" flex flex-col gap-10 ">
