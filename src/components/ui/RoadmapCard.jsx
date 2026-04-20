@@ -2,7 +2,7 @@ import Checklist from "./Checklist";
 
 function RoadmapCard({opacity, title, status, description, ChecklistItems, progress}) {
     return(
-        <div className={`bg-[var(--color-cardRM)] grid grid-cols-[80%_20%] justify-center items-center rounded-lg p-8 px-15 py-10 shadow-lg shadow-black/20 ml-15 ${opacity}`}>
+        <div className={`bg-[var(--color-cardRM)] grid grid-cols-[80%_20%] justify-center items-center rounded-lg p-8 px-15 py-10 shadow-lg shadow-black/20 ml-15 hover:scale-101 transition ${opacity}`}>
             
             {/* KIRI */}
             <div className="flex flex-col gap-3 mr-10">

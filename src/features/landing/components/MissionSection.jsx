@@ -11,7 +11,7 @@ function MissionSection() {
     ]
 
     return(
-        <section className="bg-[var(--color-image)]">
+        <section id="mission" className="scroll-mt-15 bg-[var(--color-image)]">
             <div className="flex flex-col max-w-6xl mx-auto py-10 px-8 pb-25 gap-15">
                 <h1 className="text-5xl font-semibold tracking-tight mt-5">Track and Build Your Skills</h1>
                 <div className="grid grid-cols-[35%_65%] justify-center">

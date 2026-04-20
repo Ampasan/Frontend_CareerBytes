@@ -12,7 +12,7 @@ function TrendsSection() {
 
     return(
     <>
-    <section className="my-15 mb-25">
+    <section id="trends" className="scroll-mt-35 my-15 mb-25">
         <div className=" max-w-6xl mx-auto px-8 grid grid-cols-[35%_65%] justify-center">
             <div className="max-w-sm flex flex-col gap-5">
                 <h1 className="text-5xl font-semibold tracking-tight">Stay Ahead with In-Demand Skills</h1>
