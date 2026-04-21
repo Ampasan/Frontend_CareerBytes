@@ -3,17 +3,19 @@ import HeroSection from "../features/landing/components/HeroSection"
 import AboutSection from "../features/landing/components/AboutSection"
 import RoadmapSection from "../features/landing/components/RoadmapSection"
 import MissionSection from "../features/landing/components/MissionSection"
-import TrendsSection from "../features/TrendsSection"
+import TrendsSection from "../features/landing/components/TrendsSection"
+import Footer from "../features/landing/components/Footer"
 
 function LandingPage() {
     return(
         <>
-        <Navbar />
-        <HeroSection />
-        <AboutSection />
-        <RoadmapSection />
-        <MissionSection />
-        <TrendsSection />
+            <Navbar />
+            <HeroSection />
+            <AboutSection />
+            <RoadmapSection />
+            <MissionSection />
+            <TrendsSection />
+            <Footer />
         </>
 
     )

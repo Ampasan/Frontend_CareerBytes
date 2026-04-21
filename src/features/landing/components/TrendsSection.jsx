@@ -1,4 +1,4 @@
-import BarChart from "../components/ui/BarChart"
+import BarChart from "../../../components/ui/BarChart"
 
 function TrendsSection() {
 
