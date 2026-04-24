@@ -6,6 +6,7 @@ function AboutSection() {
         <>
         <section className="bg-[var(--color-image)] mt-20 p-8 pb-40 flex flex-col">
             <div className="max-w-6xl mx-auto">
+                {/* TEXT BAGIAN ATAS */}
                 <div className="flex justify-between items-center">
                     <h2 className="flex flex-col p-10 py-15 justify-center text-6xl font-semibold tracking-tight leading-14">Why <br /><span className="text-black/40">CareerBytes?</span></h2>
                     <p className="text-black/30 max-w-xl text-justify mr-10 text-xl [word-spacing:3px]">
@@ -14,6 +15,7 @@ function AboutSection() {
                     with clarity.
                     </p>
                 </div>
+                {/* CARD */}
                 <div className="flex justify-between mx-8 mt-10 gap-15">
                     <Card
                     icon={<Eye />}

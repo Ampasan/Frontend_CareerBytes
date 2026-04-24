@@ -7,12 +7,13 @@ function HeroSection() {
 
             {/* LEFT */}
             <div className=" flex flex-col gap-10 ">
+                {/* TEXT */}
                 <h1 className="text-7xl font-semibold tracking-tight">
                     Start Your <br /> <span className="text-[var(--color-text)]">Career </span>the Right Way
                 </h1>
                 <p className="text-xl text-black/30"> CareerBytes helps you understand industry skills,<br />identify your gaps, and grow with a clear path forward.</p>
 
-                {/* Button Component */}
+                {/* BUTTON COMPONENT */}
                 <div className="flex gap-5">
                     <Button text="Get Started" variant="primary"/>
                     <Button text="Explore Roadmap" variant="secondary"/>

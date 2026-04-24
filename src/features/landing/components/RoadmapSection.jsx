@@ -1,7 +1,7 @@
 import RoadmapItems from "../../../components/ui/RoadmapItems";
 
 function RoadmapSection() {
-
+    // SETTING BUAT ROADMAP
       const roadmapData = [
     {
       title: "Beginner Level",
@@ -37,11 +37,12 @@ function RoadmapSection() {
 
     return(
       <section id="roadmap" className="scroll-mt-20">
+        {/* TEXT + LINE X */}
         <div className="pl-22 pt-10 flex justify-center items-center gap-10">
           <h2 className="text-5xl font-semibold tracking-tight">Plan Your Career Path</h2>
-          {/* LINE */}
           <div className="flex-1 h-[3px] bg-black"></div> 
         </div>
+        {/* BAGIAN BAWAH */}
         <div className="mb-3 max-w-6xl mx-auto px-8 ">
           <div>
             <div className="flex justify-center items-center mt-15">
@@ -50,6 +51,7 @@ function RoadmapSection() {
               </h2>
             </div>
           </div>
+          {/* ROADMAP ITEMS (ICON, LINE Y, CARD) */}
           <div className="mb-40">
             <RoadmapItems data={roadmapData} />
           </div>
