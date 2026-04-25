@@ -3,10 +3,10 @@
 Project ini adalah frontend untuk aplikasi **Career Bytes**. Dibangun menggunakan **React** dan **Vite**.
 
 ## Environment yang Dibutuhkan
-- **Node.js**: Versi 18.x atau yang lebih baru direkomendasikan.
-- **Package Manager**: npm (bawaan Node.js)
+- **Node.js**: Versi terbaru direkomendasikan.
+- **Package Manager**: npm (bawaan Node.js).
 
-## 🚀 Cara Menjalankan Project
+## Cara Menjalankan Project
 
 1. **Clone repository**:
    ```bash
@@ -26,7 +26,7 @@ Project ini adalah frontend untuk aplikasi **Career Bytes**. Dibangun menggunaka
 4. **Buka di Browser**:
    Buka link yang muncul di terminal untuk melihat project.
 
-## 🎨 Link ke Design (Figma)
+## Link ke Design (Figma)
 
 Desain UI/UX dari project ini melalui link Figma berikut:
 
