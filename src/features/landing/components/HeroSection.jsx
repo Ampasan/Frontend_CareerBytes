@@ -3,26 +3,28 @@ import Button from "../../../components/ui/Button";
 function HeroSection() {
     return(
         <>
-        <section id="home" className="scroll-mt-40 max-w-6xl mx-auto px-15 mt-16 grid grid-cols-[55%_45%] gap-15 justify-center ">
+        <section id="home" className="scroll-mt-40 max-w-md lg:max-w-6xl mx-auto px-15 mt-16 grid grid xl:grid-cols-[55%_45%] gap-5 md:gap-12 justify-center ">
 
             {/* LEFT */}
-            <div className=" flex flex-col gap-10 ">
+            <div className="order-2 lg:order-1 flex flex-col gap-5 lg:gap-12 ">
                 {/* TEXT */}
-                <h1 className="text-7xl font-semibold tracking-tight">
+                <h1 className="text-4xl lg:text-7xl text-center lg:text-start font-bold tracking-tight">
                     Start Your <br /> <span className="text-[var(--color-text)]">Career </span>the Right Way
                 </h1>
-                <p className="text-xl text-black/30"> CareerBytes helps you understand industry skills,<br />identify your gaps, and grow with a clear path forward.</p>
+                <p className="text-justify pb-4 lg:pb-0 lg:text-start text-sm lg:text-xl text-black/30 max-w-[420px]">
+                    CareerBytes helps you understand industry skills, identify your gaps, and grow with a clear path forward.
+                </p>
 
                 {/* BUTTON COMPONENT */}
-                <div className="flex gap-5">
+                <div className="flex flex-col lg:flex-row gap-5 justify-center lg:justify-start">
                     <Button text="Get Started" variant="primary"/>
                     <Button text="Explore Roadmap" variant="secondary"/>
                 </div>
             </div>
 
             {/* RIGHT */}
-            <div className=" flex justify-center items-center">
-                <div className="w-[350px] h-[350px] md:w-[450px] md:h-[450px] aspect-square bg-[var(--color-image)] rounded-4xl" />
+            <div className="order-1 lg:order-2 flex justify-center items-center">
+                <div className="w-[350px] h-[250px] lg:w-[450px] lg:h-[450px] aspect-square bg-[var(--color-image)] rounded-4xl" />
             </div>
         </section>
         </>

@@ -3,14 +3,14 @@ import { getIcon, getOpacity } from "../../utils/RoadmapHelpers";
 
 function RoadmapItems({ data }) {
     return(
-    <div className="relative">
+    <div className="relative ">
         {/* LINE */}
         <div className="absolute left-[50px] top-0 w-[3px] h-full bg-black/50"></div>
 
         <div className="flex flex-col gap-15"> 
             {data.map((item, index) => (
                 
-                <div key={index} className="grid grid-cols-[30px_20px_1fr]">
+                <div key={index} className="grid grid-cols-[15px_5px_1fr] lg:grid-cols-[30px_20px_1fr]">
                     {/* ICON */}
                     <div className={`bg-black/5 w-10 h-10 flex justify-center items-center rounded-full border-1 border-[var(--color-text)] text-gray-400 ${getOpacity(item.status)}`}>
                         <div className="rounded-full w-5 h-5 border flex items-center justify-center">{getIcon(item.status)}</div>

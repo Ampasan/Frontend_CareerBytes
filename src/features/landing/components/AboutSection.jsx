@@ -4,19 +4,20 @@ import { Eye, Route, ChartArea, ChartBar } from "lucide-react";
 function AboutSection() {
     return(
         <>
-        <section className="bg-[var(--color-image)] mt-20 p-8 pb-40 flex flex-col">
-            <div className="max-w-6xl mx-auto">
+        <section className="bg-[var(--color-image)] mt-20 p-8 pb-20 lg:pb-40 flex flex-col">
+            <div className="max-w-sm lg:max-w-6xl mx-auto">
                 {/* TEXT BAGIAN ATAS */}
-                <div className="flex justify-between items-center">
-                    <h2 className="flex flex-col p-10 py-15 justify-center text-6xl font-semibold tracking-tight leading-14">Why <br /><span className="text-black/40">CareerBytes?</span></h2>
-                    <p className="text-black/30 max-w-xl text-justify mr-10 text-xl [word-spacing:3px]">
+                <div className="flex justify-center lg:justify-between items-center flex-wrap md:flex-nowrap">
+                    <h2 className="flex lg:flex-col pb-3 lg:p-10 lg:py-15 justify-center text-4xl lg:text-6xl font-bold lg:tracking-tight gap-4 lg:gap-0 lg:items-start lg:leading-14">Why <br /><span className="text-black/40">CareerBytes?</span></h2>
+
+                    <p className="text-black/30 max-w-[330px] lg:max-w-xl mx-auto text-justify lg:mr-10 text-sm lg:text-xl lg:[word-spacing:3px] tracking-tight">
                     Figuring out your career path can be overwhelming.
                     CareerBytes helps you understand industry skills and grow
                     with clarity.
                     </p>
                 </div>
                 {/* CARD */}
-                <div className="flex justify-between mx-8 mt-10 gap-15">
+                <div className="flex items-center justify-between mx-4 lg:mx-8 mt-10 gap-8 lg:gap-15 flex-wrap lg:flex-nowrap">
                     <Card
                     icon={<Eye />}
                     title="Understand Industry Skills"

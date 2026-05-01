@@ -3,16 +3,17 @@ import Checklist from "./Checklist";
 
 function RoadmapCard({opacity, title, status, description, ChecklistItems, progress}) {
     return(
-        <div className={`bg-[var(--color-cardRM)] grid grid-cols-[80%_20%] justify-center items-center rounded-lg p-8 px-15 py-10 shadow-lg shadow-black/20 ml-15 hover:scale-101 transition ${opacity}`}>
+        <div className={`bg-[var(--color-cardRM)] grid lg:grid-cols-[80%_20%] justify-center items-center rounded-lg gap-5 lg:gap-0 p-8 lg:px-15 lg:py-10 shadow-lg shadow-black/20 ml-12 lg:ml-15 hover:scale-101 transition ${opacity}`}>
             
             {/* BAGIAN KIRI */}
-            <div className="flex flex-col gap-3 mr-10">
+            <div className="order-1 flex flex-col gap-3 lg:mr-10">
                 {/* ATAS: TITLE, STATUS, DESCRIPTION*/}
-                <div className="flex gap-6">
-                    <h2 className="font-semibold text-2xl leading-tight tracking-tight">{title}</h2>
-                    {status && (<h2 className="bg-white px-3 rounded font-semibold flex items-center">{status}</h2>)}
+                <div className="flex justify-between lg:justify-start gap-2 lg:gap-6">
+                    <h2 className="font-semibold text-lg lg:text-2xl leading-tight tracking-tight">{title}</h2>
+                    {status && (
+                        <h2 className="bg-white px-2 text-sm lg:text-md lg:px-3 rounded font-semibold flex items-center ">{status}</h2>)}
                 </div>
-                <p className="text-black/60 mb-10 text-sm">{description}</p>
+                <p className="text-black/60 mb-5 lg:mb-10 text-sm">{description}</p>
                 {/* BAWAH: CHECKLIST */}
                 {ChecklistItems?.map((item, index) => (
                     <Checklist 
@@ -25,7 +26,7 @@ function RoadmapCard({opacity, title, status, description, ChecklistItems, progr
             </div>
 
             {/* BAGIAN KANAN */}
-            <div className="text-sm h-full flex flex-col font-bold justify-between text-black/40">
+            <div className="order-2 text-sm h-full flex flex-col font-bold justify-between text-black/40 gap-4 lg:gap-0">
                 {/* ATAS: TOOLS + KOTAK */}
                 <div className="flex flex-col gap-2">
                     <h3 className="">Tools :</h3>
