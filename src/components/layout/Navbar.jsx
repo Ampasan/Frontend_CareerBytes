@@ -11,7 +11,7 @@ function Navbar() {
             {/* Nav menu */}
             <ul className="flex gap-8 ">
                 <li className="hover:text-black/40"><a href="#home">Home</a></li>
-                <li className="hover:text-black/40"><a href="#roadmap">Roadmap</a></li>
+                <li className="hover:text-black/40"><Link to="/career-roadmap">Roadmap</Link></li>
                 <li className="hover:text-black/40"><a href="#mission">Mission</a></li>
                 <li className="hover:text-black/40"><a href="#trends">Trends</a></li>
             </ul>
