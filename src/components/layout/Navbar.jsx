@@ -1,25 +1,51 @@
+import { HamburgerIcon, LucideHamburger, Menu, MenuIcon, MenuSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
+    const [isMenuOpen, setMenuOpen] = useState(false);
+
     return(
-        <nav className="bg-[var(--color-image)]/50 backdrop-blur-md outline shadow-lg max-w-6xl mx-auto my-5 py-3 px-16
-        flex items-center justify-between rounded-full sticky top-5 z-50 text-xl ">
-            
-            {/* LOGO CareerBytes */}
-            <h1 className="font-semibold"><a href="/">CareerBytes</a></h1>
+        <nav className={`bg-[var(--color-image)] text-[var(--color-primary)] sticky max-w-md md:max-w-6xl mx-auto top-5 z-100 shadow-lg ${isMenuOpen ? "rounded-b-none rounded-t-3xl" : "rounded-full"}`}>
 
-            {/* Nav menu */}
-            <ul className="flex gap-8 ">
-                <li className="hover:text-black/40"><a href="#home">Home</a></li>
-                <li className="hover:text-black/40"><Link to="/career-roadmap">Roadmap</Link></li>
-                <li className="hover:text-black/40"><a href="#mission">Mission</a></li>
-                <li className="hover:text-black/40"><a href="#trends">Trends</a></li>
-            </ul>
+            <div className={`lg:my-2 py-3 px-8 lg:px-16 flex text-xl border border-[var(--color-primary)] ${isMenuOpen ? "flex-col items-start gap-5 rounded-b-none rounded-t-3xl border-b-0" : "items-center justify-between rounded-full"}`}>
+                
+                <div className="flex justify-between w-full lg:w-auto">
+                    <h1 className="font-semibold text-lg lg:text-xl">
+                        <Link to="/">CareerBytes</Link>
+                    </h1>
+                    <div className="lg:hidden cursor-pointer rounded-sm hover:bg-[var(--color-primary)]/20"
+                    onClick={() => setMenuOpen(!isMenuOpen)}>
+                        <Menu strokeWidth={3} size={30} />
+                    </div>
+                </div>
 
-            {/* Login/Sign Up */}
-            <div className="flex items-center gap-4 font-semibold ">
-                <Link to="#" className="hover:text-black/40 transition">Login</Link>
-                <Link to="#" className="flex items-center bg-black hover:bg-black/20 transition text-white px-4 py-2 rounded-full">Sign Up</Link>
+                {/* Nav menu */}
+                <ul className="hidden lg:flex gap-8">
+                    <li className="hover:text-[var(--color-primary)]/40"><Link to="/">Home</Link></li>
+                    <li className="hover:text-[var(--color-primary)]/40"><Link to="/career-roadmap">Roadmap</Link></li>
+                    <li className="hover:text-[var(--color-primary)]/40"><a href="#mission">Mission</a></li>
+                    <li className="hover:text-[var(--color-primary)]/40"><a href="#trends">Trends</a></li>
+                </ul>
+
+                {/* Login/Sign Up */}
+                <div className="hidden lg:flex lg:items-center lg:gap-4 font-semibold ">
+                    <Link to="#" className="hover:text-[var(--color-primary)]/40 transition">Login</Link>
+                    <Link to="#" className="flex items-center bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/80 transition text-white px-4 py-2 rounded-full">Sign Up</Link>
+                </div>
+
+                {isMenuOpen && (
+                <div className="absolute top-full left-0 p-5 px-8 bg-[var(--color-image)] flex flex-col gap-4 w-full text-lg lg:hidden rounded-b-3xl shadow-lg border border-t-0">
+                    <Link to="/" className="hover:bg-[var(--color-primary)/50">Home</Link>
+                    <Link to="/career-roadmap" className="hover:bg-[var(--color-primary)/50">Roadmap</Link>
+                    <a href="#mission" className="hover:bg-[var(--color-primary)/50">Mission</a>
+                    <a href="#trends" className="hover:bg-[var(--color-primary)/50">Trends</a>
+                    <Link to="#" className="hover:bg-[var(--color-primary)/50">Login</Link>
+                    <Link to="#" className="hover:bg-[var(--color-primary)/50">Sign Up</Link>
+
+                </div>
+    )}
+                
             </div>
         </nav>
     )

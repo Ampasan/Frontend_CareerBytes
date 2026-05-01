@@ -1,6 +1,10 @@
 import RoadmapItems from "../../../components/ui/RoadmapItems";
+import GdocsLogo from "../../../assets/logo/gdocs.svg";
+import FigmaLogo from "../../../assets/logo/figma.svg";
+import AdobeXDLogo from "../../../assets/logo/adobe_xd.svg";
+import NotionLogo from "../../../assets/logo/notion.svg";
 
-function RoadmapSection() {
+function RoadmapStep() {
     // SETTING BUAT ROADMAP
       const roadmapData = [
     {
@@ -12,6 +16,7 @@ function RoadmapSection() {
         { isCheck: true, text: "Wireframe" },
       ],
       progress: 100,
+      tools: [GdocsLogo, FigmaLogo]
     },
     {
       title: "Intermediate Level",
@@ -22,6 +27,7 @@ function RoadmapSection() {
         { isCheck: false, text: "Prototyping" },
       ],
       progress: 80,
+      tools: [FigmaLogo, AdobeXDLogo]
     },
     {
       title: "Advanced Level",
@@ -32,19 +38,15 @@ function RoadmapSection() {
         { isCheck: false, text: "UX Strategy" },
       ],
       progress: 0,
+      tools: [NotionLogo]
     },
   ];
 
     return(
-      <section id="roadmap" className="scroll-mt-20">
-        {/* TEXT + LINE X */}
-        <div className="pl-22 pt-10 flex justify-center items-center gap-10">
-        </div>
+      <section id="roadmap" className="scroll-mt-20 max-w-md lg:max-w-full mx-auto">
         {/* BAGIAN BAWAH */}
         <div className="mb-3 max-w-6xl mx-auto px-8 ">
-          <div>
-            <div className="flex justify-center items-center mt-15">
-            </div>
+          <div className="flex justify-center items-center mt-10 lg:mt-15">
           </div>
           {/* ROADMAP ITEMS (ICON, LINE Y, CARD) */}
           <div className="mb-40">
@@ -55,4 +57,4 @@ function RoadmapSection() {
     )
 }
 
-export default RoadmapSection;
+export default RoadmapStep;
