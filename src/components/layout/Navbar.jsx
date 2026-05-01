@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     return(
-        <nav className="bg-[var(--color-image)]/50 backdrop-blur-md outline shadow-lg max-w-6xl mx-auto my-5 py-3 px-16
+        <nav className="bg-[var(--color-image)]/50 backdrop-blur-md outline shadow-lg max-w-6xl mx-auto my-2 py-3 px-16
         flex items-center justify-between rounded-full sticky top-5 z-50 text-xl ">
             
             {/* LOGO CareerBytes */}

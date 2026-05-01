@@ -11,6 +11,7 @@ function DailyMissionCard({ data }) {
             <div className="flex flex-col gap-5 mb-12">
                 {data.map((item, index) => (
                     <Checklist
+                    key={index}
                     bgColor="var(--color-image)"
                     isCheck={item.isCheck}
                     text={item.text}
@@ -19,7 +20,7 @@ function DailyMissionCard({ data }) {
                 ))}
             </div>
             {/* CARD BAR */}
-            <Bar progress={40} text="Weakly Streak" variant="C" />
+            <Bar progress={40} text="Weekly Streak" variant="C" />
 
         </div>
     )
