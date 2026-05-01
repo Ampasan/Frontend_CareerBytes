@@ -1,11 +1,11 @@
 import { Check } from 'lucide-react';
 
-function Checklist({ bgColor, isCheck, text, variant = "normal" }) {
+function Checklist({ bgColor, bgColor2, isCheck, text, variant = "normal" }) {
     const padding = variant === "with-status"? "p-3" : "p-1"; //NYESUAIN CHECK DI CARD ROADMAP + DAILY MISSION 
 
     return(
         <>
-        <div className={`${padding} px-3 rounded-xl flex gap-3 items-center text-sm`}
+        <div className={`${padding} px-3 rounded-xl flex gap-3 items-center text-sm ${bgColor2}`}
         style={{ backgroundColor: bgColor }}>
             {/* CHECK ICON */}
             <div className="rounded-full w-4.5 h-4.5 border flex items-center justify-center">

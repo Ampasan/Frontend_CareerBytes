@@ -4,7 +4,7 @@ import AboutSection from "../features/landing/components/AboutSection"
 import RoadmapSection from "../features/landing/components/RoadmapSection"
 import MissionSection from "../features/landing/components/MissionSection"
 import TrendsSection from "../features/landing/components/TrendsSection"
-import Footer from "../features/landing/components/Footer"
+import Footer from "../components/layout/Footer"
 
 function LandingPage() {
     return(

@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 
 function Footer() {
     return(
-        <footer className="bg-black/20 py-10">
+        <footer className="bg-[var(--color-primary)] py-10 text-white ">
             <div className="flex justify-center flex-col lg:flex-row lg:my-1 max-w-6xl mx-auto">
                 {/* KIRI: WEB TITLE + COPYRIGHT */}
                 <div className="w-full flex items-center lg:items-start justify-center lg:justify-start">
