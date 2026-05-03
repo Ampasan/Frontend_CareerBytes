@@ -4,15 +4,15 @@ import heroImage from "../../../assets/heroimg.png";
 function HeroSection() {
     return(
         <>
-        <section id="home" className="scroll-mt-40 max-w-md lg:max-w-6xl mx-auto px-15 mt-16 grid grid xl:grid-cols-[55%_45%] gap-5 md:gap-12 justify-center ">
+        <section id="home" className="scroll-mt-40 max-w-md lg:max-w-6xl mx-auto px-6 lg:px-15 mt-16 grid xl:grid-cols-[55%_45%] gap-5 md:gap-12 justify-center ">
 
             {/* LEFT */}
             <div className="order-2 lg:order-1 flex flex-col gap-5 lg:gap-12 ">
                 {/* TEXT */}
-                <h1 className="text-4xl lg:text-7xl text-center lg:text-start font-bold tracking-tight text-[var(--color-primary)]">
-                    Start Your <br /> <span className="text-[var(--color-secondary)]">Career </span>the Right Way
+                <h1 className="text-4xl lg:text-7xl text-center lg:text-start font-bold tracking-tight text-(--color-primary)">
+                    Start Your <br /> <span className="text-(--color-secondary)">Career </span>the Right Way
                 </h1>
-                <p className="text-justify pb-4 lg:pb-0 lg:text-start text-sm lg:text-xl text-[var(--color-primary)] max-w-[420px]">
+                <p className="text-justify pb-4 lg:pb-0 lg:text-start text-sm lg:text-xl text-(--color-primary) max-w-105">
                     CareerBytes helps you understand industry skills, identify your gaps, and grow with a clear path forward.
                 </p>
 
@@ -25,7 +25,7 @@ function HeroSection() {
 
             {/* RIGHT */}
             <div className="order-1 lg:order-2 flex justify-center items-center">
-                <div className="w-[350px] h-[250px] lg:w-[450px] lg:h-[450px] aspect-square rounded-4xl"> 
+                <div className="w-87.5 h-62.5 lg:w-112.5 lg:h-112.5 aspect-square rounded-4xl"> 
                 <img 
                 src={heroImage} 
                 alt="Hero"

@@ -1,10 +1,11 @@
 import RoadmapItems from "../../../components/ui/RoadmapItems";
+import EmptyState from "../../../components/layout/EmptyState";
 import GdocsLogo from "../../../assets/logo/gdocs.svg";
 import FigmaLogo from "../../../assets/logo/figma.svg";
 import AdobeXDLogo from "../../../assets/logo/adobe_xd.svg";
 import NotionLogo from "../../../assets/logo/notion.svg";
 
-function RoadmapStep() {
+function RoadmapStep({ searchTerm = "" }) {
     // SETTING BUAT ROADMAP
       const roadmapData = [
     {
@@ -42,15 +43,24 @@ function RoadmapStep() {
     },
   ];
 
+    const filteredData = roadmapData.filter(item => 
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return(
-      <section id="roadmap" className="scroll-mt-20 max-w-md lg:max-w-full mx-auto">
+      <section id="roadmap" className="scroll-mt-20 max-w-full mx-auto">
         {/* BAGIAN BAWAH */}
-        <div className="mb-3 max-w-6xl mx-auto px-8 ">
+        <div className="mb-3 max-w-6xl mx-auto px-6 lg:px-8 ">
           <div className="flex justify-center items-center mt-10 lg:mt-15">
           </div>
           {/* ROADMAP ITEMS (ICON, LINE Y, CARD) */}
           <div className="mb-40">
-            <RoadmapItems data={roadmapData} />
+            {filteredData.length > 0 ? (
+              <RoadmapItems data={filteredData} />
+            ) : (
+              <EmptyState searchTerm={searchTerm} />
+            )}
           </div>
         </div>
       </section>

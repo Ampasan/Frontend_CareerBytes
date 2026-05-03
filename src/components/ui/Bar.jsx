@@ -4,7 +4,7 @@ function Bar({ progress, text, variant = "A" }) {
 
       {/* VARIANT C = ada text + persen di atas */}
       {variant === "C" && (
-        <div className="text-[var(--color-primary)] flex justify-between text-sm font-semibold mb-1">
+        <div className="text-(--color-primary) flex justify-between text-sm font-semibold mb-1">
           <span>{text}</span>
           <span>{progress}%</span>
         </div>
@@ -12,7 +12,7 @@ function Bar({ progress, text, variant = "A" }) {
 
       {/* BAR */}
       <div className="flex items-center gap-2">
-        <div className="flex-1 bg-[var(--color-primary)]/20 h-2 rounded overflow-hidden">
+        <div className="flex-1 bg-(--color-primary)/20 h-2 rounded overflow-hidden">
           <div
             className="bg-green-400 h-full rounded"
             style={{ width: `${progress}%` }}
@@ -21,7 +21,7 @@ function Bar({ progress, text, variant = "A" }) {
 
         {/* VARIANT B = persen + text di kanan */}
         {variant === "B" && (
-          <span className="ml-4 text-xs font-semibold text-[var(--color-primary)]">{progress}% {text}</span>
+          <span className="ml-4 text-xs font-semibold text-(--color-primary)">{progress}% {text}</span>
         )}
       </div>
 

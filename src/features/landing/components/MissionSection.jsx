@@ -11,8 +11,8 @@ function MissionSection() {
     ]
 
     return(
-        <section id="mission" className="scroll-mt-15 bg-[var(--color-primary)]">
-            <div className="flex flex-col max-w-md lg:max-w-6xl mx-auto py-10 px-8 pb-25 gap-15">
+        <section id="mission" className="scroll-mt-15 bg-(--color-primary)">
+            <div className="flex flex-col max-w-md lg:max-w-6xl mx-auto py-10 px-6 lg:px-8 pb-25 gap-15">
                 {/* SECTION TITLE */}
                 <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight mt-5 text-white">Track and Build Your Skills</h1>
                 {/* SKILL ASSESMENT CARD + DAILY MISSION CARD */}

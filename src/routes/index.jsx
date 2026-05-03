@@ -7,7 +7,7 @@ export default function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/career-roadmap" element={<RoadmapPage />} />
+        <Route path="/career-roadmap" element={<RoadmapPage />} /> 
       </Routes>
     </BrowserRouter>
   );
