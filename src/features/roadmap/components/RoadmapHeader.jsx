@@ -1,7 +1,7 @@
 import SearchBar from "../../../components/ui/SearchBar";
 import FilterRole from "../../../components/ui/FilterRole";
 
-function RoadmapHeader({ onSearch }) {
+function RoadmapHeader({ onSearch, onSelectRole }) {
   return (
     <div className="w-full relative -mt-30">
       
@@ -25,7 +25,7 @@ function RoadmapHeader({ onSearch }) {
 
       {/* SECTION BAWAH */}
       <div className="bg-[#ffffff] pt-14 pb-10 px-6">
-        <FilterRole />
+        <FilterRole onSelectRole={onSelectRole} />
       </div>
 
     </div>

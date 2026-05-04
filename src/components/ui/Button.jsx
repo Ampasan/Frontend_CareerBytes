@@ -1,4 +1,4 @@
-function Button({text, variant = "primary", className = ""}) {
+function Button({text, variant = "primary", className = "", onClick}) {
     // OPSI VARIANT BUTTON
     const base = "p-4 lg:p-3 text-sm lg:text-md font-semibold rounded-lg cursor-pointer transition";
     const variants = {
@@ -8,7 +8,10 @@ function Button({text, variant = "primary", className = ""}) {
     
     return(
         <>
-            <button className={`${base} ${variants[variant]} ${className}`}>
+            <button 
+              className={`${base} ${variants[variant]} ${className}`}
+              onClick={onClick}
+            >
                 {text}
             </button>
         </>
