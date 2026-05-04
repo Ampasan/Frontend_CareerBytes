@@ -1,4 +1,4 @@
-function FilterRole() {
+function FilterRole({ onSelectRole }) {
   const roles = [
     "Data Analyst",
     "Frontend Developer",
@@ -13,6 +13,7 @@ function FilterRole() {
       {roles.map((role, index) => (
         <div
           key={index}
+          onClick={() => onSelectRole && onSelectRole(role)}
           className="bg-[#F0F4FF] text-blue-600 px-5 py-1.5 rounded-md text-md font-medium hover:bg-blue-100 transition cursor-pointer"
         >
           {role}

@@ -41,9 +41,9 @@ function InputForm({
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ? (
-                            <EyeOff size={18} className="text-gray-400" />
-                        ) : (
                             <Eye size={18} className="text-gray-400" />
+                        ) : (
+                            <EyeOff size={18} className="text-gray-400" />
                         )}
                     </button>
                 )}

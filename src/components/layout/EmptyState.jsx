@@ -2,7 +2,7 @@ import EmptyIlustration from "../../assets/empty_state.svg";
 import SuggestRole from "../ui/SuggestRole";
 import Button from "../ui/Button";
 
-function EmptyState({ searchTerm = "Blockchain Developer", title, description }) {
+function EmptyState({ searchTerm = "", title, description, onSearchAgain, onSelectRole }) {
   return (
     <div className="w-full min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
       
@@ -27,11 +27,11 @@ function EmptyState({ searchTerm = "Blockchain Developer", title, description })
 
       {/* Button */}
       <div className="mb-10">
-        <Button text="Search Again" variant="primary" />
+        <Button text="Search Again" variant="primary" onClick={onSearchAgain} />
       </div>
 
       {/* Suggested Roles */}
-      <SuggestRole />
+      <SuggestRole onSelectRole={onSelectRole} />
     </div>
   );
 }

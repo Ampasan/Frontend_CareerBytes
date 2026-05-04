@@ -1,4 +1,4 @@
-function SuggestRole() {
+function SuggestRole({ onSelectRole }) {
   const roles = [
     "UI/UX Designer",
     "Data Analyst",
@@ -20,6 +20,7 @@ function SuggestRole() {
         {roles.map((role, index) => (
           <div
             key={index}
+            onClick={() => onSelectRole && onSelectRole(role)}
             className="px-4 py-1.5 text-sm text-blue-600 border border-blue-400 rounded-full hover:bg-blue-50 transition cursor-pointer"
           >
             {role}

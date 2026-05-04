@@ -1,10 +1,4 @@
-const DEFAULT_USER = {
-  id: "1",
-  name: "Bos Endmin",
-  email: "admin@gmail.com",
-  password: "admin123",
-  role: "Frontend Developer",
-};
+import { DEFAULT_USER } from "../../../constants/dummy/user";
 
 const getStoredUsers = () => {
   const users = localStorage.getItem("mock_users");
