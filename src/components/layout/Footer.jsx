@@ -1,21 +1,22 @@
+import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 
 function Footer() {
     return(
-        <footer className="bg-[var(--color-primary)] py-10 text-white ">
-            <div className="flex justify-center flex-col lg:flex-row lg:my-1 max-w-6xl mx-auto">
+        <footer className="bg-(--color-primary) py-10 text-white ">
+            <div className="flex justify-center flex-col lg:flex-row lg:my-1 max-w-6xl mx-auto px-6">
                 {/* KIRI: WEB TITLE + COPYRIGHT */}
-                <div className="w-full flex items-center lg:items-start justify-center lg:justify-start">
+                <div className="w-full flex items-start justify-start">
                     <h1 className="font-bold text-xl">CareerBytes</h1>
                 </div>
                 {/* KANAN: FEATURES + CONTACT */}
-                <div className="w-full py-5 lg:py-0 px-5 flex flex-col lg:flex-row justify-center lg:justify-end items-center lg:items-start gap-5 lg:gap-10">
+                <div className="w-full py-5 lg:py-0 flex flex-col lg:flex-row justify-start lg:justify-end items-start gap-5 lg:gap-10">
                     {/* FEATURES */}
                     <div className="lg:pr-10 flex flex-col">
                         <h2 className="font-bold mb-1 ">FEATURES</h2>
                         <div className="flex flex-col text-sm underline underline-offset-2 gap-2">
-                            <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Career Roadmap</a>
+                            <Link to="/career-roadmap" className="hover:text-black/50 hover:decoration-gray-700">Career Roadmap</Link>
                             <a href="#" className="hover:text-black/50 hover:decoration-gray-700">SKill Assesment</a>
                             <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Daily Mission</a>
                             <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Trending Skills</a>
@@ -34,8 +35,8 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="flex items-center justify-center lg:justify-start pb-3 lg:pb-0">
-                <h5 className="text-sm lg:ml-15">&copy; CareerBytes. All rights reserved</h5>
+            <div className="flex items-center justify-center pb-3 lg:pb-0">
+                <h5 className="text-sm">&copy; 2026 CareerBytes. All rights reserved</h5>
             </div>
         </footer>
     )
