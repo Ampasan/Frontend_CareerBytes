@@ -8,10 +8,10 @@ function RoadmapCard({opacity, title, status, description, ChecklistItems, progr
             {/* BAGIAN KIRI */}
             <div className="order-1 flex flex-col gap-3 lg:mr-10">
                 {/* ATAS: TITLE, STATUS, DESCRIPTION*/}
-                <div className="flex justify-between lg:justify-start gap-2 lg:gap-6">
-                    <h2 className="font-semibold text-lg lg:text-2xl leading-tight tracking-tight text-white">{title}</h2>
+                <div className="flex flex-col sm:flex-row justify-between lg:justify-start gap-2 lg:gap-6 items-start sm:items-center">
+                    <h2 className="font-semibold text-base sm:text-lg lg:text-2xl leading-tight tracking-tight text-white">{title}</h2>
                     {status && (
-                        <h2 className="bg-white px-2 text-sm lg:text-md lg:px-3 rounded font-semibold flex items-center ">{status}</h2>)}
+                        <h2 className="bg-white px-2 py-0.5 text-xs sm:text-sm lg:text-md lg:px-3 rounded font-semibold flex items-center ">{status}</h2>)}
                 </div>
                 <p className="text-white mb-5 lg:mb-10 text-sm">{description}</p>
                 {/* BAWAH: CHECKLIST */}

@@ -12,7 +12,6 @@ function RoadmapPage() {
     <>
       <Navbar />
       <RoadmapHeader onSearch={setSearchTerm} />
-      {/* RoadmapAbout usually contains the title/description of the roadmap, maybe hide it if searching? */}
       {searchTerm === "" && <RoadmapAbout />}
       <RoadmapStep searchTerm={searchTerm} />
       <Footer />
