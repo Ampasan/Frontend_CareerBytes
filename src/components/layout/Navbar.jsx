@@ -32,7 +32,7 @@ function Navbar() {
                 <ul className="hidden lg:flex gap-8">
                     <li className="hover:text-(--color-primary)/40"><Link to="/">Home</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/career-roadmap">Roadmap</Link></li>
-                    <li className="hover:text-(--color-primary)/40"><a href="#mission">Assesment</a></li>
+                    <li className="hover:text-(--color-primary)/40"><Link to="/assesment">Assesment</Link></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#mission">Mission</a></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#trends">Trends</a></li>
                 </ul>
