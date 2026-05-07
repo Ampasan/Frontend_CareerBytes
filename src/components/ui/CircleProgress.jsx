@@ -15,7 +15,7 @@ function CircleProgress({ percentage = 0}) {
     <div className="relative flex items-center justify-center my-4">
         <svg
         viewBox="0 0 200 200"
-        className="w-40 h-40 lg:w-56 lg:h-56 -rotate-90"
+        className="w-40 h-40 lg:w-50 lg:h-50 -rotate-90"
         >
             {/* Background circle */}
             <circle

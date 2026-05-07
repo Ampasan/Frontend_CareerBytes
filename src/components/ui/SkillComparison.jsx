@@ -1,27 +1,42 @@
-import { Dot } from "lucide-react";
+import Bar from "./Bar";
+import { MdInsertChartOutlined } from "react-icons/md";
+import SkillBar from "./SkillBar";
 
 
-function SkillComparison () {
+function SkillComparison ({ data }) {
     return(
         <>
-        <div className="mx-auto flex flex-col items-center lg:items-start px-9 py-6 pb-12 gap-2 rounded-xl border border-[var(--color-primary)]">
-            <div className="flex flex-wrap justify-center gap-2 lg:gap-35">
-                <h1 className="text-2xl lg:text-4xl font-bold text-[var(--color-primary)]">Skill Comparison</h1>
-                <div className="flex items-center gap-6 text-xs lg:text-sm font-semibold">
-                    <div className="flex gap-2 items-center">
-                        <div className="bg-[var(--color-primary)] h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
+        <div className="mx-auto w-full lg:w-auto flex flex-col items-center lg:items-start py-6 gap-5 rounded-xl border border-[var(--color-primary)]">
+
+            <div className="flex flex-wrap justify-center lg:justify-between gap-3 lg:gap-60 lg:px-6">
+                <div className="flex lg:justify-center items-center gap-2">
+                    <MdInsertChartOutlined size={32} color="var(--color-primary)"/>
+                    <h1 className="text-2xl lg:text-3xl font-bold text-[var(--color-primary)]">Skill Comparison</h1>
+                </div>
+                <div className="flex items-center gap-4 text-(--color-primary) text-xs font-semibold">
+                    <div className="flex gap-1 items-center">
+                        <div className="bg-(--color-primary) h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
                         <p>YOUR SKILL</p>
                     </div>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex gap-1 items-center">
                         <div className="bg-[var(--color-primary)]/20 h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
                         <p>TARGET SKILL</p>
                     </div>
-
                 </div>
             </div>
-            <div className="bg-red-400 w-full">
-                bar
+            
+            <div className="w-full flex flex-col gap-1 lg:gap-0.5">
+                {data.map((item, index) => (
+                    <SkillBar
+                    key={index} 
+                    percentage={item.percentage} 
+                    text={item.text}
+                    type={item.type} 
+                    />
+                ))}
+
             </div>
+            
 
         </div>
         </>
