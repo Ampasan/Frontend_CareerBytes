@@ -1,14 +1,14 @@
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
-import AnalysisSkill from "../features/skillAssesment/AnalysisSkill";
-import StartAssesment from "../features/skillAssesment/StartAssesment";
+import AssesmentStatistic from "../features/skillAssesment/components/AssesmentStatistic";
+import AssesmentStart from "../features/skillAssesment/components/AssesmentStart";
 
 function AssesmentPage() {
     return(
         <>
         <Navbar />
-        <StartAssesment />
-        <AnalysisSkill />
+        <AssesmentStart />
+        <AssesmentStatistic />
         <Footer />
         </>
     )

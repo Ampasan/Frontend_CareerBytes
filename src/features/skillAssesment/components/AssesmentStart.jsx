@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import Button from "../../components/ui/Button"
+import Button from "../../../components/ui/Button"
 
-function StartAssesment () {
+function AssesmentStart () {
     return (
         <section className="my-10 mt-18 max-w-full mx-auto">
             <div className="max-w-6xl mx-auto px-5">
@@ -10,11 +10,11 @@ function StartAssesment () {
                     <p className="max-w-[600px] text-sm lg:text-lg text-[var(--color-primary)]">Answer a few quick questions to understand your current skill level and identify what you need to improve.</p>
                     {/* Button */}
                     <div className="text-sm mt-8 lg:mt-12">
-                        <Link 
+                        <button 
                         className="bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/80 text-white p-2 px-10 rounded-md"
                         >
                             Start
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -22,4 +22,4 @@ function StartAssesment () {
     )
 }
 
-export default StartAssesment;
+export default AssesmentStart;

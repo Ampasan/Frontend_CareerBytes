@@ -1,5 +1,5 @@
-import AnalysisResult from "../../components/ui/AnalysisResult"
-import SkillComparison from "../../components/ui/SkillComparison"
+import AnalysisResult from "../../../components/ui/AnalysisResult"
+import SkillComparison from "../../../components/ui/SkillComparison"
 
 const SkillData = [
     {percentage: 60, type: "Match", text: "Visual Design"},
@@ -8,7 +8,7 @@ const SkillData = [
     {percentage: 10, type: "Match", text: "Typography"}
 ]
 
-function AnalysisSkill () {
+function AssesmentStatistic () {
     return (
         <div className="my-10 mb-20 mt-10 max-w-6xl px-5 mx-auto flex flex-wrap gap-10 justify-between">
             <AnalysisResult 
@@ -21,4 +21,4 @@ function AnalysisSkill () {
     )
 }
 
-export default AnalysisSkill
+export default AssesmentStatistic;
