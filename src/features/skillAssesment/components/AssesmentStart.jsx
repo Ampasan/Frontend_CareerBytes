@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import Button from "../../../components/ui/Button"
 
-function AssesmentStart () {
+function AssesmentStart ({ onStart }) {
     return (
         <section className="my-10 mt-18 max-w-full mx-auto">
             <div className="max-w-6xl mx-auto px-5">
@@ -11,7 +11,8 @@ function AssesmentStart () {
                     {/* Button */}
                     <div className="text-sm mt-8 lg:mt-12">
                         <button 
-                        className="bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/80 text-white p-2 px-10 rounded-md"
+                        className="bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/80 text-white p-2 px-10 rounded-md cursor-pointer"
+                        onClick={onStart}
                         >
                             Start
                         </button>
