@@ -63,8 +63,11 @@ function QuizCard ({
                 }
 
                 <button 
-                className="bg-(--color-primary) hover:bg-transparent text-white hover:text-(--color-primary) border-1 p-2 px-7 rounded-md cursor-pointer flex items-center justify-center gap-2"
                 onClick={onNext}
+                disabled={selectedOption === undefined}
+                className={`bg-(--color-primary) text-white border-1 p-2 px-7 rounded-md flex items-center justify-center gap-2
+                    ${selectedOption === undefined ? "opacity-50 cursor-not-allowed" : "hover:bg-transparent hover:text-(--color-primary) cursor-pointer"}
+                    `}
                 >
                     <p>{isLastQuest ? "Finish" : "Next"}</p>
                     <ChevronRight size={13} />

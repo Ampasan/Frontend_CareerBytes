@@ -72,7 +72,12 @@ function QuizAssesment ({ onExit }) {
     //Answers Selection Handler
     function handleSelectOption(optionIndex) {
         const updatedAnswers = [...selectedAnswers];
-        updatedAnswers[currentQuestIDX] = optionIndex;
+
+        if (selectedAnswers[currentQuestIDX] === optionIndex) {
+            updatedAnswers[currentQuestIDX] = undefined;
+        } else {
+            updatedAnswers[currentQuestIDX] = optionIndex;
+        }
         setSelectedAnswers(updatedAnswers);
     }
 
