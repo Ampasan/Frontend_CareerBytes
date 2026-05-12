@@ -25,8 +25,9 @@ function QuizCard ({
             {/* OPTION */}
             <div className="flex flex-col gap-5">
                 {options.map((option, index) => (
-                <div className="flex flex-col items-start p-3 border-2 border-(--color-primary)/30 rounded-lg font-semibold
-                                hover:bg-(--color-primary) hover:text-white transition">
+                <div key={index} 
+                className="flex flex-col items-start p-3 border-2 border-(--color-primary)/30 rounded-lg font-semibold
+                                hover:bg-(--color-primary) hover:text-white transition cursor-pointer">
                     <div className="flex justify-center items-center gap-3 text-sm ">
                         <div className="flex items-center justify-center h-7 w-7 text-xs rounded-full border-2 border-(--color-primary)/30">
                         {index + 1}

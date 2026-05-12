@@ -15,11 +15,11 @@ function SkillComparison ({ data }) {
                 </div>
                 <div className="flex items-center gap-4 text-(--color-primary) text-xs font-semibold">
                     <div className="flex gap-1 items-center">
-                        <div className="bg-(--color-primary) h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
+                        <div className="bg-[#14357F] h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
                         <p>YOUR SKILL</p>
                     </div>
                     <div className="flex gap-1 items-center">
-                        <div className="bg-[var(--color-primary)]/20 h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
+                        <div className="bg-[#BACCF2] h-2 w-2 lg:h-3.5 lg:w-3.5 rounded-full"></div>
                         <p>TARGET SKILL</p>
                     </div>
                 </div>

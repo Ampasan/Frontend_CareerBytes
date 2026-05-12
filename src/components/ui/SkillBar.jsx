@@ -12,8 +12,8 @@ function SkillBar ({ percentage, text, type = "Match" }) {
             </div>
 
             <div className="order-3 col-span-2 lg:col-span-1 lg:order-0 w-full flex items-center pb-5 lg:pb-0">
-                <div className="flex-1 bg-(--color-primary)/20 h-3 rounded-full ">
-                    <div className="bg-(--color-primary) h-full rounded-full"
+                <div className="flex-1 bg-[#BACCF2] h-3 rounded-full ">
+                    <div className="bg-[#14357F] h-full rounded-full"
                      style={{ width: `${percentage}%` }}>
                      </div>
                 </div>
