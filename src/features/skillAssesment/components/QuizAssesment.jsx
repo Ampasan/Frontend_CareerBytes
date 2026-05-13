@@ -2,7 +2,7 @@ import { number } from "zod";
 import QuizCard from "../../../components/ui/QuizCard";
 import { useState } from "react";
 
-function QuizAssesment ({ onExit }) {
+function QuizAssesment ({ onExit, onFinish }) {
     const questions = [
         {
             question:
@@ -27,30 +27,6 @@ function QuizAssesment ({ onExit }) {
                 "Advanced",
                 "Expert"
             ]
-        },
-        {
-            question:
-            "How familiar are you with Typography?",
-
-            options: [
-                "Very Weak",
-                "Weak",
-                "Average",
-                "Good",
-                "Excellent"
-            ]
-        },
-        {
-            question:
-            "Do you know what is color theory?",
-
-            options: [
-                "To calculate the exact chemical composition of pigments used in physical paints",
-                "To provide a set of guidelines for creating harmonious color combinations and evoking specific emotions",
-                "To measure the speed of light waves as they pass through different colored glass filters",
-                "To establish a legal framework for branding and copyrighting specific shades of colors",
-                "To analyze the electrical conductivity of various colored materials in electronics"
-            ]
         }
     ];
 
@@ -59,11 +35,19 @@ function QuizAssesment ({ onExit }) {
     const totalQuest = questions.length;
     const isLastQuest = currentQuestIDX === totalQuest - 1;
     const [selectedAnswers,setSelectedAnswers] = useState([])
-    const progressPercentage = (selectedAnswers.length / totalQuest) * 100;
+
+    const answeredQuestions = selectedAnswers.filter(
+        (answer) => answer !== undefined
+    ).length;
+    const progressPercentage = (answeredQuestions / totalQuest) * 100;
 
     // Back & Next Handler
     function handleNextQuest() {
-        setCurrentQuestIDX(currentQuestIDX + 1);
+        if(isLastQuest) {
+            onFinish();
+        } else {
+            setCurrentQuestIDX(currentQuestIDX + 1);
+        }
     };
     function handleBackQuest() {
         setCurrentQuestIDX(currentQuestIDX - 1);

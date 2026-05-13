@@ -19,7 +19,7 @@ function QuizCard ({
     return (
         <>
         <div className="bg-white flex flex-col gap-2 p-6 px-10 w-full rounded-xl shadow shadow-[0_2px_5px_1px_lightgray]">
-            <div className="w-full">
+            <div className="w-full lg:w-2xl">
                 <Bar progress={progressPercentage} color="bg-(--color-primary)" variant="C" fontWeight="font-normal" text={`Question ${currentQuestIDX+1} of ${totalQuest}`}/>
             </div>
             <h1 className="text-(--color-primary) font-bold text-2xl lg:text-3xl mt-5 lg:mt-10">
