@@ -2,7 +2,7 @@ import { number } from "zod";
 import QuizCard from "../../../components/ui/QuizCard";
 import { useState } from "react";
 
-function QuizAssesment ({ onExit, onFinish }) {
+function QuizAssessment ({ onExit, onFinish }) {
     const questions = [
         {
             question:
@@ -96,4 +96,4 @@ function QuizAssesment ({ onExit, onFinish }) {
     )
 }
 
-export default QuizAssesment;
+export default QuizAssessment;

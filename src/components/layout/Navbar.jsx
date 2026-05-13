@@ -32,7 +32,7 @@ function Navbar() {
                 <ul className="hidden lg:flex gap-8">
                     <li className="hover:text-(--color-primary)/40"><Link to="/">Home</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/career-roadmap">Roadmap</Link></li>
-                    <li className="hover:text-(--color-primary)/40"><Link to="/assesment">Assesment</Link></li>
+                    <li className="hover:text-(--color-primary)/40"><Link to="/assessment">Assessment</Link></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#mission">Mission</a></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#trends">Trends</a></li>
                 </ul>
@@ -66,7 +66,7 @@ function Navbar() {
                     <div className="absolute top-full left-0 p-5 px-8 bg-(--color-image) flex flex-col gap-4 w-full text-lg lg:hidden rounded-b-3xl shadow-lg border border-t-0">
                         <Link to="/" className="hover:text-(--color-primary)/60 transition">Home</Link>
                         <Link to="/career-roadmap" className="hover:text-(--color-primary)/60 transition">Roadmap</Link>
-                        <Link to="/assesment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
+                        <Link to="/assessment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
                         <a href="#mission" className="hover:text-(--color-primary)/60 transition">Mission</a>
                         <a href="#trends" className="hover:text-(--color-primary)/60 transition">Trends</a>
                         

@@ -1,14 +1,14 @@
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
 
-import AssesmentStatistic from "../features/skillAssesment/components/AssesmentStatistic";
-import AssesmentStart from "../features/skillAssesment/components/AssesmentStart";
-import QuizAssesment from "../features/skillAssesment/components/QuizAssesment";
-import ProcessingAssesment from "../features/skillAssesment/components/ProcessingAssesment";
+import AssessmentStatistic from "../features/skillAssessment/components/AssessmentStatistic";
+import AssessmentStart from "../features/skillAssessment/components/AssessmentStart";
+import QuizAssessment from "../features/skillAssessment/components/QuizAssessment";
+import ProcessingAssessment from "../features/skillAssessment/components/ProcessingAssessment";
 
 import { useState } from "react";
 
-function AssesmentPage() {
+function AssessmentPage() {
 
     // MENENTUKAN HALAMAN YANG SEDANG AKTIF
     const [currentPage, setCurrentPage] = useState("start");
@@ -20,17 +20,17 @@ function AssesmentPage() {
             {/* START PAGE */}
             {currentPage === "start" && (
                 <>
-                    <AssesmentStart
+                    <AssessmentStart
                         onStart={() => setCurrentPage("quiz")}
                     />
 
-                    <AssesmentStatistic />
+                    <AssessmentStatistic />
                 </>
             )}
 
             {/* QUIZ PAGE */}
             {currentPage === "quiz" && (
-                <QuizAssesment
+                <QuizAssessment
                     onExit={() => setCurrentPage("start")}
                     onFinish={() => setCurrentPage("processing")}
                 />
@@ -38,7 +38,7 @@ function AssesmentPage() {
 
             {/* PROCESSING PAGE */}
             {currentPage === "processing" && (
-                <ProcessingAssesment
+                <ProcessingAssessment
                     onComplete={() => setCurrentPage("result")}
                 />
             )}
@@ -46,10 +46,10 @@ function AssesmentPage() {
             {/* RESULT PAGE */}
             {currentPage === "result" && (
                 <>
-                <AssesmentStart
+                <AssessmentStart
                         onStart={() => setCurrentPage("quiz")}
                     />
-                <AssesmentStatistic />
+                <AssessmentStatistic />
                 </>
             )}
 
@@ -58,4 +58,4 @@ function AssesmentPage() {
     );
 }
 
-export default AssesmentPage;
+export default AssessmentPage;

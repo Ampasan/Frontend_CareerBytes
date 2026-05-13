@@ -17,7 +17,7 @@ function Footer() {
                         <h2 className="font-bold mb-1 ">FEATURES</h2>
                         <div className="flex flex-col text-sm underline underline-offset-2 gap-2">
                             <Link to="/career-roadmap" className="hover:text-black/50 hover:decoration-gray-700">Career Roadmap</Link>
-                            <a href="#" className="hover:text-black/50 hover:decoration-gray-700">SKill Assesment</a>
+                            <a href="#" className="hover:text-black/50 hover:decoration-gray-700">SKill Assessment</a>
                             <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Daily Mission</a>
                             <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Trending Skills</a>
                         </div>

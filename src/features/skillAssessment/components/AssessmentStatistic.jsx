@@ -8,7 +8,7 @@ const SkillData = [
     {percentage: 10, type: "Match", text: "Typography"}
 ]
 
-function AssesmentStatistic () {
+function AssessmentStatistic () {
     return (
         <section className="my-10 mb-20 mt-10 max-w-6xl px-5 mx-auto flex flex-wrap gap-10 justify-between">
             <AnalysisResult 
@@ -21,4 +21,4 @@ function AssesmentStatistic () {
     )
 }
 
-export default AssesmentStatistic;
+export default AssessmentStatistic;

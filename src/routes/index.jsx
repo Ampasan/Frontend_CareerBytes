@@ -7,7 +7,7 @@ import RegisterPage from "../pages/RegisterPage";
 import { AuthProvider } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
-import AssesmentPage from "../pages/AssesmentPage";
+import AssessmentPage from "../pages/AssessmentPage";
 
 export default function AppRoutes() {
   return (
@@ -53,10 +53,10 @@ export default function AppRoutes() {
           />
 
           <Route 
-            path="/assesment"
+            path="/assessment"
             element={
               <ProtectedRoute>
-                  <AssesmentPage />
+                  <AssessmentPage />
               </ProtectedRoute>
             }
           />
