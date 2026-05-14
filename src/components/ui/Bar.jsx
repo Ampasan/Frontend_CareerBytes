@@ -14,7 +14,7 @@ function Bar({ progress, color = "bg-green-400", fontWeight = "font-semibold", t
       <div className="flex items-center gap-2">
         <div className="flex-1 bg-(--color-primary)/20 h-2 rounded overflow-hidden">
           <div
-            className={`${color} h-full rounded`}
+            className={`${color} h-full rounded transition-all duration-500`}
             style={{ width: `${progress}%` }}
           ></div>
         </div>

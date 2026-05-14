@@ -27,6 +27,36 @@ function QuizAssessment ({ onExit, onFinish }) {
                 "Advanced",
                 "Expert"
             ]
+        },
+        {
+            question: "How experienced are you with creating user personas and user journey maps?",
+            options: [
+                "No experience",
+                "Understand the concept",
+                "Created a few for projects",
+                "Create them regularly",
+                "Expert (lead research sessions)"
+            ]
+        },
+        {
+            question: "How would you rate your skill in creating high-fidelity interactive prototypes?",
+            options: [
+                "Never created one",
+                "Static screens only",
+                "Basic interactions (page links)",
+                "Advanced smart-animates & variables",
+                "Expert (micro-interactions & logic)"
+            ]
+        },
+        {
+            question: "How often do you conduct usability testing with real users?",
+            options: [
+                "Never done it",
+                "Rarely (rely on intuition)",
+                "Occasionally for major features",
+                "Regularly before development",
+                "Always (core part of design cycle)"
+            ]
         }
     ];
 

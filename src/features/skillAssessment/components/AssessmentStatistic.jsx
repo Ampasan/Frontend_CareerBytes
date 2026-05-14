@@ -5,7 +5,7 @@ const SkillData = [
     {percentage: 60, type: "Match", text: "Visual Design"},
     {percentage: 80, type: "Match", text: "Typography"},
     {percentage: 20, type: "Match", text: "Prototyping"},
-    {percentage: 10, type: "Match", text: "Typography"}
+    {percentage: 10, type: "Match", text: "Design System"}
 ]
 
 function AssessmentStatistic () {
