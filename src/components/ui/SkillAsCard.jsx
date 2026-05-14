@@ -12,7 +12,7 @@ function SkillAsCard() {
                 </div>
             </div>
             {/* CARD TITLE */}
-            <h2 className="font-semibold text-2xl text-[var(--color-primary)]">Skill Assesment</h2>
+            <h2 className="font-semibold text-2xl text-[var(--color-primary)]">Skill Assessment</h2>
             {/* CARD CONTENT */}
             <div className="bg-[var(--color-primary)]/20 px-5 py-3 rounded-xl text-sm">
                 <h3 className="font-semibold text-[var(--color-primary)]/50">Question 07 of 20</h3>

@@ -51,7 +51,7 @@ function RoadmapCard({opacity, title, status, description, ChecklistItems, progr
                     <h3>Progress</h3>
                     <div className="flex items-center gap-2">
                         {/* BAR */}
-                        <div className="flex-1 bg-white h-1.5 rounded overflow-hidden">
+                        <div className="flex-1 flex items-center bg-white h-1.5 rounded overflow-hidden">
                             <div className="bg-green-400 h-2 w-full rounded" 
                             style={{width: `${progress}%`}}>
                             </div>

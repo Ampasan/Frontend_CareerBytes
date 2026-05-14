@@ -7,6 +7,7 @@ import RegisterPage from "../pages/RegisterPage";
 import { AuthProvider } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
+import AssessmentPage from "../pages/AssessmentPage";
 
 export default function AppRoutes() {
   return (
@@ -49,6 +50,15 @@ export default function AppRoutes() {
                 <RegisterPage />
               </AuthRoute>
             } 
+          />
+
+          <Route 
+            path="/assessment"
+            element={
+              <ProtectedRoute>
+                  <AssessmentPage />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </BrowserRouter>

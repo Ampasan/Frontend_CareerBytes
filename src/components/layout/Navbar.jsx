@@ -14,7 +14,7 @@ function Navbar() {
     };
 
     return(
-        <nav className={`bg-(--color-image) text-(--color-primary) sticky max-w-md md:max-w-6xl mx-4 md:mx-auto top-5 z-100 shadow-lg ${isMenuOpen ? "rounded-b-none rounded-t-3xl" : "rounded-full"}`}>
+        <nav className={`bg-(--color-image) text-(--color-primary) sticky max-w-full md:max-w-6xl mx-4 md:mx-auto top-5 z-100 shadow-lg ${isMenuOpen ? "rounded-b-none rounded-t-3xl" : "rounded-full"}`}>
 
             <div className={`lg:my-2 py-3 px-8 lg:px-16 flex text-xl border border-(--color-primary) ${isMenuOpen ? "flex-col items-start gap-5 rounded-b-none rounded-t-3xl border-b-0" : "items-center justify-between rounded-full"}`}>
                 
@@ -32,7 +32,7 @@ function Navbar() {
                 <ul className="hidden lg:flex gap-8">
                     <li className="hover:text-(--color-primary)/40"><Link to="/">Home</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/career-roadmap">Roadmap</Link></li>
-                    <li className="hover:text-(--color-primary)/40"><a href="#mission">Assesment</a></li>
+                    <li className="hover:text-(--color-primary)/40"><Link to="/assessment">Assessment</Link></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#mission">Mission</a></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#trends">Trends</a></li>
                 </ul>
@@ -66,7 +66,7 @@ function Navbar() {
                     <div className="absolute top-full left-0 p-5 px-8 bg-(--color-image) flex flex-col gap-4 w-full text-lg lg:hidden rounded-b-3xl shadow-lg border border-t-0">
                         <Link to="/" className="hover:text-(--color-primary)/60 transition">Home</Link>
                         <Link to="/career-roadmap" className="hover:text-(--color-primary)/60 transition">Roadmap</Link>
-                        <Link to="/assesment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
+                        <Link to="/assessment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
                         <a href="#mission" className="hover:text-(--color-primary)/60 transition">Mission</a>
                         <a href="#trends" className="hover:text-(--color-primary)/60 transition">Trends</a>
                         
