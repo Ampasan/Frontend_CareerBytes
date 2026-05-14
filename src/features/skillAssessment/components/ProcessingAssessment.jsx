@@ -38,16 +38,19 @@ function ProcessingAssessment({ onComplete }) {
 
     return(
         <section className="max-w-full mx-auto">
-            <div className="max-w-md mx-auto flex flex-col justify-center items-center gap-3 text-(--color-primary) my-15">
-                <div className={`h-20 w-20 rounded-full flex justify-center items-center
+            <div className="max-w-xs lg:max-w-md mx-auto flex flex-col justify-center items-center gap-2 lg:gap-3 text-(--color-primary) my-15">
+                <div className={`h-15 w-15 lg:h-20 lg:w-20 rounded-full flex justify-center items-center
                     ${isFinished ? "bg-(--color-primary) text-white" : "bg-(--color-primary)/20"}
                     `}>
-                    {isFinished ? <CircleCheckBig size={50}/> : <LoaderCircle className="animate-spin h-10 w-10" />}
+                    {isFinished ? <CircleCheckBig size={50} className="h-10 lg:h-20"/> 
+                    : 
+                    <LoaderCircle size={40} className="animate-spin h-10 lg:h-20" />}
                 </div>
-                <h1 className="text-3xl font-bold">Processing Your Assessment</h1>
-                <p className="text-center text-sm max-w-md">We're analyzing your responses to create a personalized skill profile and career recommendations.</p>
+                <h1 className="text-xl lg:text-3xl font-bold">Processing Your Assessment</h1>
+                <p className="text-center text-xs lg:text-sm lg:max-w-md">We're analyzing your responses to create a personalized skill profile and career recommendations.</p>
                 
-                <div className="bg-white shadow-[0px_1.5px_5px_2px] shadow-black/10 w-full h-72 rounded-xl flex flex-col gap-5 p-8">
+                {/* PROCESS CARD */}
+                <div className="bg-white shadow-[0px_1.5px_5px_2px] shadow-black/10 w-full h-60 lg:h-72 rounded-xl flex flex-col gap-5 p-5 lg:p-8">
                     {processData.map((process, index) => {
                         const isDone = index < currentStep || 
                         (isFinished && index === currentStep);
@@ -55,13 +58,13 @@ function ProcessingAssessment({ onComplete }) {
 
                         return(
                             <div key={index}
-                            className="flex flex-col items-start "
+                            className="flex flex-col items-start"
                             >
                                 <div className="flex justify-between items-center w-full">
                                     {/* LEFT SIDE */}
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-2 lg:gap-4">
                                         {/* ICON */}
-                                        <div className={`h-10 w-10 rounded-full flex justify-center items-center border-2 font-bold
+                                        <div className={`h-8 w-8 lg:h-10 lg:w-10 rounded-full flex justify-center items-center border-2 font-bold
                                             ${isDone ? "bg-(--color-primary) text-white border-(--color-primary)" : ""}
                                             ${isActive ? "bg-(--color-primary)/15 text-[var(--color-primary)] animate-pulse" : ""}
                                             ${!isDone && !isActive ?
@@ -71,13 +74,13 @@ function ProcessingAssessment({ onComplete }) {
                                             {isDone ? <Check size={20} /> : <LoaderCircle className="animate-spin h-5 w-5"/>}
                                         </div>
                                         {/* TEXT */}
-                                        <p className="font-medium text-sm">
+                                        <p className="font-medium text-xs lg:text-sm">
                                             {process}
                                         </p>
                                     </div>
 
                                     {/* RIGHT SIDE STATUS */}
-                                    <div className={`text-xs px-2 h-7 rounded-full flex justify-center items-center
+                                    <div className={`text-xs px-1 lg:px-2 h-7 rounded-full flex justify-center items-center
                                         ${isDone ? "bg-(--color-primary) text-white" : ""}
                                         ${isActive ? "bg-(--color-primary)/15 text-(--color-primary)" : "" }
                                         ${!isDone && !isActive ? "bg-gray-100 text-gray-400" : ""}
@@ -85,7 +88,7 @@ function ProcessingAssessment({ onComplete }) {
                                         {isDone ? "Done" : isActive ? "In Progress" : "Waiting"}
                                     </div>
                                 </div>
-                                <div className={`ml-2 mt-1
+                                <div className={`ml-1 lg:ml-2 mt-1
                                     ${isDone ? "text-(--color-primary)" : ""}
                                         ${isActive ? "text-(--color-primary)/20" : "" }
                                         ${!isDone && !isActive ? "hidden" : ""}
@@ -97,7 +100,7 @@ function ProcessingAssessment({ onComplete }) {
                     })}
                 </div>
 
-                <p className="text-center text-sm mt-5">
+                <p className="text-center text-xs lg:text-sm mt-3 lg:mt-5">
                     This will only take a few seconds
                 </p>
                 {/* DOT LOADING */}
