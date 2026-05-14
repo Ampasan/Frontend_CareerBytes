@@ -14,7 +14,7 @@ function Navbar() {
     };
 
     return(
-        <nav className={`bg-(--color-image) text-(--color-primary) sticky max-w-md md:max-w-6xl mx-4 md:mx-auto top-5 z-100 shadow-lg ${isMenuOpen ? "rounded-b-none rounded-t-3xl" : "rounded-full"}`}>
+        <nav className={`bg-(--color-image) text-(--color-primary) sticky max-w-full md:max-w-6xl mx-4 md:mx-auto top-5 z-100 shadow-lg ${isMenuOpen ? "rounded-b-none rounded-t-3xl" : "rounded-full"}`}>
 
             <div className={`lg:my-2 py-3 px-8 lg:px-16 flex text-xl border border-(--color-primary) ${isMenuOpen ? "flex-col items-start gap-5 rounded-b-none rounded-t-3xl border-b-0" : "items-center justify-between rounded-full"}`}>
                 

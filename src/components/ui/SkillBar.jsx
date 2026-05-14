@@ -5,14 +5,15 @@ function SkillBar ({ percentage, text, type = "Match" }) {
     const icon = percentage > 50 ? <FaRegCheckCircle size={20}/> : <RiAlertLine size={20} />
 
     return (
-        <div className="text-(--color-primary) bg-(--color-primary)/15 w-full px-6 grid grid-cols-2 lg:grid-cols-[20%_62%_12%] text-xs lg:text-sm font-semibold justify-between">
-            <div className="order-1 lg:order-0 lg:pl-1 w-full flex justify-start items-center gap-2 py-6 font-bold">
+        <div className="text-(--color-primary) bg-(--color-primary)/15 w-full px-6 grid grid-cols-2 lg:grid-cols-[20%_62%_12%] 
+                        text-xs lg:text-sm font-semibold justify-between">
+            <div className="order-1 lg:order-0 lg:pl-1 w-full flex justify-start items-center gap-2 py-2 lg:py-6 font-bold">
                 {icon}
                 <p>{text}</p>
             </div>
 
             <div className="order-3 col-span-2 lg:col-span-1 lg:order-0 w-full flex items-center pb-5 lg:pb-0">
-                <div className="flex-1 bg-[#BACCF2] h-3 rounded-full ">
+                <div className="flex-1 bg-[#BACCF2] h-2 lg:h-3 rounded-full ">
                     <div className="bg-[#14357F] h-full rounded-full transition-all duration-1000"
                      style={{ width: `${percentage}%` }}>
                      </div>

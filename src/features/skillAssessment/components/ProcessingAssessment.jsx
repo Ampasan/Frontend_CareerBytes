@@ -1,13 +1,14 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, LoaderCircle, Circle, CircleCheckBig } from "lucide-react";
 import { PiLineVerticalBold } from "react-icons/pi";
 
-function ProcessingAssessment({ onComplete }) {
-    const processData = [
+const processData = [
     "Analyzing your answers",
     "Comparing with role requirements",
     "Generating your results"
-    ];
+];
+
+function ProcessingAssessment({ onComplete }) {
     const [currentStep, setCurrentStep] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
 
@@ -34,7 +35,7 @@ function ProcessingAssessment({ onComplete }) {
             const timeout = setTimeout(() => onComplete(), 1500);
             return () => clearTimeout(timeout);
         }
-    }, [isFinished]);
+    }, [isFinished, onComplete]);
 
     return(
         <section className="max-w-full mx-auto">

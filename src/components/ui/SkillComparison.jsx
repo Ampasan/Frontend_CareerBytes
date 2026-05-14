@@ -6,12 +6,14 @@ import SkillBar from "./SkillBar";
 function SkillComparison ({ data }) {
     return(
         <>
-        <div className="mx-auto w-full lg:w-auto flex flex-col items-center lg:items-start py-6 gap-5 rounded-xl border border-[var(--color-primary)]">
+        <div className="mx-auto w-full flex flex-col items-center lg:items-start py-6 gap-2 lg:gap-5 rounded-xl border border-[var(--color-primary)]">
 
-            <div className="flex flex-wrap justify-center lg:justify-between gap-3 lg:gap-60 lg:px-6">
-                <div className="flex lg:justify-center items-center gap-2">
+            <div className="flex flex-wrap w-full justify-center sm:justify-between md:px-5 lg:px-6 gap-2">
+                <div className="flex justify-center items-center gap-2 ">
                     <MdInsertChartOutlined size={32} color="var(--color-primary)"/>
-                    <h1 className="text-2xl lg:text-3xl font-bold text-[var(--color-primary)]">Skill Comparison</h1>
+                    <h1 className="text-xl lg:text-3xl font-bold text-[var(--color-primary)]">
+                        Skill Comparison
+                    </h1>
                 </div>
                 <div className="flex items-center gap-4 text-(--color-primary) text-xs font-semibold">
                     <div className="flex gap-1 items-center">
