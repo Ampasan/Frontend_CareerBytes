@@ -8,6 +8,7 @@ import { AuthProvider } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import AssessmentPage from "../pages/AssessmentPage";
+import TrendsPage from "../pages/TrendsPage";
 
 export default function AppRoutes() {
   return (
@@ -60,6 +61,16 @@ export default function AppRoutes() {
               </ProtectedRoute>
             }
           />
+
+          <Route 
+            path="/trends"
+            element={
+              <ProtectedRoute>
+                  <TrendsPage />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

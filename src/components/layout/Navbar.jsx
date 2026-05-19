@@ -34,7 +34,7 @@ function Navbar() {
                     <li className="hover:text-(--color-primary)/40"><Link to="/career-roadmap">Roadmap</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/assessment">Assessment</Link></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#mission">Mission</a></li>
-                    <li className="hover:text-(--color-primary)/40"><a href="#trends">Trends</a></li>
+                    <li className="hover:text-(--color-primary)/40"><Link to="/trends">Trends</Link></li>
                 </ul>
 
                 {/* Auth Sections */}
@@ -68,7 +68,7 @@ function Navbar() {
                         <Link to="/career-roadmap" className="hover:text-(--color-primary)/60 transition">Roadmap</Link>
                         <Link to="/assessment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
                         <a href="#mission" className="hover:text-(--color-primary)/60 transition">Mission</a>
-                        <a href="#trends" className="hover:text-(--color-primary)/60 transition">Trends</a>
+                        <Link to="/trends" className="hover:text-(--color-primary)/60 transition">Trends</Link>
                         
                         {/* Mobile Auth Links */}
                         <div className="flex flex-col gap-4 pt-4 border-t border-(--color-primary)/10">
