@@ -15,7 +15,7 @@ function Checklist({ bgColor, bgColor2, isCheck, text, variant = "normal" }) {
             <div className="flex justify-between items-center w-full">
                 <p className='w-[80%] max-w-xl'>{text}</p>
                 {variant === "with-status" && (
-                    isCheck? <p className="text-xs font-semibold text-black/30">DONE</p> :
+                    isCheck? <p className="text-xs font-semibold text-(--color-black)/30">DONE</p> :
                              <p className="text-xs font-semibold">IN PROGRESS</p>
                 )}
             </div>

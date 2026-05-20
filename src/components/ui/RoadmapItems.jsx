@@ -14,7 +14,7 @@ function RoadmapItems({ data }) {
                 
                 <div key={index} className="grid grid-cols-[40px_10px_1fr] lg:grid-cols-[50px_20px_1fr]">
                     {/* ICON */}
-                    <div className={`bg-black/5 w-10 h-10 flex justify-center items-center rounded-full border-2 text-(--color-primary) ${getOpacity(item.status)}`}>
+                    <div className={`bg-(--color-black)/5 w-10 h-10 flex justify-center items-center rounded-full border-2 text-(--color-primary) ${getOpacity(item.status)}`}>
                         <div className="rounded-full w-5 h-5 border flex items-center justify-center">{getIcon(item.status)}</div>
                     </div>
 

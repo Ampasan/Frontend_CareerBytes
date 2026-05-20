@@ -47,11 +47,11 @@ function CircleProgress({ percentage = 0}) {
 
         {/* Text */}
         <div className="absolute text-center flex flex-col gap-2">
-            <h1 className="text-4xl lg:text-5xl font-bold text-blue-600">
+            <h1 className="text-4xl lg:text-5xl font-bold text-(--color-primary)">
                 {percentage}%
             </h1>
 
-            <p className="text-[var(--color-primary)] text-xs lg:text-sm font-bold">
+            <p className="text-(--color-primary) text-xs lg:text-sm font-bold">
                 OVERALL MATCH
             </p>
         </div>

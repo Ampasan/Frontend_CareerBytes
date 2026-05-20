@@ -11,13 +11,56 @@ html {
 }
 
 :root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent-white: rgba(255, 255, 255, 0);
+
   --color-image: #F3F3F3;
   --color-text: #BFB5B5;
   --color-cardRM: #D0D0D0;
 
-  --color-primary:#2159D4;
+  --color-primary: #2159D4;
   --color-secondary: #DECAFF;
   --color-third: #7034D5;
   --color-border: #b8cdfa;
 
+  --color-surface: #ffffff;
+  --color-surface-muted: #F5F5F5;
+  --color-surface-primary: #F0F4FE;
+  --color-surface-primary-alt: #F0F4FF;
+
+  --color-primary-dark: #14357F;
+  --color-primary-hero: #2F5CC8;
+  --color-primary-soft: #EEF2FF;
+  --color-primary-soft-hover: #DBEAFE;
+  --color-primary-light: #BACCF2;
+  --color-primary-muted: #9BB0EA;
+  --color-primary-muted-strong: #95ACE8;
+  --color-primary-border-strong: #5D7CFA;
+  --color-primary-icon-muted: #B6C3ED;
+  --color-primary-placeholder: #BFCDFD;
+  --color-progress-track: #D9DCE7;
+
+  --color-mission-card-completed: #AFC0F1;
+  --color-mission-label-completed: #9EB2F3;
+  --color-mission-label: #E7DFF8;
+
+  --color-text-muted: #6b7280;
+  --color-text-soft: #9ca3af;
+  --color-icon-muted: #d1d5db;
+  --color-neutral-soft: #f3f4f6;
+
+  --color-error: #dc2626;
+  --color-error-border: #fecaca;
+  --color-error-bg: #fef2f2;
+  --color-success: #16a34a;
+  --color-success-border: #bbf7d0;
+  --color-success-bg: #f0fdf4;
+  --color-success-progress: #4ade80;
+
+  --color-shadow-light: #d3d3d3;
+  --color-shadow-subtle: rgba(0, 0, 0, 0.1);
+  --color-shadow-card: rgba(0, 0, 0, 0.2);
+  --color-footer-link-hover: rgba(0, 0, 0, 0.5);
+  --color-footer-decoration-hover: #374151;
 }

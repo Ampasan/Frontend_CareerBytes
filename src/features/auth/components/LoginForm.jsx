@@ -55,7 +55,7 @@ function LoginForm() {
 
       {/* ERROR MESSAGE */}
       {error && (
-        <div className="w-full mt-6 p-3 rounded-lg bg-red-50 border border-red-200 flex items-center gap-2 text-red-600 text-sm">
+        <div className="w-full mt-6 p-3 rounded-lg bg-(--color-error-bg) border border-(--color-error-border) flex items-center gap-2 text-(--color-error) text-sm">
           <AlertCircle size={18} />
           <span>{error}</span>
         </div>
@@ -98,9 +98,9 @@ function LoginForm() {
 
         {/* Divider */}
         <div className="flex items-center gap-3 mt-2 mb-2">
-          <div className="flex-1 h-px bg-blue-300"></div>
-          <span className="text-xs text-blue-400">or</span>
-          <div className="flex-1 h-px bg-blue-300"></div>
+          <div className="flex-1 h-px bg-(--color-border)"></div>
+          <span className="text-xs text-(--color-primary-muted)">or</span>
+          <div className="flex-1 h-px bg-(--color-border)"></div>
         </div>
 
         <ButtonSocial type="google" />

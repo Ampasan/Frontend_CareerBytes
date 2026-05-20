@@ -16,12 +16,12 @@ function EmptyState({ searchTerm = "", title, description, onSearchAgain, onSele
       </div>
 
       {/* Title */}
-      <h1 className="text-[22px] lg:text-[28px] font-semibold text-blue-600 mb-4 max-w-175">
+      <h1 className="text-[22px] lg:text-[28px] font-semibold text-(--color-primary) mb-4 max-w-175">
         {title || `No Results Found for "${searchTerm}"`}
       </h1>
 
       {/* Description */}
-      <p className="text-gray-500 text-sm lg:text-base max-w-130 mb-6 leading-relaxed">
+      <p className="text-(--color-text-muted) text-sm lg:text-base max-w-130 mb-6 leading-relaxed">
         {description || "We couldn't find a career roadmap matching your search. Try using different keywords or explore one of our popular roles below."}
       </p>
 

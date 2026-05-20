@@ -33,7 +33,7 @@ function Navbar() {
                     <li className="hover:text-(--color-primary)/40"><Link to="/">Home</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/career-roadmap">Roadmap</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/assessment">Assessment</Link></li>
-                    <li className="hover:text-(--color-primary)/40"><a href="#mission">Mission</a></li>
+                    <li className="hover:text-(--color-primary)/40"><Link to="/daily-mission">Mission</Link></li>
                     <li className="hover:text-(--color-primary)/40"><a href="#trends">Trends</a></li>
                 </ul>
 
@@ -42,7 +42,7 @@ function Navbar() {
                     {!isAuthenticated ? (
                         <>
                             <Link to="/login" className="hover:text-(--color-primary)/40 transition">Login</Link>
-                            <Link to="/register" className="flex items-center bg-(--color-primary) hover:bg-(--color-primary)/80 transition text-white px-4 py-2 rounded-full">Sign Up</Link>
+                            <Link to="/register" className="flex items-center bg-(--color-primary) hover:bg-(--color-primary)/80 transition text-(--color-white) px-4 py-2 rounded-full">Sign Up</Link>
                         </>
                     ) : (
                         <div className="flex items-center gap-6">
@@ -54,7 +54,7 @@ function Navbar() {
                             </div>
                             <button 
                                 onClick={handleLogout}
-                                className="flex items-center bg-(--color-primary) hover:bg-(--color-primary)/80 transition text-white px-4 py-2 rounded-full font-semibold cursor-pointer"
+                                className="flex items-center bg-(--color-primary) hover:bg-(--color-primary)/80 transition text-(--color-white) px-4 py-2 rounded-full font-semibold cursor-pointer"
                             >
                                 <span>Logout</span>
                             </button>
@@ -67,7 +67,7 @@ function Navbar() {
                         <Link to="/" className="hover:text-(--color-primary)/60 transition">Home</Link>
                         <Link to="/career-roadmap" className="hover:text-(--color-primary)/60 transition">Roadmap</Link>
                         <Link to="/assessment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
-                        <a href="#mission" className="hover:text-(--color-primary)/60 transition">Mission</a>
+                        <Link to="/daily-mission" className="hover:text-(--color-primary)/60 transition">Mission</Link>
                         <a href="#trends" className="hover:text-(--color-primary)/60 transition">Trends</a>
                         
                         {/* Mobile Auth Links */}
@@ -75,7 +75,7 @@ function Navbar() {
                             {!isAuthenticated ? (
                                 <>
                                     <Link to="/login" className="font-semibold hover:text-(--color-primary)/60 transition">Login</Link>
-                                    <Link to="/register" className="bg-(--color-primary) text-white px-6 py-3 rounded-full font-semibold text-center hover:bg-(--color-primary)/80 transition">
+                                    <Link to="/register" className="bg-(--color-primary) text-(--color-white) px-6 py-3 rounded-full font-semibold text-center hover:bg-(--color-primary)/80 transition">
                                         Sign Up
                                     </Link>
                                 </>
@@ -89,7 +89,7 @@ function Navbar() {
                                     </div>
                                     <button 
                                         onClick={handleLogout}
-                                        className="bg-(--color-primary) text-white px-6 py-3 rounded-full font-semibold text-center hover:bg-(--color-primary)/80 transition flex items-center justify-center gap-2"
+                                        className="bg-(--color-primary) text-(--color-white) px-6 py-3 rounded-full font-semibold text-center hover:bg-(--color-primary)/80 transition flex items-center justify-center gap-2"
                                     >
                                         <span>Logout</span>
                                     </button>
