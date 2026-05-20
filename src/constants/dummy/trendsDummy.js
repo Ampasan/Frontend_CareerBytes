@@ -37,14 +37,14 @@ export const dummyPeriods = ["2026", "2025", "2024"];
 export const dummySkills = {
   year: "2025",
   skills: [
-    { id: 1, name: "AI/Machine Learning", percent: "+95%", bars: [{ label: "Growth", progress: 70 }, { label: "Demand", progress: 95 }] },
-    { id: 2, name: "Cloud Computing",     percent: "+85%", bars: [{ label: "Growth", progress: 60 }, { label: "Demand", progress: 85 }] },
-    { id: 3, name: "Cybersecurity",       percent: "+92%", bars: [{ label: "Growth", progress: 75 }, { label: "Demand", progress: 92 }] },
-    { id: 4, name: "Data Science",        percent: "+78%", bars: [{ label: "Growth", progress: 55 }, { label: "Demand", progress: 78 }] },
-    { id: 5, name: "UI/UX Design",        percent: "+75%", bars: [{ label: "Growth", progress: 50 }, { label: "Demand", progress: 75 }] },
-    { id: 6, name: "DevOps",              percent: "+72%", bars: [{ label: "Growth", progress: 48 }, { label: "Demand", progress: 72 }] },
-    { id: 7, name: "Mobile Development",  percent: "+68%", bars: [{ label: "Growth", progress: 45 }, { label: "Demand", progress: 68 }] },
-    { id: 8, name: "Product Management",  percent: "+65%", bars: [{ label: "Growth", progress: 40 }, { label: "Demand", progress: 65 }] },
+    { id: 1, name: "AI/Machine Learning", bars: [{ label: "Growth", progress: 70 }, { label: "Demand", progress: 95 }] },
+    { id: 2, name: "Cloud Computing",    bars: [{ label: "Growth", progress: 60 }, { label: "Demand", progress: 88 }] },
+    { id: 3, name: "Cybersecurity",      bars: [{ label: "Growth", progress: 75 }, { label: "Demand", progress: 82 }] },
+    { id: 4, name: "Data Science",       bars: [{ label: "Growth", progress: 55 }, { label: "Demand", progress: 78 }] },
+    { id: 5, name: "UI/UX Design",       bars: [{ label: "Growth", progress: 50 }, { label: "Demand", progress: 75 }] },
+    { id: 6, name: "DevOps",             bars: [{ label: "Growth", progress: 48 }, { label: "Demand", progress: 72 }] },
+    { id: 7, name: "Mobile Development", bars: [{ label: "Growth", progress: 45 }, { label: "Demand", progress: 68 }] },
+    { id: 8, name: "Product Management", bars: [{ label: "Growth", progress: 40 }, { label: "Demand", progress: 65 }] },
   ],
 };
 
@@ -154,25 +154,25 @@ export const roleActions = {
   "Frontend Developer": {
     title: "Level Up Your Frontend Skills",
     description: "Explore advanced React patterns, performance optimization, and modern CSS techniques to stand out.",
-    linkText: "View Frontend Roadmap",
+    linkText:  "See Recommendations",
     path: "/mission",
   },
   "Backend Developer": {
     title: "Master Scalable Backend Systems",
     description: "Strengthen your API architecture, database optimization, and cloud deployment knowledge.",
-    linkText: "View Backend Roadmap",
+    linkText:  "See Recommendations",
     path: "/mission",
   },
   "Data Analyst": {
     title: "Advance Your Data Skills",
     description: "Explore machine learning basics and advanced SQL to transition into higher-value data roles.",
-    linkText: "View Data Roadmap",
+    linkText: "See Recommendations",
     path: "/mission",
   },
   "Product Manager": {
     title: "Sharpen Your Product Strategy",
     description: "Deepen your understanding of OKRs, user research, and data-driven product decisions.",
-    linkText: "View PM Resources",
+    linkText:  "See Recommendations",
     path: "/mission",
   },
 };

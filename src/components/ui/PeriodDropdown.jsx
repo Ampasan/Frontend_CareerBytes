@@ -23,16 +23,16 @@ function PeriodDropdown({ periods = [], value, onChange, variant = "main" }) {
   return (
     <div className="flex flex-col items-start gap-1" ref={ref}>
       {isMain ? 
-        (<label className="text-white text-xs font-medium">Period</label>) :
+        (<label className="text-white text-sm font-medium">Period</label>) :
         (<label className="text-[#14357F] text-sm font-medium">Select Period</label>)
       }
 
-      <div className="relative w-36">
+      <div className="relative w-34 md:w-36">
         {/* Trigger */}
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className={`w-full flex items-center justify-between bg-white rounded-md px-4 py-2 
-                      text-blue-600 font-medium text-sm shadow-sm
+          className={`w-full flex items-center justify-between bg-white rounded-md px-2 py-1 lg:px-4 lg:py-2 
+                      text-blue-600 font-medium text-sm lg:text-sm shadow-sm
                     ${isMain ? "" : "ring-2 ring-(--color-primary)/10"}
             `}
         >

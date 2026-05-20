@@ -6,7 +6,7 @@ const iconMap = {
 
 function StatsSummaryCard({ stats = [] }) {
   return (
-    <div className="flex gap-7">
+    <div className="flex flex-wrap gap-5 md:gap-7">
       {stats.map((stat) => (
         <div
           key={stat.id}
@@ -16,7 +16,7 @@ function StatsSummaryCard({ stats = [] }) {
             <span>{iconMap[stat.icon]}</span>
           )}
           <p className="text-2xl font-bold text-(--color-primary)">{stat.value}</p>
-          <p className="text-sm text-[#14357F]">{stat.label}</p>
+          <p className="text-sm text-[#14357F] text-center">{stat.label}</p>
         </div>
       ))}
     </div>

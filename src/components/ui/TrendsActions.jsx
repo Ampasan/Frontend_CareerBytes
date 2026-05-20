@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 function TrendsAction ({ actions = [] }) {
     return (
         <div className="border border-(--color-primary) my-7 p-8 rounded-xl text-(--color-primary)">
-            <div className="flex items-center gap-2">
-                <Target size={30}/>
+            <div className="flex md:items-center gap-2">
+                <Target 
+                size={30}
+                className="h-10 w-10 sm:h-auto md:w-auto"
+                />
                 <h1 className="text-2xl font-semibold">Recommended Actions</h1>
             </div>
 

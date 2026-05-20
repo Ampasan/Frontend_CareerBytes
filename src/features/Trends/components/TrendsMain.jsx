@@ -1,7 +1,7 @@
-import SearchBar from "../../../components/ui/SearchBar";
 import StatCard from "../../../components/ui/StatCard";
 import PeriodDropdown from "../../../components/ui/PeriodDropdown";
 import GrowthDemandCard from "../../../components/ui/GrowhtDemandCard";
+import TrendsSearchBar from "../../../components/ui/TrendsSearchBar";
 
 
 function TrendsMain({
@@ -18,7 +18,7 @@ function TrendsMain({
   return (
     <>
       <div className="w-full relative -mt-30 mb-5 bg-(--color-primary)">
-        <div className="max-w-6xl mx-auto relative pt-40 pb-20 px-6">
+        <div className="max-w-6xl mx-auto relative pt-40 pb-18 md:pb-20 px-6">
 
           {/* Judul + Dropdown */}
           <div className="flex items-center justify-between">
@@ -39,7 +39,7 @@ function TrendsMain({
           </div>
 
           {/* Cards - skeleton saat loading */}
-          <div className="max-w-3xl flex gap-5 mt-8">
+          <div className="md:max-w-3xl flex flex-row flex-wrap gap-5 mt-8">
             {loading
               ? Array(3).fill(0).map((_, i) => (
                   <div key={i} className="flex-1 h-34.5 bg-white/20 rounded-2xl animate-pulse" />
@@ -62,9 +62,9 @@ function TrendsMain({
           </div>
 
           {/* Search Bar */}
-          <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-full flex justify-center">
-            <div className="w-full max-w-6xl">
-              <SearchBar onSearch={handleSearch} />
+          <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 px-6 w-full flex justify-center">
+            <div className="w-full max-w-6xl mx-auto">
+              <TrendsSearchBar onSearch={handleSearch} />
             </div>
           </div>
 
@@ -72,7 +72,7 @@ function TrendsMain({
       </div>
 
       {/* Growth & Demand */}
-      <div className="max-w-6xl mx-auto px-2 py-20">
+      <div className="max-w-6xl mx-auto px-7 md:px-2 py-10 md:py-20">
         {skillsData && (
           <GrowthDemandCard
             year={skillsData.year}

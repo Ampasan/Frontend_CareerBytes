@@ -57,8 +57,8 @@ function TrendsPeriod({ selectedPeriod, setSelectedPeriod }) {
         {/* Judul + Dropdown — selalu tampil */}
         <div className="flex items-center justify-between">
           <div className="text-(--color-primary)">
-            <h1 className="text-5xl font-bold mb-2">Trending Skills</h1>
-            <p className="text-sm text-[#14357F]">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl  font-bold mb-2">Trending Skills</h1>
+            <p className="text-xs sm:text-sm text-[#14357F]">
               {trendsData
                 ? trendsData.subtitle
                 : `Market insights and skill popularity for ${year}`}
