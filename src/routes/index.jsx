@@ -23,6 +23,8 @@ function ScrollToTop() {
 
   return null;
 }
+import TrendsPage from "../pages/TrendsPage";
+import TrendsPeriod from "../features/Trends/components/TrendsPeriod";
 
 export default function AppRoutes() {
   return (
@@ -109,6 +111,26 @@ export default function AppRoutes() {
               }
             />
           </Routes>
+
+          <Route 
+            path="/trends"
+            element={
+              <ProtectedRoute>
+                  <TrendsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route 
+            path="/trends/:year"
+            element={
+              <ProtectedRoute>
+                  <TrendsPage />
+              </ProtectedRoute>
+            }
+          />
+
+        </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
