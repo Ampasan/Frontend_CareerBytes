@@ -4,6 +4,7 @@
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
+  background-color: var(--color-white);
 }
 
 html {
@@ -13,6 +14,7 @@ html {
 :root {
   --color-white: #ffffff;
   --color-black: #000000;
+  --color-transparent: transparent;
   --color-transparent-white: rgba(255, 255, 255, 0);
 
   --color-image: #F3F3F3;
@@ -40,12 +42,27 @@ html {
   --color-primary-icon-muted: #B6C3ED;
   --color-primary-placeholder: #BFCDFD;
   --color-progress-track: #D9DCE7;
+  --color-link: #2563eb;
+  --color-link-muted: #3b82f6;
+  --color-link-soft: #eff6ff;
+  --color-trends-growth: #19439F;
+  --color-trends-demand: #A1BEFA;
+  --color-roadmap-completed-bg: #2C5ED6;
+  --color-roadmap-ongoing-bg: #BED0F3;
+  --color-roadmap-active-text: #225FD6;
+  --color-roadmap-locked-bg: #F5F8FF;
+  --color-roadmap-locked-text: #C9D7FB;
+  --color-roadmap-chip-bg: #F4F8FF;
+  --color-roadmap-check-text: #202124;
+  --color-roadmap-progress: #00E95A;
+  --color-roadmap-progress-track: #E8EEF9;
 
   --color-mission-card-completed: #AFC0F1;
   --color-mission-label-completed: #9EB2F3;
   --color-mission-label: #E7DFF8;
 
   --color-text-muted: #6b7280;
+  --color-text-subtle: #4b5563;
   --color-text-soft: #9ca3af;
   --color-icon-muted: #d1d5db;
   --color-neutral-soft: #f3f4f6;

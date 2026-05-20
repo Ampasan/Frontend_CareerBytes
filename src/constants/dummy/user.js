@@ -3,5 +3,5 @@ export const DEFAULT_USER = {
   name: "Bos Endmin",
   email: "admin@gmail.com",
   password: "admin123",
-  role: "UI/UX",
+  role: "Frontend Developer",
 };

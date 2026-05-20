@@ -24,16 +24,7 @@ function MissionRewardCard({ rewards }) {
   const skillValue = skillKeys.length > 0 ? skillGrowth[skillName] : 0;
 
   return (
-    <div
-      className="
-      w-full
-      border
-      border-(--color-primary)
-      rounded-2xl
-      p-6 lg:p-7
-      bg-(--color-surface)
-      "
-    >
+    <div className="w-full border border-(--color-primary) rounded-2xl p-6 lg:p-7 bg-(--color-surface)">
       {/* Header */}
 
       <div className="flex items-center gap-2 mb-3">
@@ -42,14 +33,7 @@ function MissionRewardCard({ rewards }) {
           className="text-(--color-primary)"
         />
 
-        <h2
-          className="
-          text-lg
-          lg:text-lg
-          font-bold
-          text-(--color-primary)
-          "
-        >
+        <h2 className="text-lg lg:text-lg font-bold text-(--color-primary)">
           Mission Rewards
         </h2>
       </div>
@@ -58,25 +42,11 @@ function MissionRewardCard({ rewards }) {
 
       <div className="flex justify-between items-center mb-5">
 
-        <span
-          className="
-          font-medium
-          text-sm
-          lg:text-base
-          text-(--color-primary)/90
-          "
-        >
+        <span className="font-medium text-sm lg:text-base text-(--color-primary)/90">
           Experience Points
         </span>
 
-        <span
-          className="
-          text-lg
-          lg:text-xl
-          font-bold
-          text-(--color-primary)
-          "
-        >
+        <span className="text-lg lg:text-xl font-bold text-(--color-primary)">
           +{safeRewards.xp} XP
         </span>
 
@@ -90,15 +60,7 @@ function MissionRewardCard({ rewards }) {
 
       <div className="mb-5">
 
-        <p
-          className="
-          font-medium
-          text-sm
-          lg:text-base
-          text-(--color-primary)/90
-          mb-2
-          "
-        >
+        <p className="font-medium text-sm lg:text-base text-(--color-primary)/90 mb-2">
           Wireframing Badge Progress
         </p>
 
@@ -111,14 +73,7 @@ function MissionRewardCard({ rewards }) {
           />
         </div>
 
-        <p
-          className="
-          text-xs
-          lg:text-xs
-          text-(--color-primary)/50
-          mt-2
-          "
-        >
+        <p className="text-xs lg:text-xs text-(--color-primary)/50 mt-2">
           {safeRewards.badgeProgress}
         </p>
 
@@ -138,26 +93,12 @@ function MissionRewardCard({ rewards }) {
             className="text-(--color-primary)"
           />
 
-          <span
-            className="
-            font-medium
-            text-sm
-            lg:text-base
-            text-(--color-primary)/90
-            "
-          >
+          <span className="font-medium text-sm lg:text-base text-(--color-primary)/90">
             Skill Growth
           </span>
         </div>
 
-        <p
-          className="
-          font-bold
-          text-sm
-          lg:text-base
-          text-(--color-primary)
-          "
-        >
+        <p className="font-bold text-sm lg:text-base text-(--color-primary)">
           {skillName} +{skillValue}%
         </p>
 

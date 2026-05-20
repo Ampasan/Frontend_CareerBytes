@@ -1,47 +1,10 @@
 import RoadmapItems from "../../../components/ui/RoadmapItems";
-import GdocsLogo from "../../../assets/logo/gdocs.svg";
-import FigmaLogo from "../../../assets/logo/figma.svg";
-import AdobeXDLogo from "../../../assets/logo/adobe_xd.svg";
-import NotionLogo from "../../../assets/logo/notion.svg";
+import { mockRoadmaps } from "../../../constants/dummy/roadmap";
 
 
 function RoadmapSection() {
-    // SETTING BUAT ROADMAP
-      const roadmapData = [
-    {
-      title: "Beginner Level",
-      status: "Completed",
-      description: "Building the foundation of visual communication and user empathy.",
-      checklist: [
-        { isCheck: true, text: "User research" },
-        { isCheck: true, text: "Wireframe" },
-      ],
-      progress: 100,
-      tools: [GdocsLogo, FigmaLogo]
-    },
-    {
-      title: "Intermediate Level",
-      status: "On Going",
-      description: "Mastering interaction patterns and shipping complex design systems.",
-      checklist: [
-        { isCheck: true, text: "Auto Layout" },
-        { isCheck: false, text: "Prototyping" },
-      ],
-      progress: 80,
-      tools: [FigmaLogo, AdobeXDLogo]
-    },
-    {
-      title: "Advanced Level",
-      status: false,
-      description: "Leading design vision, mentoring teams, and driving business strategy through UX.",
-      checklist: [
-        { isCheck: false, text: "Leadership" },
-        { isCheck: false, text: "UX Strategy" },
-      ],
-      progress: 0,
-      tools: [NotionLogo]
-    },
-  ];
+    const featuredRoadmap = mockRoadmaps["UI/UX Designer"];
+    const roadmapData = featuredRoadmap?.steps ?? [];
 
     return(
       <section id="roadmap" className="scroll-mt-20 max-w-md lg:max-w-full mx-auto">
@@ -54,7 +17,7 @@ function RoadmapSection() {
         <div className="mb-3 max-w-6xl mx-auto px-6 lg:px-8 ">
           <div className="flex justify-center items-center mt-10 lg:mt-15">
             <h2 className="border border-(--color-primary) font-semibold text-xl sm:text-2xl lg:text-4xl p-3 px-5 mb-10 sm:mb-15 rounded-2xl leading-tight tracking-tight text-(--color-primary)">
-            UI/UX Designer
+            {featuredRoadmap?.title}
             </h2>
           </div>
           {/* ROADMAP ITEMS (ICON, LINE Y, CARD) */}

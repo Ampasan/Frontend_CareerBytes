@@ -24,7 +24,7 @@ function CircleProgress({ percentage = 0}) {
                 r={normalizedRadius}
                 stroke="var(--color-primary)"
                 strokeOpacity=".3"
-                fill="transparent"
+                fill="var(--color-transparent)"
                 strokeWidth={strokeWidth}
             />
 
@@ -34,7 +34,7 @@ function CircleProgress({ percentage = 0}) {
                 cy={radius}
                 r={normalizedRadius}
                 stroke="var(--color-primary)"
-                fill="transparent"
+                fill="var(--color-transparent)"
                 strokeWidth={strokeWidth}
                 strokeLinecap="round"
                 strokeDasharray={circumference}

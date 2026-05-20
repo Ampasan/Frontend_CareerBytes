@@ -2,7 +2,7 @@ import { TrendingUp } from "lucide-react";
 
 // Tambah icon baru di sini kalau API nanti punya jenis lain
 const iconMap = {
-  trending: <TrendingUp size={16} className="text-blue-500" />,
+  trending: <TrendingUp size={16} className="text-(--color-link-muted)" />,
 };
 
 function StatCard({ icon = null, title, content, desc }) {

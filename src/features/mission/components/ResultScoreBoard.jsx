@@ -8,30 +8,8 @@ function ResultScoreBoard() {
 
     return (
         <section className="w-full">
-            <div
-                className="
-                    bg-(--color-surface-muted)
-                    border
-                    border-(--color-primary-border-strong)
-                    rounded-4xl
-                    shadow-[0_10px_30px_var(--color-shadow-subtle)]
-                    px-5
-                    py-4
-                    sm:px-8
-                    sm:py-2
-                "
-            >
-                <div
-                    className="
-                        flex
-                        flex-col
-                        lg:flex-row
-                        items-center
-                        lg:items-center
-                        gap-6
-                        lg:gap-12
-                    "
-                >
+            <div className="bg-(--color-surface-muted) border border-(--color-primary-border-strong) rounded-4xl shadow-[0_10px_30px_var(--color-shadow-subtle)] px-5 py-4 sm:px-8 sm:py-2">
+                <div className="flex flex-col lg:flex-row items-center lg:items-center gap-6 lg:gap-12">
                     {/* LEFT - SCORE CIRCLE */}
                     <div className="shrink-0 lg:ml-10">
                         <div className="relative flex items-center justify-center">
@@ -100,55 +78,19 @@ function ResultScoreBoard() {
                     </div>
 
                     {/* RIGHT CONTENT */}
-                    <div
-                        className="
-                            flex
-                            flex-col
-                            justify-center
-                            text-center
-                            lg:text-left
-                            pb-10
-                            w-full
-                        "
-                    >
+                    <div className="flex flex-col justify-center text-center lg:text-left pb-10 w-full">
                         {/* TITLE */}
-                        <h1
-                            className="
-                                text-(--color-primary)
-                                font-bold
-                                text-[2rem]
-                                sm:text-[2rem]
-                                leading-tight
-                            "
-                        >
+                        <h1 className="text-(--color-primary) font-bold text-[2rem] sm:text-[2rem] leading-tight">
                             {result?.rating}
                         </h1>
 
                         {/* SUMMARY */}
-                        <p
-                            className="
-                                text-(--color-primary)
-                                text-sm
-                                sm:text-[1rem]
-                                mt-3
-                                max-w-3xl
-                                leading-relaxed
-                            "
-                        >
+                        <p className="text-(--color-primary) text-sm sm:text-[1rem] mt-3 max-w-3xl leading-relaxed">
                             {result?.summary}
                         </p>
 
                         {/* STARS */}
-                        <div
-                            className="
-                                flex
-                                items-center
-                                justify-center
-                                lg:justify-start
-                                gap-2
-                                mt-2
-                            "
-                        >
+                        <div className="flex items-center justify-center lg:justify-start gap-2 mt-2">
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <Star
                                     key={star}

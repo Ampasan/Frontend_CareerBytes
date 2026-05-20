@@ -8,6 +8,11 @@ import TrendsPeriod from "../features/Trends/components/TrendsPeriod";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
+const DEFAULT_TRENDS_ROLE = "Frontend Developer";
+
+const getUserRole = (user) =>
+    user?.role || user?.careerRole || user?.career || user?.careerPath || "";
+
 function TrendsPage () {
     const { user } = useAuth();
     const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -45,7 +50,7 @@ function TrendsPage () {
     };
 
     useEffect(() => {
-        const defaultRole = user?.role ?? "ui/ux";
+        const defaultRole = getUserRole(user) || DEFAULT_TRENDS_ROLE;
         fetchStats(defaultRole);
         fetchSkills();
     }, [user]);
@@ -55,7 +60,7 @@ function TrendsPage () {
         if (term.trim() !== "") {
         fetchStats(term);
         } else {
-        fetchStats(user?.role ?? "ui/ux");
+        fetchStats(getUserRole(user) || DEFAULT_TRENDS_ROLE);
         }
     };
 

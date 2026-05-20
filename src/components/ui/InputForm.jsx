@@ -32,7 +32,7 @@ function InputForm({
                     value={value}
                     onChange={onChange}
                     required={required}
-                    className="w-full outline-none bg-transparent text-sm text-(--color-black) placeholder:text-(--color-text-soft)"
+                    className="w-full outline-none bg-(--color-transparent) text-sm text-black placeholder:text-(--color-text-soft)"
                 />
 
                 {isPassword && (

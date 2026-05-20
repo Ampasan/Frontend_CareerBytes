@@ -12,7 +12,7 @@ export const mockRoadmaps = {
     estimate: "3 - 4 Years",
     steps: [
       {
-        title: "Entry Level",
+        title: "Beginner Level",
         status: "Completed",
         description: "Building the foundation of visual communication and user empathy.",
         checklist: [
@@ -25,7 +25,7 @@ export const mockRoadmaps = {
         tools: [GdocsLogo, FigmaLogo]
       },
       {
-        title: "Mid Level",
+        title: "Intermediate Level",
         status: "On Going",
         description: "Mastering interaction patterns and shipping complex design systems.",
         checklist: [
@@ -38,7 +38,7 @@ export const mockRoadmaps = {
         tools: [FigmaLogo, AdobeXDLogo]
       },
       {
-        title: "Senior Level",
+        title: "Advanced Level",
         status: false,
         description: "Leading design vision, mentoring teams, and driving business strategy through UX.",
         checklist: [
@@ -55,11 +55,11 @@ export const mockRoadmaps = {
   "Frontend Developer": {
     title: "Frontend Developer",
     description: "Build beautiful and responsive web applications using modern web technologies and frameworks.",
-    level: "Entry Level",
+    level: "Low Level",
     estimate: "1 - 2 Years",
     steps: [
       {
-        title: "Entry Level",
+        title: "Beginner Level",
         status: "On Going",
         description: "Learning HTML, CSS, and basic JavaScript to build static websites.",
         checklist: [
@@ -72,7 +72,7 @@ export const mockRoadmaps = {
         tools: [GithubLogo, FigmaLogo]
       },
       {
-        title: "Mid Level",
+        title: "Intermediate Level",
         status: false,
         description: "Working with React, state management, and API integrations.",
         checklist: [
@@ -85,7 +85,7 @@ export const mockRoadmaps = {
         tools: [GithubLogo, NotionLogo]
       },
       {
-        title: "Senior Level",
+        title: "Advanced Level",
         status: false,
         description: "Architecting large-scale applications and optimizing performance.",
         checklist: [
@@ -102,11 +102,11 @@ export const mockRoadmaps = {
   "Data Analyst": {
     title: "Data Analyst",
     description: "Transform raw data into meaningful insights to help businesses make data-driven decisions.",
-    level: "Entry Level",
+    level: "Low Level",
     estimate: "1 - 2 Years",
     steps: [
       {
-        title: "Entry Level",
+        title: "Beginner Level",
         status: "On Going",
         description: "Learning Excel, SQL, and basic statistics for data cleaning and analysis.",
         checklist: [
@@ -119,7 +119,7 @@ export const mockRoadmaps = {
         tools: [GdocsLogo]
       },
       {
-        title: "Mid Level",
+        title: "Intermediate Level",
         status: false,
         description: "Using Python/R and BI tools like Tableau or PowerBI for complex analysis.",
         checklist: [
@@ -132,7 +132,7 @@ export const mockRoadmaps = {
         tools: [GithubLogo, GdocsLogo]
       },
       {
-        title: "Senior Level",
+        title: "Advanced Level",
         status: false,
         description: "Predictive modeling and communicating insights to executive leadership.",
         checklist: [

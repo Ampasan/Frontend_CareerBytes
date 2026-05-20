@@ -18,11 +18,11 @@ function SkillAsCard() {
                 <h3 className="font-semibold text-(--color-primary)/50">Question 07 of 20</h3>
                 <h3 className="lg:max-w-50 font-semibold text-(--color-primary) tracking-tight leading-tight mb-10">How familiar are you with User Research?</h3>
                 <div className="flex items-center justify-between mb-5">
-                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-(--color-black)">1</h3>
-                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-(--color-black)">2</h3>
-                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-(--color-black)">3</h3>
-                    <h3 className="bg-(--color-secondary) px-4 py-1 rounded font-semibold text-(--color-black)">4</h3>
-                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-(--color-black)">5</h3>
+                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-black">1</h3>
+                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-black">2</h3>
+                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-black">3</h3>
+                    <h3 className="bg-(--color-secondary) px-4 py-1 rounded font-semibold text-black">4</h3>
+                    <h3 className="bg-(--color-surface) px-4 py-1 rounded font-semibold text-black">5</h3>
                 </div>
             </div>
             {/* CARD BAR */}

@@ -2,7 +2,13 @@ import React from "react";
 import Bar from "../../../components/ui/Bar";
 
 function AssessmentProgress({ totalQuestions = 5, currentQuestionIndex = 0 }) {
-  const progress = (currentQuestionIndex / totalQuestions) * 100;
+  const safeTotalQuestions = Math.max(totalQuestions, 0);
+  const currentQuestionNumber = safeTotalQuestions > 0
+    ? Math.min(currentQuestionIndex + 1, safeTotalQuestions)
+    : 0;
+  const progress = safeTotalQuestions > 0
+    ? (currentQuestionNumber / safeTotalQuestions) * 100
+    : 0;
 
   return (
     <section>
@@ -23,7 +29,7 @@ function AssessmentProgress({ totalQuestions = 5, currentQuestionIndex = 0 }) {
             textColor="text-(--color-primary)"
             fontSize="text-sm lg:text-base font-medium"
             fontWeight="font-normal"
-            text={`Question ${currentQuestionIndex + 1} of ${totalQuestions}`}
+            text={`Question ${currentQuestionNumber} of ${safeTotalQuestions}`}
           />
         </div>
 

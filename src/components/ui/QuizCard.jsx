@@ -37,8 +37,8 @@ function QuizCard ({
                 className={`flex flex-col items-start p-3 border-2 border-(--color-primary)/30 rounded-lg font-semibold transition cursor-pointer
                 ${
                     selectedOption === index ?
-                    "bg-(--color-primary) text-(--color-white)" :
-                    "hover:bg-(--color-primary)/70 hover:text-(--color-white)" 
+                    "bg-(--color-primary) text-white" :
+                    "hover:bg-(--color-primary)/70 hover:text-white" 
                 }
                 `}>
                     <div className="grid grid-cols-[10%_90%] lg:flex justify-center items-center gap-3 text-xs lg:text-sm px-2">
@@ -54,7 +54,7 @@ function QuizCard ({
             <div className={`text-sm mt-5 flex ${currentQuestIDX > 0 ? "justify-between" : "justify-end"}`}>
                 {currentQuestIDX > 0 && (
                     <button 
-                    className="bg-transparent border hover:bg-(--color-primary) text-(--color-primary) hover:text-(--color-white) p-2 px-7 rounded-md cursor-pointer flex items-center justify-center gap-2"
+                    className="bg-(--color-transparent) border hover:bg-(--color-primary) text-(--color-primary) hover:text-white p-2 px-7 rounded-md cursor-pointer flex items-center justify-center gap-2"
                     onClick={onBack}
                     >
                         <p>Back</p>
@@ -65,8 +65,8 @@ function QuizCard ({
                 <button 
                 onClick={onNext}
                 disabled={selectedOption === undefined}
-                className={`bg-(--color-primary) text-(--color-white) border p-2 px-7 rounded-md flex items-center justify-center gap-2
-                    ${selectedOption === undefined ? "opacity-50 cursor-not-allowed" : "hover:bg-transparent hover:text-(--color-primary) cursor-pointer"}
+                className={`bg-(--color-primary) text-white border p-2 px-7 rounded-md flex items-center justify-center gap-2
+                    ${selectedOption === undefined ? "opacity-50 cursor-not-allowed" : "hover:bg-(--color-transparent) hover:text-(--color-primary) cursor-pointer"}
                     `}
                 >
                     <p>{isLastQuest ? "Finish" : "Next"}</p>

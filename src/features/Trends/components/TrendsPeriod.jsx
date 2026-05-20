@@ -14,6 +14,11 @@ import { useAuth } from "../../../context/AuthContext";
 import StatsSummaryCard from "../../../components/ui/StatsSummaryCard";
 import TrendsEmpty from "./TrendsEmpty";
 
+const missionActionLabels = new Set(["Explore Courses", "See Recommendations"]);
+const missionPagePath = "/daily-mission";
+const normalizeRole = (role = "") =>
+  role.toString().toLowerCase().replace(/[^a-z0-9]/g, "");
+
 function TrendsPeriod({ selectedPeriod, setSelectedPeriod }) {
   const { year } = useParams();
   const { user } = useAuth();
@@ -29,23 +34,32 @@ function TrendsPeriod({ selectedPeriod, setSelectedPeriod }) {
     .map((skill) => skillInsights[skill.skill])
     .filter(Boolean);
 
-  const userRoleAction = Object.entries(roleActions).find(
-    ([key]) => key.toLowerCase().trim() === user?.role?.toLowerCase().trim()
-  )?.[1];
+  const normalizedUserRole = normalizeRole(user?.role);
+  const userRoleAction = Object.entries(roleActions).find(([key]) => {
+    if (!normalizedUserRole) return false;
+    const normalizedKey = normalizeRole(key);
+    return (
+      normalizedKey.includes(normalizedUserRole) ||
+      normalizedUserRole.includes(normalizedKey)
+    );
+  })?.[1];
+
+  const resolveActionPath = (action) =>
+    missionActionLabels.has(action.linkText?.trim()) ? missionPagePath : action.path;
 
   const actions = trendsData
     ? [
         skillActions[topSkills[0]?.skill] && {
           ...skillActions[topSkills[0].skill],
-          path: "/career-roadmap",
+          path: resolveActionPath(skillActions[topSkills[0].skill]),
         },
         skillActions[topSkills[1]?.skill] && {
           ...skillActions[topSkills[1].skill],
-          path: "/mission",
+          path: resolveActionPath(skillActions[topSkills[1].skill]),
         },
         userRoleAction && {
           ...userRoleAction,
-          path: "/mission",
+          path: resolveActionPath(userRoleAction),
         },
       ].filter(Boolean)
     : [];
@@ -58,7 +72,7 @@ function TrendsPeriod({ selectedPeriod, setSelectedPeriod }) {
         <div className="flex items-center justify-between">
           <div className="text-(--color-primary)">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl  font-bold mb-2">Trending Skills</h1>
-            <p className="text-xs sm:text-sm text-[#14357F]">
+            <p className="text-xs sm:text-sm text-(--color-primary-dark)">
               {trendsData
                 ? trendsData.subtitle
                 : `Market insights and skill popularity for ${year}`}

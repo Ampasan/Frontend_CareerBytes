@@ -22,7 +22,7 @@ function TrendsAction ({ actions = [] }) {
                     <h1 className="text-lg font-semibold mb-2">
                         {action.title}
                     </h1>
-                    <p className="text-sm max-w-[750px]">
+                    <p className="text-sm max-w-187.5">
                         {action.description}
                     </p>
                     <Link

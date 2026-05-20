@@ -23,7 +23,7 @@ function SearchBar({ onSearch }) {
         <input
           type="text"
           placeholder="Search for a role"
-          className="flex-1 bg-transparent outline-none text-(--color-text-muted) placeholder:text-(--color-text-muted) text-md"
+          className="flex-1 bg-(--color-transparent) outline-none text-(--color-text-muted) placeholder:text-(--color-text-muted) text-md"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}

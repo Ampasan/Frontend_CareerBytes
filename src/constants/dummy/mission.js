@@ -40,7 +40,19 @@ export const mockMissions = {
               "Today's tasks section",
               "Bottom navigation"
             ],
-            hint: "Focus on placement and hierarchy rather than visual design. Use simple shapes."
+            hint: "Focus on placement and hierarchy rather than visual design. Use simple shapes.",
+            submission: {
+              workMethods: ["upload", "figmaLink", "textExplanation"],
+              linkInput: {
+                placeholder: "Paste your Figma homepage wireframe link here...",
+                helperText: "Make sure sharing permission is set to public."
+              },
+              essay: {
+                label: "What design decisions did you make?",
+                placeholder: "Explain your layout choices, hierarchy decisions, and content placement...",
+                rows: 4
+              }
+            }
           },
           {
             id: 2,
@@ -52,7 +64,14 @@ export const mockMissions = {
               "Confirmation step",
               "Return to homepage flow"
             ],
-            hint: "Keep the number of steps to a minimum to ensure a good user experience."
+            hint: "Keep the number of steps to a minimum to ensure a good user experience.",
+            submission: {
+              essay: {
+                label: "How would the user add a new task?",
+                placeholder: "Describe the entry point, required fields, confirmation step, and return flow...",
+                rows: 5
+              }
+            }
           },
           {
             id: 3,
@@ -64,7 +83,19 @@ export const mockMissions = {
               "Status toggle (Complete/Incomplete)",
               "Edit and delete actions"
             ],
-            hint: "Hierarchy is key here. The most important information should be at the top."
+            hint: "Hierarchy is key here. The most important information should be at the top.",
+            submission: {
+              workMethods: ["upload", "figmaLink"],
+              linkInput: {
+                placeholder: "Paste your Figma task detail wireframe link here...",
+                helperText: "Make sure sharing permission is set to public."
+              },
+              essay: {
+                label: "What information hierarchy did you choose?",
+                placeholder: "Explain what information appears first, what actions are emphasized, and why...",
+                rows: 4
+              }
+            }
           },
           {
             id: 4,
@@ -76,7 +107,14 @@ export const mockMissions = {
               "Background and surface color contrast",
               "Icon visibility"
             ],
-            hint: "Focus on readability and reducing eye strain in low-light environments."
+            hint: "Focus on readability and reducing eye strain in low-light environments.",
+            submission: {
+              essay: {
+                label: "How would you adapt this layout for dark mode?",
+                placeholder: "Describe your contrast, surface, text, and icon visibility decisions...",
+                rows: 5
+              }
+            }
           },
           {
             id: 5,
@@ -88,7 +126,14 @@ export const mockMissions = {
               "User reachability considerations",
               "Frequency of use for top-level destinations"
             ],
-            hint: "Think about thumb zone mapping and thumb-driven design principles."
+            hint: "Think about thumb zone mapping and thumb-driven design principles.",
+            submission: {
+              essay: {
+                label: "Why did you choose bottom navigation?",
+                placeholder: "Explain your reasoning using mobile reachability, destination frequency, and usability tradeoffs...",
+                rows: 6
+              }
+            }
           }
         ],
         rewards: {

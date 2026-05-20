@@ -69,7 +69,7 @@ function ProcessingAssessment({ onComplete }) {
                                             ${isDone ? "bg-(--color-primary) text-white border-(--color-primary)" : ""}
                                             ${isActive ? "bg-(--color-primary)/15 text-(--color-primary) animate-pulse" : ""}
                                             ${!isDone && !isActive ?
-                                                "bg-(--color-primary)/15 border-transparent text-(--color-primary)/40" : ""
+                                                "bg-(--color-primary)/15 border-(--color-transparent) text-(--color-primary)/40" : ""
                                             }
                                             `}>
                                             {isDone ? <Check size={20} /> : <LoaderCircle className="animate-spin h-5 w-5"/>}

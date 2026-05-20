@@ -110,8 +110,6 @@ export default function AppRoutes() {
                 </ProtectedRoute>
               }
             />
-          </Routes>
-
           <Route 
             path="/trends"
             element={

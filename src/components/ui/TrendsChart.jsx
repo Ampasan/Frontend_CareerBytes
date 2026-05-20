@@ -12,11 +12,11 @@ function TrendsChart ({ data }) {
     return (
         <div className="border border-(--color-primary) my-7 p-8 rounded-xl text-(--color-primary)">
             <h1 className="text-2xl font-semibold">Top Trending Skills by Popularity</h1>
-            <p className="text-[#14357F] text-sm py-3">Based on job postings, employer demand, and industry growth</p>
+            <p className="text-(--color-primary-dark) text-sm py-3">Based on job postings, employer demand, and industry growth</p>
             
             {/* Chart */} 
             <div className="w-full overflow-x-auto">
-                <div className="min-w-[650px] h-[280px] sm:h-[350] px-2 py-2">
+                <div className="min-w-162.5 h-70 sm:h-[350] px-2 py-2">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                     data={data}
@@ -30,11 +30,11 @@ function TrendsChart ({ data }) {
                     {/* Grid Putus-putus */}
                     <CartesianGrid
                         strokeDasharray="3 3"
-                        stroke="#19439F"
+                        stroke="var(--color-trends-growth)"
                     />
                     {/* Sumbu X */}
                     <XAxis
-                        stroke="#19439F"
+                        stroke="var(--color-trends-growth)"
                         dataKey="skill"
                         angle={-35}
                         textAnchor="end"
@@ -46,7 +46,7 @@ function TrendsChart ({ data }) {
                     />
                     {/* Sumbu Y */}
                     <YAxis 
-                    stroke="#19439F"
+                    stroke="var(--color-trends-growth)"
                     tick={{
                         fontSize: 11,
                     }}
@@ -55,7 +55,7 @@ function TrendsChart ({ data }) {
                         angle: -90,
                         position: "insideLeft",
                         style: {
-                        fill: "#19439F",
+                        fill: "var(--color-trends-growth)",
                         fontSize: 12,
                         },
                     }}
@@ -66,7 +66,7 @@ function TrendsChart ({ data }) {
                     {/* Bar */}
                     <Bar
                         dataKey="score"
-                        fill="#19439F"
+                        fill="var(--color-trends-growth)"
                         radius={[8, 8, 0, 0]}
                     />
                     </BarChart>
@@ -75,7 +75,7 @@ function TrendsChart ({ data }) {
             </div>
             
             <div className="flex justify-center items-center gap-3 py-6">
-                <div className="bg-[#19439F] h-3.5 w-3.5 "></div>
+                <div className="bg-(--color-trends-growth) h-3.5 w-3.5 "></div>
                 <p className="text-sm sm:text-base">Popularity Score</p>
             </div>
         </div>

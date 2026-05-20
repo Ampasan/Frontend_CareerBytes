@@ -11,9 +11,9 @@ function TrendsKeyInsight ({ insights = [] }) {
             {insights.map((insight, index) => (
                 <div 
                 key={index}
-                className={`pt-5 pb-7 ${index !== insights.length-1 ? "border-b-1" : "" }`}>
+                className={`pt-5 pb-7 ${index !== insights.length-1 ? "border-b" : "" }`}>
                     <h1 className="text-lg font-semibold mb-3">{insight.title}</h1>
-                    <p className="max-w-[750px] text-sm">{insight.description}</p>
+                    <p className="max-w-187.5 text-sm">{insight.description}</p>
                 </div>  
             ))}
         </div>

@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 
 function Footer() {
     return(
-        <footer className="bg-(--color-primary) py-10 text-(--color-white) ">
+        <footer className="bg-(--color-primary) py-10 text-white ">
             <div className="flex justify-center flex-col lg:flex-row lg:my-1 max-w-6xl mx-auto px-6">
                 {/* KIRI: WEB TITLE + COPYRIGHT */}
                 <div className="w-full flex items-start justify-start">

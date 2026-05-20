@@ -1,7 +1,7 @@
 import { TrendingUp } from "lucide-react";
 
 const iconMap = {
-  trending: <TrendingUp size={40} className="text-[#14357F]" />,
+  trending: <TrendingUp size={40} className="text-(--color-primary-dark)" />,
 };
 
 function StatsSummaryCard({ stats = [] }) {
@@ -16,7 +16,7 @@ function StatsSummaryCard({ stats = [] }) {
             <span>{iconMap[stat.icon]}</span>
           )}
           <p className="text-2xl font-bold text-(--color-primary)">{stat.value}</p>
-          <p className="text-sm text-[#14357F] text-center">{stat.label}</p>
+          <p className="text-sm text-(--color-primary-dark) text-center">{stat.label}</p>
         </div>
       ))}
     </div>

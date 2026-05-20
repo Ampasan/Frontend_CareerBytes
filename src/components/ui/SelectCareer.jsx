@@ -13,26 +13,26 @@ function SelectCareer({ name, value, onChange, required = false }) {
           value={value}
           onChange={onChange}
           required={required}
-          className={`w-full outline-none bg-transparent text-sm ${
-            value ? "text-(--color-black)" : "text-(--color-text-soft)"
+          className={`w-full outline-none bg-(--color-transparent) text-sm ${
+            value ? "text-black" : "text-(--color-text-soft)"
           }`}
         >
           <option value="" className="text-(--color-text-soft)">
             Enter your career path
           </option>
-          <option value="Frontend Developer" className="text-(--color-black)">
+          <option value="Frontend Developer" className="text-black">
             Frontend Developer
           </option>
-          <option value="Software Engineer" className="text-(--color-black)">
+          <option value="Software Engineer" className="text-black">
             Software Engineer
           </option>
-          <option value="UI/UX Designer" className="text-(--color-black)">
+          <option value="UI/UX Designer" className="text-black">
             UI/UX Designer
           </option>
-          <option value="Data Analyst" className="text-(--color-black)">
+          <option value="Data Analyst" className="text-black">
             Data Analyst
           </option>
-          <option value="Product Manager" className="text-(--color-black)">
+          <option value="Product Manager" className="text-black">
             Product Manager
           </option>
         </select>
