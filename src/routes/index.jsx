@@ -8,6 +8,8 @@ import { AuthProvider } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import AssessmentPage from "../pages/AssessmentPage";
+import TrendsPage from "../pages/TrendsPage";
+import TrendsPeriod from "../features/Trends/components/TrendsPeriod";
 
 export default function AppRoutes() {
   return (
@@ -60,6 +62,25 @@ export default function AppRoutes() {
               </ProtectedRoute>
             }
           />
+
+          <Route 
+            path="/trends"
+            element={
+              <ProtectedRoute>
+                  <TrendsPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route 
+            path="/trends/:year"
+            element={
+              <ProtectedRoute>
+                  <TrendsPage />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

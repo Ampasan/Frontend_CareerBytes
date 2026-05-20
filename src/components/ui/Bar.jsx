@@ -1,4 +1,11 @@
-function Bar({ progress, color = "bg-green-400", fontWeight = "font-semibold", text, variant = "A" }) {
+function Bar({ 
+  progress, 
+  color = "bg-green-400", 
+  fontWeight = "font-semibold", 
+  text, 
+  variant = "A",
+  barHeight = "h-2"
+}) {
   return (
     <div className={`flex flex-col gap-1 w-full ${fontWeight}`}>
 
@@ -12,9 +19,9 @@ function Bar({ progress, color = "bg-green-400", fontWeight = "font-semibold", t
 
       {/* BAR */}
       <div className="flex items-center gap-2">
-        <div className="flex-1 bg-(--color-primary)/20 h-2 rounded overflow-hidden">
+        <div className={`flex-1 bg-(--color-primary)/20 ${barHeight} rounded-xl overflow-hidden`}>
           <div
-            className={`${color} h-full rounded transition-all duration-500`}
+            className={`${color} h-full rounded-xl transition-all duration-500`}
             style={{ width: `${progress}%` }}
           ></div>
         </div>
