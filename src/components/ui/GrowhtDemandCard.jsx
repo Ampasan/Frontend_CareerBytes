@@ -1,5 +1,10 @@
 import Bar from "./Bar";
 
+const barColor = {
+    "Growth": "bg-[#19439F]",
+    "Demand": "bg-[#A1BEFA]",
+};
+
 function GrowthDemandCard ({ year = "2025", skills = [] }) {
     return (
         <>
@@ -23,7 +28,10 @@ function GrowthDemandCard ({ year = "2025", skills = [] }) {
                             {skill.bars.map((bar) => (
                                 <div key={bar.label}>
                                     <p className="mb-1">{bar.label}</p>
-                                    <Bar progress={bar.progress} color={bar.color} barHeight="h-2.5"/>
+                                    <Bar 
+                                    progress={bar.progress} 
+                                    color={barColor[bar.label]} 
+                                    barHeight="h-2.5"/>
                                 </div>
                             ))}
                         </div>
