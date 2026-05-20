@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import RoadmapPage from "../pages/RoadmapPage";
 import LoginPage from "../pages/LoginPage";
@@ -8,6 +9,20 @@ import { AuthProvider } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import AssessmentPage from "../pages/AssessmentPage";
+import DailyMissionPage from "../pages/DailyMissionPage";
+import TaskDetailPage from "../pages/TaskDetailPage";
+import TaskAssessmentPage from "../pages/TaskAssessmentPage";
+import TaskResultPage from "../pages/TaskResultPage";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 import TrendsPage from "../pages/TrendsPage";
 import TrendsPeriod from "../features/Trends/components/TrendsPeriod";
 
@@ -15,6 +30,7 @@ export default function AppRoutes() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           
@@ -62,7 +78,38 @@ export default function AppRoutes() {
               </ProtectedRoute>
             }
           />
-
+          <Route 
+            path="/daily-mission"
+            element={
+              <ProtectedRoute>
+                  <DailyMissionPage />
+              </ProtectedRoute>
+            }
+          />
+            <Route 
+              path="/daily-mission/task"
+              element={
+                <ProtectedRoute>
+                    <TaskDetailPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/daily-mission/task/assessment"
+              element={
+                <ProtectedRoute>
+                    <TaskAssessmentPage />
+                </ProtectedRoute>
+              }
+            />
+           <Route
+              path="/daily-mission/task/result"
+              element={
+                <ProtectedRoute>
+                  <TaskResultPage />
+                </ProtectedRoute>
+              }
+            />
           <Route 
             path="/trends"
             element={

@@ -101,7 +101,7 @@ export const skillActions = {
     title: "Earn Cloud Certifications",
     description: "Consider AWS or Azure certifications to demonstrate cloud infrastructure expertise to employers.",
     linkText: "Explore Courses",
-    path: "/career-roadmap",
+    path: "/daily-mission",
   },
   "Cybersecurity": {
     title: "Learn Security Best Practices",
@@ -149,31 +149,31 @@ export const roleActions = {
     title: "Strengthen Your Current Skills",
     description: "If you're already in UI/UX Design, consider adding AI/UX integration skills to stay competitive.",
     linkText: "See Recommendations",
-    path: "/mission",
+    path: "/daily-mission",
   },
   "Frontend Developer": {
     title: "Level Up Your Frontend Skills",
     description: "Explore advanced React patterns, performance optimization, and modern CSS techniques to stand out.",
     linkText:  "See Recommendations",
-    path: "/mission",
+    path: "/daily-mission",
   },
   "Backend Developer": {
     title: "Master Scalable Backend Systems",
     description: "Strengthen your API architecture, database optimization, and cloud deployment knowledge.",
     linkText:  "See Recommendations",
-    path: "/mission",
+    path: "/daily-mission",
   },
   "Data Analyst": {
     title: "Advance Your Data Skills",
     description: "Explore machine learning basics and advanced SQL to transition into higher-value data roles.",
     linkText: "See Recommendations",
-    path: "/mission",
+    path: "/daily-mission",
   },
   "Product Manager": {
     title: "Sharpen Your Product Strategy",
     description: "Deepen your understanding of OKRs, user research, and data-driven product decisions.",
     linkText:  "See Recommendations",
-    path: "/mission",
+    path: "/daily-mission",
   },
 };
 

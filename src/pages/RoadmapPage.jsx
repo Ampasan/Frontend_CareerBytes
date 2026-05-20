@@ -62,7 +62,7 @@ function RoadmapPage() {
       
       {loading ? (
         <div className="flex justify-center items-center py-40">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-(--color-primary)"></div>
         </div>
       ) : error ? (
         <div className="mb-40 mt-10">

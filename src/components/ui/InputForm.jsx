@@ -22,7 +22,7 @@ function InputForm({
 
             <div className="flex items-center border border-(--color-border) rounded-lg px-4 py-3 lg:py-2">
                 {Icon && (
-                    <Icon size={18} className="text-gray-300 mr-3" />
+                    <Icon size={18} className="text-(--color-icon-muted) mr-3" />
                 )}
 
                 <input
@@ -32,7 +32,7 @@ function InputForm({
                     value={value}
                     onChange={onChange}
                     required={required}
-                    className="w-full outline-none bg-transparent text-sm text-black placeholder:text-gray-400"
+                    className="w-full outline-none bg-(--color-transparent) text-sm text-black placeholder:text-(--color-text-soft)"
                 />
 
                 {isPassword && (
@@ -41,9 +41,9 @@ function InputForm({
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ? (
-                            <Eye size={18} className="text-gray-400" />
+                            <Eye size={18} className="text-(--color-text-soft)" />
                         ) : (
-                            <EyeOff size={18} className="text-gray-400" />
+                            <EyeOff size={18} className="text-(--color-text-soft)" />
                         )}
                     </button>
                 )}

@@ -6,12 +6,16 @@ import AssessmentStart from "../features/skillAssessment/components/AssessmentSt
 import QuizAssessment from "../features/skillAssessment/components/QuizAssessment";
 import ProcessingAssessment from "../features/skillAssessment/components/ProcessingAssessment";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function AssessmentPage() {
 
     // MENENTUKAN HALAMAN YANG SEDANG AKTIF
     const [currentPage, setCurrentPage] = useState("start");
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+    }, [currentPage]);
 
     return (
         <>

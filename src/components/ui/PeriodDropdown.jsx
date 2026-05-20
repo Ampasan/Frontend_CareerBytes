@@ -24,7 +24,7 @@ function PeriodDropdown({ periods = [], value, onChange, variant = "main" }) {
     <div className="flex flex-col items-start gap-1" ref={ref}>
       {isMain ? 
         (<label className="text-white text-sm font-medium">Period</label>) :
-        (<label className="text-[#14357F] text-sm font-medium">Select Period</label>)
+        (<label className="text-(--color-primary-dark) text-sm font-medium">Select Period</label>)
       }
 
       <div className="relative w-34 md:w-36">
@@ -32,7 +32,7 @@ function PeriodDropdown({ periods = [], value, onChange, variant = "main" }) {
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className={`w-full flex items-center justify-between bg-white rounded-md px-2 py-1 lg:px-4 lg:py-2 
-                      text-blue-600 font-medium text-sm lg:text-sm shadow-sm
+                      text-(--color-link) font-medium text-sm lg:text-sm shadow-sm
                     ${isMain ? "" : "ring-2 ring-(--color-primary)/10"}
             `}
         >
@@ -60,8 +60,8 @@ function PeriodDropdown({ periods = [], value, onChange, variant = "main" }) {
                 navigate(`/trends/${period}`);
               }}
               className={`px-4 py-2 text-sm cursor-pointer transition-colors
-                hover:bg-blue-50
-                ${value === period ? "text-blue-600 font-semibold" : "text-gray-600"}`}
+                hover:bg-(--color-link-soft)
+                ${value === period ? "text-(--color-link) font-semibold" : "text-(--color-text-subtle)"}`}
             >
               {period}
             </li>

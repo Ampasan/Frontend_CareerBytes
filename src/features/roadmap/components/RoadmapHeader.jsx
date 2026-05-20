@@ -6,12 +6,12 @@ function RoadmapHeader({ onSearch, onSelectRole }) {
     <div className="w-full relative -mt-30">
       
       {/* HERO */}
-      <div className="relative bg-[#2F5CC8] pt-40 lg:pt-50 pb-32 text-center text-white px-6">
+      <div className="relative bg-(--color-primary-hero) pt-40 lg:pt-50 pb-32 text-center text-white px-6">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
           Plan Your Career Path
         </h1>
 
-        <p className="text-sm sm:text-base lg:text-lg text-blue-100">
+        <p className="text-sm sm:text-base lg:text-lg text-(--color-primary-soft)">
           A clear path to help you build the right skills for your career goals.
         </p>
 
@@ -24,7 +24,7 @@ function RoadmapHeader({ onSearch, onSelectRole }) {
       </div>
 
       {/* SECTION BAWAH */}
-      <div className="bg-[#ffffff] pt-14 pb-10 px-6">
+      <div className="bg-(--color-surface) pt-14 pb-10 px-6">
         <FilterRole onSelectRole={onSelectRole} />
       </div>
 

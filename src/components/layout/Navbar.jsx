@@ -33,7 +33,7 @@ function Navbar() {
                     <li className="hover:text-(--color-primary)/40"><Link to="/">Home</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/career-roadmap">Roadmap</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/assessment">Assessment</Link></li>
-                    <li className="hover:text-(--color-primary)/40"><a href="#mission">Mission</a></li>
+                    <li className="hover:text-(--color-primary)/40"><Link to="/daily-mission">Mission</Link></li>
                     <li className="hover:text-(--color-primary)/40"><Link to="/trends">Trends</Link></li>
                 </ul>
 
@@ -67,7 +67,7 @@ function Navbar() {
                         <Link to="/" className="hover:text-(--color-primary)/60 transition">Home</Link>
                         <Link to="/career-roadmap" className="hover:text-(--color-primary)/60 transition">Roadmap</Link>
                         <Link to="/assessment" className="hover:text-(--color-primary)/60 transition">Assessment</Link>
-                        <a href="#mission" className="hover:text-(--color-primary)/60 transition">Mission</a>
+                        <Link to="/daily-mission" className="hover:text-(--color-primary)/60 transition">Mission</Link>
                         <Link to="/trends" className="hover:text-(--color-primary)/60 transition">Trends</Link>
                         
                         {/* Mobile Auth Links */}

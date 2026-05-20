@@ -85,14 +85,14 @@ function RegisterForm() {
 
             {/* MESSAGES */}
             {error && (
-                <div className="w-full mt-6 p-3 rounded-lg bg-red-50 border border-red-200 flex items-center gap-2 text-red-600 text-sm">
+                <div className="w-full mt-6 p-3 rounded-lg bg-(--color-error-bg) border border-(--color-error-border) flex items-center gap-2 text-(--color-error) text-sm">
                     <AlertCircle size={18} />
                     <span>{error}</span>
                 </div>
             )}
 
             {success && (
-                <div className="w-full mt-6 p-3 rounded-lg bg-green-50 border border-green-200 flex items-center gap-2 text-green-600 text-sm">
+                <div className="w-full mt-6 p-3 rounded-lg bg-(--color-success-bg) border border-(--color-success-border) flex items-center gap-2 text-(--color-success) text-sm">
                     <CheckCircle size={18} />
                     <span>{success}</span>
                 </div>

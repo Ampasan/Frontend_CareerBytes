@@ -1,6 +1,6 @@
 
 import QuizCard from "../../../components/ui/QuizCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function QuizAssessment ({ onExit, onFinish }) {
     const questions = [
@@ -70,6 +70,10 @@ function QuizAssessment ({ onExit, onFinish }) {
         (answer) => answer !== undefined
     ).length;
     const progressPercentage = (answeredQuestions / totalQuest) * 100;
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+    }, [currentQuestIDX]);
 
     // Back & Next Handler
     function handleNextQuest() {

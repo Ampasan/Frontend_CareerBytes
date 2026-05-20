@@ -23,14 +23,14 @@ function TrendsEmpty () {
             </p>
             <div className="bg-(--color-primary)/10 border flex flex-col text-center gap-2 rounded-xl 
             p-5 py-7 text-sm w-full max-w-lg">
-                <h2 className="text-[#14357F] font-semibold">Try this options:</h2>
-                <ul className="list-disc list-inside text-start space-y-2 marker:text-[#14357F] text-xs md:text-sm">
+                <h2 className="text-(--color-primary-dark) font-semibold">Try this options:</h2>
+                <ul className="list-disc list-inside text-start space-y-2 marker:text-(--color-primary-dark) text-xs md:text-sm">
                     <li>Select a different year from the dropdown above</li>
                     <li>Check back later as we continuously update our data</li>
                     <li>Explore other sections like Roadmap or Daily Mission</li>
                 </ul>
             </div>
-            <div className="text-xs md:text-base flex gap-5 justify-center items-center py-4 pb-10 font-[500] tracking-wide">
+            <div className="text-xs md:text-base flex gap-5 justify-center items-center py-4 pb-10 font-medium tracking-wide">
                 <Link
                 to={`/trends/${Number(year) - 1}`} 
                 className="bg-(--color-primary) text-white px-5 py-2 rounded-md border border-(--color-primary) hover:bg-white hover:text-(--color-primary) transition space-x-2">

@@ -16,21 +16,21 @@ function Footer() {
                     <div className="lg:pr-10 flex flex-col">
                         <h2 className="font-bold mb-1 ">FEATURES</h2>
                         <div className="flex flex-col text-sm underline underline-offset-2 gap-2">
-                            <Link to="/career-roadmap" className="hover:text-black/50 hover:decoration-gray-700">Career Roadmap</Link>
-                            <a href="#" className="hover:text-black/50 hover:decoration-gray-700">SKill Assessment</a>
-                            <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Daily Mission</a>
-                            <a href="#" className="hover:text-black/50 hover:decoration-gray-700">Trending Skills</a>
+                            <Link to="/career-roadmap" className="hover:text-(--color-footer-link-hover) hover:decoration-(--color-footer-decoration-hover)">Career Roadmap</Link>
+                            <Link to="/assessment" className="hover:text-(--color-footer-link-hover) hover:decoration-(--color-footer-decoration-hover)">SKill Assessment</Link>
+                            <Link to="/daily-mission" className="hover:text-(--color-footer-link-hover) hover:decoration-(--color-footer-decoration-hover)">Daily Mission</Link>
+                            <a href="#" className="hover:text-(--color-footer-link-hover) hover:decoration-(--color-footer-decoration-hover)">Trending Skills</a>
                         </div>
                     </div>
                     {/* CONTACT */}
                     <div>
                        <h2 className="font-bold mb-1">CONTACT</h2>
                        <div className="flex items-center gap-1 text-sm">
-                            <Mail size={20} className="hover:text-black/50 cursor-pointer"/>
-                            <FaInstagram size={20}  className="hover:text-black/50 cursor-pointer"/>
-                            <FaFacebook size={20}  className="hover:text-black/50 cursor-pointer"/>
-                            <FaTiktok size={20}  className="hover:text-black/50 cursor-pointer"/>
-                            <FaYoutube size={20}  className="hover:text-black/50 cursor-pointer"/>
+                            <Mail size={20} className="hover:text-(--color-footer-link-hover) cursor-pointer"/>
+                            <FaInstagram size={20}  className="hover:text-(--color-footer-link-hover) cursor-pointer"/>
+                            <FaFacebook size={20}  className="hover:text-(--color-footer-link-hover) cursor-pointer"/>
+                            <FaTiktok size={20}  className="hover:text-(--color-footer-link-hover) cursor-pointer"/>
+                            <FaYoutube size={20}  className="hover:text-(--color-footer-link-hover) cursor-pointer"/>
                        </div>
                     </div>
                 </div>

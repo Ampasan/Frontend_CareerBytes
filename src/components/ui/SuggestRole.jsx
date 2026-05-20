@@ -11,7 +11,7 @@ function SuggestRole({ onSelectRole }) {
     <div className="flex flex-col items-center gap-4 w-full">
       
       {/* Title */}
-      <span className="text-blue-600 text-sm font-medium">
+      <span className="text-(--color-primary) text-sm font-medium">
         Suggested Roles
       </span>
 
@@ -21,7 +21,7 @@ function SuggestRole({ onSelectRole }) {
           <div
             key={index}
             onClick={() => onSelectRole && onSelectRole(role)}
-            className="px-4 py-1.5 text-sm text-blue-600 border border-blue-400 rounded-full hover:bg-blue-50 transition cursor-pointer"
+            className="px-4 py-1.5 text-sm text-(--color-primary) border border-(--color-primary-border-strong) rounded-full hover:bg-(--color-surface-primary-alt) transition cursor-pointer"
           >
             {role}
           </div>

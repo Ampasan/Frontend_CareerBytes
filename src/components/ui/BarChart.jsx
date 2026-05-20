@@ -1,6 +1,6 @@
 function BarChart({ title, year, data }) {
     return(
-        <div className="bg-(--color-primary)/20 flex flex-col p-4 sm:p-6 lg:p-0 lg:ml-20 lg:py-5 lg:px-10 rounded-xl shadow-md shadow-black/10 text-(--color-primary) mx-auto w-full">
+        <div className="bg-(--color-primary)/20 flex flex-col p-4 sm:p-6 lg:p-0 lg:ml-20 lg:py-5 lg:px-10 rounded-xl shadow-[0_4px_6px_-1px_var(--color-shadow-subtle),0_2px_4px_-2px_var(--color-shadow-subtle)] text-(--color-primary) mx-auto w-full">
             {/* ATAS: TITLE + YEAR */}
             <div className="flex justify-between text-sm font-semibold mb-5 lg:p-0">
                     <h2>{title}</h2>

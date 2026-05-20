@@ -1,23 +1,42 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import authService from "../features/auth/services/authService";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(() => {
+    try {
+      const savedUser = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      return savedUser && token ? JSON.parse(savedUser) : null;
+    } catch (error) {
+      console.error("Failed to parse user from localStorage:", error);
+      return null;
+    }
+  });
+
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    try {
+      const savedUser = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      return !!(savedUser && token);
+    } catch {
+      return false;
+    }
+  });
+
+  const [loading] = useState(false);
 
   useEffect(() => {
-    // Check if user is logged in from localStorage
-    const savedUser = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    if (savedUser && token) {
-      setUser(JSON.parse(savedUser));
-      setIsAuthenticated(true);
-    }
-    setLoading(false);
+    // For async verification
   }, []);
 
   const login = async (email, password) => {
@@ -68,13 +87,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
-
-export default AuthContext;

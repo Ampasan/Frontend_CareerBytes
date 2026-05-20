@@ -4,6 +4,7 @@
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
+  background-color: var(--color-white);
 }
 
 html {
@@ -11,13 +12,72 @@ html {
 }
 
 :root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-transparent-white: rgba(255, 255, 255, 0);
+
   --color-image: #F3F3F3;
   --color-text: #BFB5B5;
   --color-cardRM: #D0D0D0;
 
-  --color-primary:#2159D4;
+  --color-primary: #2159D4;
   --color-secondary: #DECAFF;
   --color-third: #7034D5;
   --color-border: #b8cdfa;
 
+  --color-surface: #ffffff;
+  --color-surface-muted: #F5F5F5;
+  --color-surface-primary: #F0F4FE;
+  --color-surface-primary-alt: #F0F4FF;
+
+  --color-primary-dark: #14357F;
+  --color-primary-hero: #2F5CC8;
+  --color-primary-soft: #EEF2FF;
+  --color-primary-soft-hover: #DBEAFE;
+  --color-primary-light: #BACCF2;
+  --color-primary-muted: #9BB0EA;
+  --color-primary-muted-strong: #95ACE8;
+  --color-primary-border-strong: #5D7CFA;
+  --color-primary-icon-muted: #B6C3ED;
+  --color-primary-placeholder: #BFCDFD;
+  --color-progress-track: #D9DCE7;
+  --color-link: #2563eb;
+  --color-link-muted: #3b82f6;
+  --color-link-soft: #eff6ff;
+  --color-trends-growth: #19439F;
+  --color-trends-demand: #A1BEFA;
+  --color-roadmap-completed-bg: #2C5ED6;
+  --color-roadmap-ongoing-bg: #BED0F3;
+  --color-roadmap-active-text: #225FD6;
+  --color-roadmap-locked-bg: #F5F8FF;
+  --color-roadmap-locked-text: #C9D7FB;
+  --color-roadmap-chip-bg: #F4F8FF;
+  --color-roadmap-check-text: #202124;
+  --color-roadmap-progress: #00E95A;
+  --color-roadmap-progress-track: #E8EEF9;
+
+  --color-mission-card-completed: #AFC0F1;
+  --color-mission-label-completed: #9EB2F3;
+  --color-mission-label: #E7DFF8;
+
+  --color-text-muted: #6b7280;
+  --color-text-subtle: #4b5563;
+  --color-text-soft: #9ca3af;
+  --color-icon-muted: #d1d5db;
+  --color-neutral-soft: #f3f4f6;
+
+  --color-error: #dc2626;
+  --color-error-border: #fecaca;
+  --color-error-bg: #fef2f2;
+  --color-success: #16a34a;
+  --color-success-border: #bbf7d0;
+  --color-success-bg: #f0fdf4;
+  --color-success-progress: #4ade80;
+
+  --color-shadow-light: #d3d3d3;
+  --color-shadow-subtle: rgba(0, 0, 0, 0.1);
+  --color-shadow-card: rgba(0, 0, 0, 0.2);
+  --color-footer-link-hover: rgba(0, 0, 0, 0.5);
+  --color-footer-decoration-hover: #374151;
 }

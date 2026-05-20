@@ -51,7 +51,7 @@ function ProcessingAssessment({ onComplete }) {
                 <p className="text-center text-xs lg:text-sm lg:max-w-md">We're analyzing your responses to create a personalized skill profile and career recommendations.</p>
                 
                 {/* PROCESS CARD */}
-                <div className="bg-white shadow-[0px_1.5px_5px_2px] shadow-black/10 w-full h-60 lg:h-72 rounded-xl flex flex-col gap-5 p-5 lg:p-8">
+                <div className="bg-(--color-surface) shadow-[0px_1.5px_5px_2px_var(--color-shadow-subtle)] w-full h-60 lg:h-72 rounded-xl flex flex-col gap-5 p-5 lg:p-8">
                     {processData.map((process, index) => {
                         const isDone = index < currentStep || 
                         (isFinished && index === currentStep);
@@ -67,9 +67,9 @@ function ProcessingAssessment({ onComplete }) {
                                         {/* ICON */}
                                         <div className={`h-8 w-8 lg:h-10 lg:w-10 rounded-full flex justify-center items-center border-2 font-bold
                                             ${isDone ? "bg-(--color-primary) text-white border-(--color-primary)" : ""}
-                                            ${isActive ? "bg-(--color-primary)/15 text-[var(--color-primary)] animate-pulse" : ""}
+                                            ${isActive ? "bg-(--color-primary)/15 text-(--color-primary) animate-pulse" : ""}
                                             ${!isDone && !isActive ?
-                                                "bg-(--color-primary)/15 border-transparent text-(--color-primary)/40" : ""
+                                                "bg-(--color-primary)/15 border-(--color-transparent) text-(--color-primary)/40" : ""
                                             }
                                             `}>
                                             {isDone ? <Check size={20} /> : <LoaderCircle className="animate-spin h-5 w-5"/>}
@@ -84,7 +84,7 @@ function ProcessingAssessment({ onComplete }) {
                                     <div className={`text-xs px-1 lg:px-2 h-7 rounded-full flex justify-center items-center
                                         ${isDone ? "bg-(--color-primary) text-white" : ""}
                                         ${isActive ? "bg-(--color-primary)/15 text-(--color-primary)" : "" }
-                                        ${!isDone && !isActive ? "bg-gray-100 text-gray-400" : ""}
+                                        ${!isDone && !isActive ? "bg-(--color-neutral-soft) text-(--color-text-soft)" : ""}
                                         `}>
                                         {isDone ? "Done" : isActive ? "In Progress" : "Waiting"}
                                     </div>

@@ -22,7 +22,6 @@ function RoadmapItems({ data }) {
 
                     {/* CARD */} 
                     <RoadmapCard
-                        opacity={getOpacity(item.status)}
                         title={item.title}
                         status={item.status}
                         description={item.description}
