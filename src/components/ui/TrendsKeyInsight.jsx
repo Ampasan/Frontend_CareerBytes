@@ -5,7 +5,7 @@ function TrendsKeyInsight ({ insights = [] }) {
         <div className="border border-(--color-primary) my-7 px-8 pt-7 rounded-xl text-(--color-primary)">
             <div className="flex items-center gap-2">
                 <Lightbulb size={25}/>
-                <h1 className="text-2xl font-semibold">Key Insight</h1>
+                <h1 className="text-2xl font-semibold text-(--color-heading-dark)">Key Insight</h1>
             </div>
             
             {insights.map((insight, index) => (

@@ -11,7 +11,7 @@ import {
 function TrendsChart ({ data }) {
     return (
         <div className="border border-(--color-primary) my-7 p-8 rounded-xl text-(--color-primary)">
-            <h1 className="text-2xl font-semibold">Top Trending Skills by Popularity</h1>
+            <h1 className="text-2xl font-semibold text-(--color-heading-dark)">Top Trending Skills by Popularity</h1>
             <p className="text-(--color-primary-dark) text-sm py-3">Based on job postings, employer demand, and industry growth</p>
             
             {/* Chart */} 

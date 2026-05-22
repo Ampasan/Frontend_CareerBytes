@@ -65,7 +65,7 @@ function TaskAssessmentPage() {
     <>
       <Navbar />
       <main className="max-w-7xl mx-auto px-6 py-13 text-(--color-primary) space-y-6">
-        {mission && (
+       {mission && (
           <HeaderMission
             task={mission}
             backText="Back to Mission Detail"

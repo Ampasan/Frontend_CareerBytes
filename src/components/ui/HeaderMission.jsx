@@ -29,7 +29,7 @@ function HeaderMission({
       </div>
 
       {/* Title */}
-      <h1 className="font-bold text-3xl lg:text-4xl mb-5 leading-tight">
+      <h1 className="font-bold text-3xl lg:text-4xl mb-5 leading-tight text-(--color-heading-dark)">
         {task.title}
       </h1>
 
