@@ -20,7 +20,7 @@ function TaskSummaryCard({
         Task {displayTaskNumber}
       </p>
 
-      <h1 className="text-xl lg:text-2xl font-bold text-(--color-primary) leading-tight">
+      <h1 className="text-xl lg:text-2xl font-bold text-(--color-heading-dark) leading-tight">
         {displayTitle}
       </h1>
 

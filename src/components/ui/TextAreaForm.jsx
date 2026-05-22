@@ -14,7 +14,7 @@ function TextAreaForm({
       {label && (
         <label
           htmlFor={name}
-          className="block mb-4 text-lg lg:text-xl font-bold text-(--color-primary)"
+          className="block mb-4 text-lg lg:text-xl font-bold text-(--color-heading-dark)"
         >
           {label}
         </label>

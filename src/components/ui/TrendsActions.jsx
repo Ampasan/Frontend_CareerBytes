@@ -10,7 +10,7 @@ function TrendsAction ({ actions = [] }) {
                 size={30}
                 className="h-10 w-10 sm:h-auto md:w-auto"
                 />
-                <h1 className="text-2xl font-semibold">Recommended Actions</h1>
+                <h1 className="text-2xl font-semibold text-(--color-heading-dark)">Recommended Actions</h1>
             </div>
 
                 {
