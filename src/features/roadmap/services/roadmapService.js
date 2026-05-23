@@ -1,4 +1,4 @@
-import api from "../../../services/api";
+import api, { getStoredToken } from "../../../services/api";
 import rolesService from "../../../services/rolesService";
 import {
   getRoleConfig,
@@ -10,6 +10,29 @@ import { getOptimisticLevelProgress } from "../../mission/services/completedTask
 
 const DEFAULT_ROADMAP_LEVEL = "Entry Level";
 const DEFAULT_ROADMAP_ESTIMATE = "1 - 2 Years";
+const FALLBACK_LEVELS = [
+  {
+    key: "beginner",
+    label: "Beginner Level",
+    description:
+      "Build the core foundations, learn the workflow, and get comfortable with essential tools.",
+    defaultSkills: ["Core fundamentals", "Workflow basics", "Guided practice"],
+  },
+  {
+    key: "intermediate",
+    label: "Intermediate Level",
+    description:
+      "Turn the basics into project work, collaboration habits, and portfolio-ready output.",
+    defaultSkills: ["Project practice", "Collaboration workflow", "Portfolio deliverable"],
+  },
+  {
+    key: "advanced",
+    label: "Advanced Level",
+    description:
+      "Strengthen advanced delivery, production standards, and career-ready decision making.",
+    defaultSkills: ["Advanced patterns", "Production quality", "Career-ready review"],
+  },
+];
 
 const normalizeText = (value = "") =>
   value.toString().toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -53,6 +76,50 @@ const getStatus = (level, index, isCompleted = level.isCompleted) => {
   if (isCompleted) return "Completed";
   if (level.isUnlocked || index === 0) return "On Going";
   return false;
+};
+
+const createFallbackSkills = (roleName, levelKey, defaultSkills = []) => {
+  const tools = getToolsForRoleLevel(roleName, levelKey);
+  const toolSkills = tools.map((toolName) => `${toolName} practice`);
+
+  return uniqueNames([...toolSkills, ...defaultSkills]).slice(0, 3);
+};
+
+const createFallbackRoadmap = (roleName, roadmapIndex = 0) =>
+  normalizeRoadmap({
+    id: `local-${normalizeText(roleName)}`,
+    name: roleName,
+    description: `A practical roadmap to grow into a ${roleName} role through focused skills, tools, and projects.`,
+    careerLevel: DEFAULT_ROADMAP_LEVEL,
+    estimateYears: DEFAULT_ROADMAP_ESTIMATE,
+    levels: FALLBACK_LEVELS.map((level, index) => ({
+      id: `local-${normalizeText(roleName)}-${level.key}`,
+      level: level.key,
+      levelLabel: level.label,
+      description: level.description,
+      skills: createFallbackSkills(roleName, level.key, level.defaultSkills),
+      tools: getToolsForRoleLevel(roleName, level.key),
+      order: index + 1,
+      isUnlocked: index === 0,
+      isCompleted: false,
+      progress: { submitted: 0, total: 3, percent: 0 },
+    })),
+    order: roadmapIndex + 1,
+  });
+
+const getFallbackRoadmaps = ({ limit } = {}) => {
+  const roleNames = Number.isFinite(limit)
+    ? POPULAR_ROLE_NAMES.slice(0, limit)
+    : POPULAR_ROLE_NAMES;
+  const roadmaps = uniqueRoadmaps(roleNames.map(createFallbackRoadmap));
+
+  return {
+    success: roadmaps.length > 0,
+    data: roadmaps,
+    total: roadmaps.length,
+    message: "Using local roadmap preview",
+    isFallback: true,
+  };
 };
 
 const normalizeTools = (roleName, level) => {
@@ -190,6 +257,10 @@ const roadmapService = {
   },
 
   getAllRoadmaps: async ({ limit } = {}) => {
+    if (!getStoredToken()) {
+      return getFallbackRoadmaps({ limit });
+    }
+
     let backendRoleNames = [];
 
     try {
@@ -206,11 +277,7 @@ const roadmapService = {
       : allRoleNames;
 
     if (roleNames.length === 0) {
-      return {
-        success: false,
-        data: [],
-        total: 0,
-      };
+      return getFallbackRoadmaps({ limit });
     }
 
     const roadmapResults = await Promise.allSettled(
@@ -227,8 +294,12 @@ const roadmapService = {
         .map((result) => result.value.data)
     );
 
+    if (roadmaps.length === 0) {
+      return getFallbackRoadmaps({ limit });
+    }
+
     return {
-      success: roadmaps.length > 0,
+      success: true,
       data: roadmaps,
       total: roadmaps.length,
     };
