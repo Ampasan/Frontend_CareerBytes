@@ -1,8 +1,9 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, requiresOAuthProfile } = useAuth();
+  const location = useLocation();
 
   if (loading) {
     return (
@@ -14,6 +15,10 @@ const ProtectedRoute = ({ children }) => {
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (requiresOAuthProfile && location.pathname !== "/oauth-profile") {
+    return <Navigate to="/oauth-profile" replace />;
   }
 
   return children;

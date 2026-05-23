@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const DEFAULT_API_BASE_URL = "https://careerbytes-capstone-production-d45d.up.railway.app";
+
 const normalizeBaseUrl = (url = "") => {
   const trimmedUrl = url.trim().replace(/\/+$/, "");
-  if (!trimmedUrl) return "http://localhost:3000";
+  if (!trimmedUrl) return DEFAULT_API_BASE_URL;
 
   return trimmedUrl.endsWith("/api")
     ? trimmedUrl.slice(0, -4)
@@ -13,7 +15,7 @@ export const API_BASE_URL = normalizeBaseUrl(
   import.meta.env.VITE_API_BASE_URL ||
     import.meta.env.VITE_API_URL ||
     import.meta.env.NEXT_PUBLIC_API_URL ||
-    "http://localhost:3000"
+    DEFAULT_API_BASE_URL
 );
 
 const isBrowser = typeof window !== "undefined";

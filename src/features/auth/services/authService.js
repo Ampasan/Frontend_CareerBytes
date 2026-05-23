@@ -1,4 +1,5 @@
 import api, { API_BASE_URL, clearStoredAuth } from "../../../services/api";
+import { setOAuthProvider } from "./oauthSession";
 
 const readRoleName = (...values) => {
   for (const value of values) {
@@ -158,6 +159,11 @@ const authService = {
   },
 
   getOAuthUrl: (provider) => `${API_BASE_URL}/api/auth/${provider}`,
+
+  startOAuthLogin: (provider) => {
+    setOAuthProvider(provider);
+    window.location.href = `${API_BASE_URL}/api/auth/${provider}`;
+  },
 };
 
 export default authService;

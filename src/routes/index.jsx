@@ -1,11 +1,20 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import RoadmapPage from "../pages/RoadmapPage";
 import LoginPage from "../pages/LoginPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import RegisterPage from "../pages/RegisterPage";
+import OAuthProfilePage from "../pages/OAuthProfilePage";
 import { AuthProvider } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import AssessmentPage from "../pages/AssessmentPage";
@@ -14,6 +23,7 @@ import TaskDetailPage from "../pages/TaskDetailPage";
 import TaskAssessmentPage from "../pages/TaskAssessmentPage";
 import TaskResultPage from "../pages/TaskResultPage";
 import TrendsPage from "../pages/TrendsPage";
+import { API_BASE_URL } from "../services/api";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,12 +34,57 @@ function ScrollToTop() {
 
   return null;
 }
+
+function OAuthProfileRedirect() {
+  const { isAuthenticated, loading, requiresOAuthProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && isAuthenticated && requiresOAuthProfile && location.pathname !== "/oauth-profile") {
+      navigate("/oauth-profile", { replace: true });
+    }
+  }, [isAuthenticated, loading, location.pathname, navigate, requiresOAuthProfile]);
+
+  return null;
+}
+
+function OAuthBackendCallbackRedirect() {
+  const { provider } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const callbackUrl = new URL(`/api/auth/${provider}/callback`, API_BASE_URL);
+    callbackUrl.search = location.search;
+
+    if (callbackUrl.origin === window.location.origin) {
+      navigate("/login", { replace: true });
+      return;
+    }
+
+    window.location.replace(callbackUrl.toString());
+  }, [location.search, navigate, provider]);
+
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-(--color-primary)"></div>
+    </div>
+  );
+}
+
 export default function AppRoutes() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <OAuthProfileRedirect />
         <Routes>
+          <Route
+            path="/api/auth/:provider/callback"
+            element={<OAuthBackendCallbackRedirect />}
+          />
+
           <Route path="/" element={<LandingPage />} />
           
           <Route 
@@ -66,6 +121,15 @@ export default function AppRoutes() {
                 <RegisterPage />
               </AuthRoute>
             } 
+          />
+
+          <Route
+            path="/oauth-profile"
+            element={
+              <ProtectedRoute>
+                <OAuthProfilePage />
+              </ProtectedRoute>
+            }
           />
 
           <Route 

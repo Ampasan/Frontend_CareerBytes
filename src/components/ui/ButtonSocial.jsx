@@ -15,7 +15,7 @@ function ButtonSocial({ type = "google" }) {
   const config = socialConfig[type] || socialConfig.google;
 
   const handleClick = () => {
-    window.location.href = authService.getOAuthUrl(type);
+    authService.startOAuthLogin(type);
   };
 
   return (
@@ -26,7 +26,8 @@ function ButtonSocial({ type = "google" }) {
     >
       <img
         src={config.icon}
-        alt={config.text}
+        alt=""
+        aria-hidden="true"
         className="w-5 h-5 object-contain"
       />
 
