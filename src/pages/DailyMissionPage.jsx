@@ -9,6 +9,38 @@ import MissionCard from "../features/mission/components/MissionCard";
 import missionService from "../features/mission/services/missionService";
 import rolesService from "../services/rolesService";
 
+const syncLevelProgressWithTasks = async (levels = []) => {
+  const syncedLevels = await Promise.all(
+    levels.map(async (level) => {
+      if (!level?.id) return level;
+
+      try {
+        const response = await missionService.getTasksByLevel(level.id);
+        const tasks = response.data || [];
+        const total = tasks.length;
+        const submitted = tasks.filter((task) => task.isCompleted).length;
+        const percent = total > 0 ? Math.round((submitted / total) * 100) : 0;
+
+        return {
+          ...level,
+          estimateTime: `${submitted}/${total} tasks`,
+          isCompleted: total > 0 && submitted >= total,
+          progress: {
+            ...(level.progress || {}),
+            total,
+            submitted,
+            percent,
+          },
+        };
+      } catch {
+        return level;
+      }
+    })
+  );
+
+  return syncedLevels;
+};
+
 function DailyMissionPage() {
   const { user, refreshUser } = useAuth();
   const [searchParams] = useSearchParams();
@@ -61,7 +93,8 @@ function DailyMissionPage() {
         }
 
         const response = await missionService.getRoadmapLevels(roleId);
-        setMissions(response.data.levels);
+        const syncedLevels = await syncLevelProgressWithTasks(response.data.levels);
+        setMissions(syncedLevels);
       } catch (error) {
         setError(getApiErrorMessage(error, "Failed to fetch daily missions"));
       } finally {
