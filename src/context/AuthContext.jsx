@@ -9,6 +9,10 @@ import {
   setOAuthProfilePending,
 } from "../features/auth/services/oauthSession";
 import {
+  getOAuthProfileOverride,
+  setOAuthProfileOverride,
+} from "../features/auth/services/oauthProfileStorage";
+import {
   clearStoredAuth,
   getApiErrorMessage,
   getStoredToken,
@@ -24,9 +28,10 @@ const cleanOAuthTokenFromUrl = () => {
   window.history.replaceState({}, document.title, `${url.pathname}${url.search}${url.hash}`);
 };
 
-const mergeUserProfile = (profile = {}, fallback = {}) => {
+const mergeUserProfile = (profile = {}, fallback = {}, override = {}) => {
   const safeProfile = profile || {};
   const storedFallback = fallback || {};
+  const storedOverride = override || {};
   const canUseFallback =
     !safeProfile.id ||
     !storedFallback.id ||
@@ -36,9 +41,9 @@ const mergeUserProfile = (profile = {}, fallback = {}) => {
   return {
     ...safeFallback,
     ...safeProfile,
-    name: safeFallback.oauthProfileCompleted
+    name: storedOverride.name || (safeFallback.oauthProfileCompleted
       ? safeFallback.name || safeProfile.name || ""
-      : safeProfile.name || safeFallback.name || "",
+      : safeProfile.name || safeFallback.name || ""),
     role: safeProfile.role || safeFallback.role || "",
     roleId: safeProfile.roleId ?? safeFallback.roleId ?? null,
     oauthProfileCompleted:
@@ -90,6 +95,9 @@ const withTimeout = (promise, timeoutMs = 10000) =>
     }),
   ]);
 
+const hasCompletedOAuthProfile = (profile) =>
+  Boolean(profile?.oauthProfileCompleted || profile?.roleId || profile?.role);
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => getStoredUser());
   const [isAuthenticated, setIsAuthenticated] = useState(() => Boolean(getStoredToken()));
@@ -103,15 +111,27 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(Boolean(token));
   }, []);
 
+  const buildSessionUser = useCallback(async (profile) => {
+    const nextUser = await withResolvedRole(
+      mergeUserProfile(profile, getStoredUser(), getOAuthProfileOverride(profile))
+    );
+
+    return {
+      ...nextUser,
+      oauthProfileCompleted:
+        nextUser.oauthProfileCompleted || hasCompletedOAuthProfile(nextUser),
+    };
+  }, []);
+
   const refreshUser = useCallback(async () => {
     const profile = await withTimeout(authService.me());
-    const nextUser = await withResolvedRole(mergeUserProfile(profile, getStoredUser()));
+    const nextUser = await buildSessionUser(profile);
 
     setStoredAuth({ user: nextUser });
     setUser(nextUser);
     setIsAuthenticated(true);
     return nextUser;
-  }, []);
+  }, [buildSessionUser]);
 
   useEffect(() => {
     const verifySession = async () => {
@@ -132,16 +152,30 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
+        const oauthProviderName = oauthProviderFromUrl || getOAuthProvider();
+        const oauthProfileWasPending = isOAuthProfilePending();
+
         if (oauthToken) {
           setStoredAuth({ token: oauthToken });
-          setOAuthProfilePending(oauthProviderFromUrl || getOAuthProvider());
-          setRequiresOAuthProfile(true);
-          setOAuthProviderState(oauthProviderFromUrl || getOAuthProvider());
+          setOAuthProviderState(oauthProviderName);
           cleanOAuthTokenFromUrl();
         }
 
         const profile = await withTimeout(authService.me());
-        const nextUser = await withResolvedRole(mergeUserProfile(profile, getStoredUser()));
+        const nextUser = await buildSessionUser(profile);
+        const shouldCompleteOAuthProfile =
+          (Boolean(oauthToken) || oauthProfileWasPending) &&
+          !hasCompletedOAuthProfile(nextUser);
+
+        if (shouldCompleteOAuthProfile) {
+          setOAuthProfilePending(oauthProviderName);
+          setRequiresOAuthProfile(true);
+          setOAuthProviderState(oauthProviderName);
+        } else {
+          clearOAuthProfileState();
+          setRequiresOAuthProfile(false);
+          setOAuthProviderState("");
+        }
 
         persistSession({ token, user: nextUser });
       } catch {
@@ -157,13 +191,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     verifySession();
-  }, [persistSession]);
+  }, [buildSessionUser, persistSession]);
 
   const login = async (email, password) => {
     try {
       const response = await withTimeout(authService.login(email, password));
       setStoredAuth({ token: response.token });
-      const nextUser = await withResolvedRole(mergeUserProfile(response.user, getStoredUser()));
+      const nextUser = await buildSessionUser(response.user);
 
       persistSession({ ...response, user: nextUser });
 
@@ -179,7 +213,7 @@ export const AuthProvider = ({ children }) => {
 
       if (response.token) {
         setStoredAuth({ token: response.token });
-        const nextUser = await withResolvedRole(mergeUserProfile(response.user, getStoredUser()));
+        const nextUser = await buildSessionUser(response.user);
         persistSession({ ...response, user: nextUser });
 
         response.user = nextUser;
@@ -218,7 +252,10 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: "Career Path tidak ditemukan" };
       }
 
-      const response = await authService.updateRole(role.id);
+      const response = await authService.updateOAuthProfile({
+        roleId: role.id,
+        name: cleanedName,
+      });
       const nextUser = {
         ...user,
         name: cleanedName,
@@ -227,6 +264,9 @@ export const AuthProvider = ({ children }) => {
         oauthProfileCompleted: true,
       };
 
+      setOAuthProfileOverride(nextUser, {
+        name: cleanedName,
+      });
       setStoredAuth({ user: nextUser });
       clearOAuthProfileState();
       setUser(nextUser);

@@ -69,11 +69,11 @@ const getToolFallbackLabel = (name = "") =>
 
 function LandingChecklistItem({ item, variant }) {
     return (
-        <div className={`flex h-7 items-center gap-2 rounded-sm bg-(--color-surface) px-3 text-xs leading-none ${variant.checklist}`}>
+        <div className={`flex min-h-9 items-center gap-2 rounded-sm bg-(--color-surface) px-3 py-2 text-xs leading-normal ${variant.checklist}`}>
             <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-current">
                 {item.isCheck && <Check size={12} strokeWidth={2.4} />}
             </div>
-            <p className="min-w-0 truncate">{item.text}</p>
+            <p className="min-w-0 truncate font-semibold">{item.text}</p>
         </div>
     );
 }
@@ -121,7 +121,7 @@ function RoadmapCard({
                     <div className="flex flex-wrap items-center gap-4">
                         <h2 className={`font-semibold text-lg sm:text-xl leading-tight tracking-tight ${variant.title}`}>{title}</h2>
                         {status && (
-                            <h2 className={`${variant.chip} rounded-sm px-3 py-1 text-xs font-semibold leading-none`}>{status}</h2>
+                            <h2 className={`${variant.chip} rounded-sm px-3 py-1 text-xs font-bold leading-none`}>{status}</h2>
                         )}
                     </div>
                     <p className="mb-8 text-sm leading-snug">{description}</p>
@@ -184,7 +184,7 @@ function RoadmapCard({
                 <div className="flex flex-col sm:flex-row justify-between lg:justify-start gap-2 lg:gap-6 items-start sm:items-center">
                     <h2 className={`font-semibold text-base sm:text-lg lg:text-2xl leading-tight tracking-tight ${variant.title}`}>{title}</h2>
                     {status && (
-                        <h2 className={`${variant.chip} px-2 py-0.5 text-xs sm:text-sm lg:text-md lg:px-3 rounded font-semibold flex items-center `}>{status}</h2>)}
+                        <h2 className={`${variant.chip} px-2 py-0.5 text-xs sm:text-sm lg:text-md lg:px-3 rounded font-bold flex items-center `}>{status}</h2>)}
                 </div>
                 <p className="mb-5 lg:mb-10 text-sm">{description}</p>
                 {/* BAWAH: CHECKLIST */}
@@ -195,6 +195,7 @@ function RoadmapCard({
                     bgColor2={variant.checklist}
                     isCheck={item.isCheck}
                     text={item.text}
+                    textClassName="font-semibold"
                     />
                 ))}
             </div>

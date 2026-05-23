@@ -3,6 +3,8 @@ import api from "../../../services/api";
 const normalizeText = (value = "") =>
   value.toString().toLowerCase().replace(/[^a-z0-9]/g, "");
 
+const toNumber = (value) => Number(value) || 0;
+
 const normalizeTrendingSkill = (skill = {}) => ({
   id: skill.id,
   name: skill.skillName,
@@ -14,8 +16,58 @@ const normalizeTrendingSkill = (skill = {}) => ({
   createdAt: skill.createdAt,
 });
 
+const isPreferredSkill = (candidate, current) => {
+  const candidateScores = [
+    toNumber(candidate.year),
+    toNumber(candidate.popularityScore),
+    toNumber(candidate.demand),
+    toNumber(candidate.growth),
+  ];
+  const currentScores = [
+    toNumber(current.year),
+    toNumber(current.popularityScore),
+    toNumber(current.demand),
+    toNumber(current.growth),
+  ];
+
+  for (let index = 0; index < candidateScores.length; index += 1) {
+    if (candidateScores[index] !== currentScores[index]) {
+      return candidateScores[index] > currentScores[index];
+    }
+  }
+
+  return false;
+};
+
+const getUniqueTrendingSkills = (skills = []) => {
+  const skillsByName = new Map();
+
+  skills.forEach((skill) => {
+    const key = normalizeText(skill.skillName);
+    if (!key) return;
+
+    const currentSkill = skillsByName.get(key);
+    if (!currentSkill || isPreferredSkill(skill, currentSkill)) {
+      skillsByName.set(key, skill);
+    }
+  });
+
+  return Array.from(skillsByName.values());
+};
+
+const filterSkillsByYear = (skills = [], year) =>
+  year ? skills.filter((skill) => String(skill.year) === String(year)) : skills;
+
+const getReportYear = (skills = [], year) =>
+  year ||
+  skills.reduce((latestYear, skill) => {
+    const skillYear = toNumber(skill.year);
+    return skillYear > latestYear ? skillYear : latestYear;
+  }, 0) ||
+  new Date().getFullYear();
+
 const toGrowthDemandData = (skills = [], year) => ({
-  year: year || skills[0]?.year || new Date().getFullYear(),
+  year: getReportYear(skills, year),
   skills: skills.map((skill) => ({
     id: skill.id,
     name: skill.skillName,
@@ -150,7 +202,9 @@ const trendsService = {
     if (!role) return { success: false, message: "Role is required" };
 
     const response = await api.get("/api/trending-skills");
-    const skills = (response.data?.data || []).map(normalizeTrendingSkill);
+    const skills = getUniqueTrendingSkills(
+      (response.data?.data || []).map(normalizeTrendingSkill)
+    );
     const stats = toStats(skills, role);
 
     return stats.length
@@ -162,7 +216,12 @@ const trendsService = {
     const response = await api.get("/api/trending-skills", {
       params: year ? { year } : {},
     });
-    const skills = (response.data?.data || []).map(normalizeTrendingSkill);
+    const skills = getUniqueTrendingSkills(
+      filterSkillsByYear(
+        (response.data?.data || []).map(normalizeTrendingSkill),
+        year
+      )
+    );
 
     return {
       success: true,
@@ -174,7 +233,12 @@ const trendsService = {
     const response = await api.get("/api/trending-skills", {
       params: { year },
     });
-    const skills = (response.data?.data || []).map(normalizeTrendingSkill);
+    const skills = getUniqueTrendingSkills(
+      filterSkillsByYear(
+        (response.data?.data || []).map(normalizeTrendingSkill),
+        year
+      )
+    );
 
     return skills.length
       ? { success: true, data: toPeriodReport(skills, year, userRole) }

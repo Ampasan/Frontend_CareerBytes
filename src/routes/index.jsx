@@ -73,6 +73,30 @@ function OAuthBackendCallbackRedirect() {
   );
 }
 
+function OAuthFrontendCallback() {
+  const { isAuthenticated, loading, requiresOAuthProfile } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loading) return;
+
+    if (!isAuthenticated) {
+      navigate("/login", { replace: true });
+      return;
+    }
+
+    navigate(requiresOAuthProfile ? "/oauth-profile" : "/", {
+      replace: true,
+    });
+  }, [isAuthenticated, loading, navigate, requiresOAuthProfile]);
+
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-(--color-primary)"></div>
+    </div>
+  );
+}
+
 export default function AppRoutes() {
   return (
     <AuthProvider>
@@ -84,6 +108,8 @@ export default function AppRoutes() {
             path="/api/auth/:provider/callback"
             element={<OAuthBackendCallbackRedirect />}
           />
+          <Route path="/auth/callback" element={<OAuthFrontendCallback />} />
+          <Route path="/auth/:provider/callback" element={<OAuthFrontendCallback />} />
 
           <Route path="/" element={<LandingPage />} />
           

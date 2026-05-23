@@ -46,7 +46,7 @@ function OAuthProfileForm() {
 
     setSuccess("Profile saved. Redirecting...");
     setTimeout(() => {
-      navigate("/career-roadmap", { replace: true });
+      navigate("/", { replace: true });
     }, 700);
   };
 

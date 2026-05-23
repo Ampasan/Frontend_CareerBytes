@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
 
-function Checklist({ bgColor, bgColor2, isCheck, text, variant = "normal" }) {
+function Checklist({ bgColor, bgColor2, isCheck, text, variant = "normal", textClassName = "" }) {
     const padding = variant === "with-status"? "p-3" : "p-1"; //NYESUAIN CHECK DI CARD ROADMAP + DAILY MISSION 
 
     return(
@@ -13,7 +13,7 @@ function Checklist({ bgColor, bgColor2, isCheck, text, variant = "normal" }) {
             </div>
             {/* TEXT & STATUS */}
             <div className="flex justify-between items-center w-full">
-                <p className='w-[80%] max-w-xl'>{text}</p>
+                <p className={`w-[80%] max-w-xl ${textClassName}`}>{text}</p>
                 {variant === "with-status" && (
                     isCheck? <p className="text-xs font-semibold text-black/30">DONE</p> :
                              <p className="text-xs font-semibold">IN PROGRESS</p>

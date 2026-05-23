@@ -52,25 +52,39 @@ function TrendsPage() {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchPeriods = async () => {
       try {
         const response = await trendsService.getPeriods();
+        if (!isMounted) return;
+
         setPeriods(response.data);
-        if (!selectedPeriod && response.data[0]) {
-          setSelectedPeriod(response.data[0]);
-        }
+        setSelectedPeriod(
+          (currentPeriod) => currentPeriod || response.data[0] || ""
+        );
       } catch {
+        if (!isMounted) return;
         setPeriods([]);
       }
     };
 
     fetchPeriods();
-  }, [selectedPeriod]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     fetchStats(userRole);
-    fetchSkills(year);
-  }, [userRole, year]);
+  }, [userRole]);
+
+  useEffect(() => {
+    if (!year && selectedPeriod) {
+      fetchSkills(selectedPeriod);
+    }
+  }, [year, selectedPeriod]);
 
   useEffect(() => {
     if (year) setSelectedPeriod(year);

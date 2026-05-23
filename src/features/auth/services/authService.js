@@ -88,6 +88,31 @@ const resolveRoleWithToken = async (roleName, token) => {
   return pickExactRole(response.data?.data || [], roleName) || null;
 };
 
+const normalizeRoleUpdateResponse = (response) => ({
+  message: response.data?.message || "Role berhasil dipilih",
+  data: response.data?.data,
+});
+
+const updateRole = async (roleId) => {
+  const response = await api.patch("/api/auth/me/role", { roleId });
+  return normalizeRoleUpdateResponse(response);
+};
+
+const updateProfileName = async (name) => {
+  if (!name) return null;
+
+  try {
+    const response = await api.patch("/api/auth/me", {
+      name,
+      fullName: name,
+    });
+
+    return normalizeUser(response.data?.user || response.data?.data || {});
+  } catch {
+    return null;
+  }
+};
+
 const authService = {
   login: async (email, password) => {
     const response = await api.post("/api/auth/login", { email, password });
@@ -144,13 +169,35 @@ const authService = {
     return normalizeUser(response.data?.user);
   },
 
-  updateRole: async (roleId) => {
-    const response = await api.patch("/api/auth/me/role", { roleId });
+  updateRole,
 
-    return {
-      message: response.data?.message || "Role berhasil dipilih",
-      data: response.data?.data,
-    };
+  updateOAuthProfile: async ({ roleId, name }) => {
+    const updatedProfile = await updateProfileName(name);
+
+    try {
+      const response = await api.patch("/api/auth/me/role", {
+        roleId,
+        name,
+      });
+
+      const roleResponse = normalizeRoleUpdateResponse(response);
+
+      return {
+        ...roleResponse,
+        user: updatedProfile,
+      };
+    } catch (error) {
+      if (name && (error.status === 400 || error.status === 422)) {
+        const roleResponse = await updateRole(roleId);
+
+        return {
+          ...roleResponse,
+          user: updatedProfile,
+        };
+      }
+
+      throw error;
+    }
   },
 
   logout: async () => {
