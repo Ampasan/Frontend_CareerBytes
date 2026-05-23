@@ -1,77 +1,43 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  dummyPeriodReports,
-  skillInsights,
-  skillActions,
-  roleActions,
-  dummyPeriods,
-} from "../../../constants/dummy/trendsDummy";
 import PeriodDropdown from "../../../components/ui/PeriodDropdown";
 import TrendsChart from "../../../components/ui/TrendsChart";
 import TrendsKeyInsight from "../../../components/ui/TrendsKeyInsight";
 import TrendsAction from "../../../components/ui/TrendsActions";
-import { useAuth } from "../../../context/AuthContext";
 import StatsSummaryCard from "../../../components/ui/StatsSummaryCard";
 import TrendsEmpty from "./TrendsEmpty";
+import trendsService from "../services/trendsService";
 
-const missionActionLabels = new Set(["Explore Courses", "See Recommendations"]);
-const missionPagePath = "/daily-mission";
-const normalizeRole = (role = "") =>
-  role.toString().toLowerCase().replace(/[^a-z0-9]/g, "");
-
-function TrendsPeriod({ selectedPeriod, setSelectedPeriod }) {
+function TrendsPeriod({ periods, selectedPeriod, setSelectedPeriod, userRole }) {
   const { year } = useParams();
-  const { user } = useAuth();
+  const [trendsData, setTrendsData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const trendsData = dummyPeriodReports[year];
+  useEffect(() => {
+    const fetchPeriodReport = async () => {
+      setLoading(true);
 
-  // Kalkulasi aman dengan fallback kosong
-  const topSkills = trendsData
-    ? [...trendsData.chartData].sort((a, b) => b.score - a.score).slice(0, 3)
-    : [];
+      try {
+        const response = await trendsService.getPeriodReport(year, userRole);
+        setTrendsData(response.success ? response.data : null);
+      } catch {
+        setTrendsData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const insights = topSkills
-    .map((skill) => skillInsights[skill.skill])
-    .filter(Boolean);
-
-  const normalizedUserRole = normalizeRole(user?.role);
-  const userRoleAction = Object.entries(roleActions).find(([key]) => {
-    if (!normalizedUserRole) return false;
-    const normalizedKey = normalizeRole(key);
-    return (
-      normalizedKey.includes(normalizedUserRole) ||
-      normalizedUserRole.includes(normalizedKey)
-    );
-  })?.[1];
-
-  const resolveActionPath = (action) =>
-    missionActionLabels.has(action.linkText?.trim()) ? missionPagePath : action.path;
-
-  const actions = trendsData
-    ? [
-        skillActions[topSkills[0]?.skill] && {
-          ...skillActions[topSkills[0].skill],
-          path: resolveActionPath(skillActions[topSkills[0].skill]),
-        },
-        skillActions[topSkills[1]?.skill] && {
-          ...skillActions[topSkills[1].skill],
-          path: resolveActionPath(skillActions[topSkills[1].skill]),
-        },
-        userRoleAction && {
-          ...userRoleAction,
-          path: resolveActionPath(userRoleAction),
-        },
-      ].filter(Boolean)
-    : [];
+    fetchPeriodReport();
+  }, [year, userRole]);
 
   return (
     <div className="w-full relative -mt-30 mb-5">
       <div className="max-w-6xl mx-auto relative pt-40 pb-20 px-6">
-
-        {/* Judul + Dropdown — selalu tampil */}
         <div className="flex items-center justify-between">
           <div className="text-(--color-primary)">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl  font-bold mb-2">Trending Skills</h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-2">
+              Trending Skills
+            </h1>
             <p className="text-xs sm:text-sm text-(--color-primary-dark)">
               {trendsData
                 ? trendsData.subtitle
@@ -79,28 +45,30 @@ function TrendsPeriod({ selectedPeriod, setSelectedPeriod }) {
             </p>
           </div>
           <PeriodDropdown
-            periods={dummyPeriods}
+            periods={periods}
             value={selectedPeriod}
             onChange={setSelectedPeriod}
             variant="period"
           />
         </div>
 
-        {/* Konten — kondisional */}
-        {!trendsData ? (
-          <TrendsEmpty />
+        {loading ? (
+          <div className="flex justify-center items-center py-40">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-(--color-primary)"></div>
+          </div>
+        ) : !trendsData ? (
+          <TrendsEmpty periods={periods} />
         ) : (
           <>
             <TrendsChart data={trendsData.chartData} />
-            <TrendsKeyInsight insights={insights} />
-            <TrendsAction actions={actions} />
+            <TrendsKeyInsight insights={trendsData.insights} />
+            <TrendsAction actions={trendsData.actions} />
             <StatsSummaryCard stats={trendsData.stats} />
             <p className="text-sm text-(--color-primary) text-center mt-6">
-              Data updated monthly from industry job boards, employer surveys, and market research
+              Data updated from backend trending skills records.
             </p>
           </>
         )}
-
       </div>
     </div>
   );

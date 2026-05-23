@@ -1,4 +1,5 @@
 import { User } from "lucide-react";
+import { POPULAR_ROLE_NAMES } from "../../constants/careerTools";
 
 function SelectCareer({ name, value, onChange, required = false }) {
   return (
@@ -20,21 +21,11 @@ function SelectCareer({ name, value, onChange, required = false }) {
           <option value="" className="text-(--color-text-soft)">
             Enter your career path
           </option>
-          <option value="Frontend Developer" className="text-black">
-            Frontend Developer
-          </option>
-          <option value="Software Engineer" className="text-black">
-            Software Engineer
-          </option>
-          <option value="UI/UX Designer" className="text-black">
-            UI/UX Designer
-          </option>
-          <option value="Data Analyst" className="text-black">
-            Data Analyst
-          </option>
-          <option value="Product Manager" className="text-black">
-            Product Manager
-          </option>
+          {POPULAR_ROLE_NAMES.map((role) => (
+            <option key={role} value={role} className="text-black">
+              {role}
+            </option>
+          ))}
         </select>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../hooks/useAuth";
 import Button from "../../../components/ui/Button";
 import InputForm from "../../../components/ui/InputForm";
 import ButtonSocial from "../../../components/ui/ButtonSocial";
@@ -32,13 +32,17 @@ function LoginForm() {
     }
 
     setLoading(true);
-    const result = await login(formData.email, formData.password);
-    setLoading(false);
 
-    if (result.success) {
-      navigate("/");
-    } else {
-      setError(result.message || "Login failed. Please try again.");
+    try {
+      const result = await login(formData.email, formData.password);
+
+      if (result.success) {
+        navigate("/");
+      } else {
+        setError(result.message || "Login failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 

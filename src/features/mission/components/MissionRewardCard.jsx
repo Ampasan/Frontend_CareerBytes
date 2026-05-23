@@ -1,10 +1,8 @@
 import { Award, TrendingUp } from "lucide-react";
 import Bar from "../../../components/ui/Bar";
-import { mockMissions } from "../../../constants/dummy/mission";
 
 function MissionRewardCard({ rewards }) {
-  const mission = mockMissions.missions.find((m) => m.id === 2);
-  const safeRewards = rewards || mission?.assessment?.rewards || {
+  const safeRewards = rewards || {
     xp: 50,
     badgeProgress: "3 of 5 tasks completed",
     skillGrowth: { "UI Structure": 5 }

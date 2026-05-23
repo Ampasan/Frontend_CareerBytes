@@ -1,10 +1,7 @@
+import { POPULAR_ROLE_NAMES } from "../../constants/careerTools";
+
 function FilterRole({ onSelectRole }) {
-  const roles = [
-    "Data Analyst",
-    "Frontend Developer",
-    "UI/UX Designer",
-    "Product Manager",
-  ];
+  const roles = POPULAR_ROLE_NAMES.slice(0, 6);
 
   return (
     <div className="flex justify-center items-center gap-4 flex-wrap w-full max-w-200 mx-auto">

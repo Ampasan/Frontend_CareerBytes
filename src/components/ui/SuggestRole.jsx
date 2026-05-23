@@ -1,11 +1,7 @@
+import { POPULAR_ROLE_NAMES } from "../../constants/careerTools";
+
 function SuggestRole({ onSelectRole }) {
-  const roles = [
-    "UI/UX Designer",
-    "Data Analyst",
-    "Frontend Developer",
-    "Product Manager",
-    "Software Engineer",
-  ];
+  const roles = POPULAR_ROLE_NAMES.slice(0, 6);
 
   return (
     <div className="flex flex-col items-center gap-4 w-full">

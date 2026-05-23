@@ -1,4 +1,10 @@
-function MissionHeader() {
+function MissionHeader({ stats }) {
+    const safeStats = {
+        totalTasks: stats?.totalTasks ?? 0,
+        completed: stats?.completed ?? 0,
+        remaining: stats?.remaining ?? 0,
+    };
+
     return (
         <section className="mt-16 lg:mt-24">
             <div className="max-w-7xl mx-auto px-5">
@@ -22,7 +28,7 @@ function MissionHeader() {
                         {/* Total Tasks */}
                         <div className="border-4 border-(--color-primary) rounded-xl w-26.5 h-18 lg:w-35.5 lg:h-22.5 px-4 flex flex-col justify-center items-start">
                             <h2 className="text-(--color-primary) text-2xl lg:text-3xl font-bold leading-none text-left">
-                                8
+                                {safeStats.totalTasks}
                             </h2>
 
                             <p className="mt-1 text-(--color-primary) text-xs lg:text-sm font-medium text-left">
@@ -33,7 +39,7 @@ function MissionHeader() {
                         {/* Completed */}
                         <div className="border-4 border-(--color-primary) rounded-xl w-26.5 h-18 lg:w-35.5 lg:h-22.5 px-4 flex flex-col justify-center items-start">
                             <h2 className="text-(--color-primary) text-2xl lg:text-3xl font-bold leading-none text-left">
-                                2
+                                {safeStats.completed}
                             </h2>
 
                             <p className="mt-1 text-(--color-primary) text-xs lg:text-sm font-medium text-left">
@@ -44,7 +50,7 @@ function MissionHeader() {
                         {/* Remaining */}
                         <div className="border-4 border-(--color-primary) rounded-xl w-26.5 h-18 lg:w-35.5 lg:h-22.5 px-4 flex flex-col justify-center items-start">
                             <h2 className="text-(--color-primary) text-2xl lg:text-3xl font-bold leading-none text-left">
-                                6
+                                {safeStats.remaining}
                             </h2>
 
                             <p className="mt-1 text-(--color-primary) text-xs lg:text-sm font-medium text-left">

@@ -11,7 +11,8 @@ function QuizCard ({
     totalQuest,
     isLastQuest, 
     selectedAnswers,
-    onSelectOption
+    onSelectOption,
+    nextButtonText,
     }) 
     {
     const selectedOption = selectedAnswers[currentQuestIDX];
@@ -69,7 +70,7 @@ function QuizCard ({
                     ${selectedOption === undefined ? "opacity-50 cursor-not-allowed" : "hover:bg-(--color-transparent) hover:text-(--color-primary) cursor-pointer"}
                     `}
                 >
-                    <p>{isLastQuest ? "Finish" : "Next"}</p>
+                    <p>{nextButtonText || (isLastQuest ? "Finish" : "Next")}</p>
                     <ChevronRight size={13} />
                 </button>
             </div>

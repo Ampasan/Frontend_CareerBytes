@@ -1,4 +1,9 @@
-import { mockMissions } from "../../../constants/dummy/mission";
+const defaultTask = {
+  id: 1,
+  taskName: "Daily Mission Task",
+  description: "Complete this task and submit your work.",
+  requirements: [],
+};
 
 function TaskSummaryCard({
   taskNumber,
@@ -7,8 +12,6 @@ function TaskSummaryCard({
   requirements,
   children,
 }) {
-  const defaultTask = mockMissions.missions.find((m) => m.id === 2)?.assessment?.tasks[0];
-
   const displayTaskNumber = taskNumber !== undefined ? taskNumber : defaultTask?.id;
   const displayTitle = title || defaultTask?.taskName;
   const displayDescription = description || defaultTask?.description;

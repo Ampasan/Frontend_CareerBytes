@@ -1,7 +1,7 @@
 import { HamburgerIcon, LucideHamburger, Menu, MenuIcon, MenuSquare, User, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 
 function Navbar() {
     const { isAuthenticated, user, logout } = useAuth();

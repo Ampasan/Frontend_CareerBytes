@@ -1,62 +1,163 @@
-import { DEFAULT_USER } from "../../../constants/dummy/user";
+import api, { API_BASE_URL, clearStoredAuth } from "../../../services/api";
 
-const getStoredUsers = () => {
-  const users = localStorage.getItem("mock_users");
-  return users ? JSON.parse(users) : [DEFAULT_USER];
+const readRoleName = (...values) => {
+  for (const value of values) {
+    if (typeof value === "string" && value.trim()) return value.trim();
+    if (value && typeof value === "object") {
+      const roleName =
+        value.name ||
+        value.roleName ||
+        value.role_name ||
+        value.title ||
+        value.label;
+
+      if (typeof roleName === "string" && roleName.trim()) {
+        return roleName.trim();
+      }
+    }
+  }
+
+  return "";
+};
+
+const readRoleId = (...values) => {
+  for (const value of values) {
+    if (value === 0 || value) return value;
+  }
+
+  return null;
+};
+
+const normalizeUser = (user = {}) => {
+  const safeUser = user || {};
+  const roleName = readRoleName(
+    safeUser.roleName,
+    safeUser.role_name,
+    safeUser.role,
+    safeUser.careerRole,
+    safeUser.careerRoleName,
+    safeUser.career_role,
+    safeUser.career_path,
+    safeUser.careerPath,
+    safeUser.selectedRole,
+    safeUser.selected_role
+  );
+
+  return {
+    id: safeUser.id,
+    name: safeUser.name || safeUser.fullName || "",
+    email: safeUser.email || "",
+    avatar: safeUser.avatar || null,
+    role: roleName,
+    roleId: readRoleId(
+      safeUser.roleId,
+      safeUser.role_id,
+      safeUser.careerRoleId,
+      safeUser.career_role_id,
+      safeUser.careerRole?.id,
+      safeUser.career_role?.id,
+      safeUser.selectedRole?.id,
+      safeUser.selected_role?.id,
+      safeUser.role?.id
+    ),
+    createdAt: safeUser.createdAt || safeUser.created_at || null,
+  };
+};
+
+const pickExactRole = (roles = [], roleName = "") => {
+  const normalizedRoleName = roleName.toLowerCase().trim();
+
+  return (
+    roles.find((role) => role.name?.toLowerCase().trim() === normalizedRoleName) ||
+    roles.find((role) =>
+      role.name?.toLowerCase().includes(normalizedRoleName)
+    ) ||
+    roles[0]
+  );
+};
+
+const resolveRoleWithToken = async (roleName, token) => {
+  if (!roleName || !token) return null;
+
+  const response = await api.get("/api/roles", {
+    params: { query: roleName },
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  return pickExactRole(response.data?.data || [], roleName) || null;
 };
 
 const authService = {
   login: async (email, password) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const users = getStoredUsers();
-        const user = users.find(u => u.email === email && u.password === password);
+    const response = await api.post("/api/auth/login", { email, password });
 
-        if (user) {
-          const token = "mock-jwt-token-" + Math.random().toString(36).substr(2);
-          const { password: _, ...userWithoutPassword } = user;
-          resolve({ user: userWithoutPassword, token });
-        } else {
-          reject(new Error("Invalid email or password"));
-        }
-      }, 1000);
-    });
+    return {
+      message: response.data?.message || "Login berhasil",
+      token: response.data?.token,
+      user: normalizeUser(response.data?.user),
+    };
   },
 
   register: async (userData) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const users = getStoredUsers();
-        
-        if (users.find(u => u.email === userData.email)) {
-          reject(new Error("Email already registered"));
-          return;
+    const payload = {
+      name: userData.name || userData.fullName,
+      email: userData.email,
+      password: userData.password,
+    };
+
+    const response = await api.post("/api/auth/register", payload);
+    const token = response.data?.token;
+    let user = normalizeUser(response.data?.user);
+
+    if (token && userData.careerRole) {
+      try {
+        const role = await resolveRoleWithToken(userData.careerRole, token);
+
+        if (role?.id) {
+          const roleResponse = await api.patch(
+            "/api/auth/me/role",
+            { roleId: role.id },
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+
+          user = {
+            ...user,
+            role: roleResponse.data?.data?.roleName || role.name,
+            roleId: roleResponse.data?.data?.roleId || role.id,
+          };
         }
+      } catch {
+        user = { ...user, role: userData.careerRole };
+      }
+    }
 
-        const newUser = {
-          id: Date.now().toString(),
-          name: userData.fullName,
-          email: userData.email,
-          password: userData.password,
-          role: userData.careerRole,
-        };
+    return {
+      message: response.data?.message || "Registrasi berhasil",
+      token,
+      user,
+    };
+  },
 
-        users.push(newUser);
-        localStorage.setItem("mock_users", JSON.stringify(users));
-        
-        console.log("Mock registered user:", newUser);
-        resolve({ success: true, message: "Registration successful" });
-      }, 1000);
-    });
+  me: async () => {
+    const response = await api.get("/api/auth/me");
+    return normalizeUser(response.data?.user);
+  },
+
+  updateRole: async (roleId) => {
+    const response = await api.patch("/api/auth/me/role", { roleId });
+
+    return {
+      message: response.data?.message || "Role berhasil dipilih",
+      data: response.data?.data,
+    };
   },
 
   logout: async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ success: true });
-      }, 500);
-    });
+    clearStoredAuth();
+    return { success: true };
   },
+
+  getOAuthUrl: (provider) => `${API_BASE_URL}/api/auth/${provider}`,
 };
 
 export default authService;

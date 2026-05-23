@@ -1,10 +1,11 @@
 import { Star } from "lucide-react";
-import { mockMissions } from "../../../constants/dummy/mission";
 
-function ResultScoreBoard() {
-    const mission = mockMissions.missions.find((item) => item.id === 2);
-
-    const result = mission?.result;
+function ResultScoreBoard({ result }) {
+    const score = Math.max(0, Math.min(100, Math.round(result?.score ?? 0)));
+    const stars = Math.max(0, Math.min(5, Math.round(result?.stars ?? 0)));
+    const radius = 82;
+    const circumference = 2 * Math.PI * radius;
+    const progressOffset = circumference - (score / 100) * circumference;
 
     return (
         <section className="w-full">
@@ -20,33 +21,28 @@ function ResultScoreBoard() {
                                     viewBox="0 0 220 220"
                                     className="w-full h-full"
                                 >
-                                    {/* Static track */}
                                     <circle
                                         cx="110"
                                         cy="110"
-                                        r="82"
+                                        r={radius}
                                         fill="none"
                                         stroke="var(--color-progress-track)"
                                         strokeWidth="18"
                                         strokeLinecap="round"
                                     />
 
-                                    {/* Static progress arcs */}
-                                    {[
-                                        "M76 32 A82 82 0 0 1 144 32",
-                                        "M188 76 A82 82 0 0 1 188 144",
-                                        "M144 188 A82 82 0 0 1 76 188",
-                                        "M32 144 A82 82 0 0 1 32 76",
-                                    ].map((path) => (
-                                        <path
-                                            key={path}
-                                            d={path}
-                                            fill="none"
-                                            stroke="var(--color-primary)"
-                                            strokeWidth="18"
-                                            strokeLinecap="round"
-                                        />
-                                    ))}
+                                    <circle
+                                        cx="110"
+                                        cy="110"
+                                        r={radius}
+                                        fill="none"
+                                        stroke="var(--color-primary)"
+                                        strokeWidth="18"
+                                        strokeLinecap="round"
+                                        strokeDasharray={circumference}
+                                        strokeDashoffset={progressOffset}
+                                        transform="rotate(-90 110 110)"
+                                    />
                                 </svg>
 
                                 <svg
@@ -66,7 +62,7 @@ function ResultScoreBoard() {
                                 {/* CENTER TEXT */}
                                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                                     <h1 className="text-[3.1rem] leading-none font-bold text-(--color-primary)">
-                                        {result?.score}
+                                        {score}
                                     </h1>
 
                                     <p className="text-(--color-primary-muted) text-[1.1rem] mt-1">
@@ -96,7 +92,7 @@ function ResultScoreBoard() {
                                     key={star}
                                     size={25}
                                     className={
-                                        star <= result?.stars
+                                        star <= stars
                                             ? "fill-(--color-primary) text-(--color-primary)"
                                             : "text-(--color-primary-icon-muted)"
                                     }

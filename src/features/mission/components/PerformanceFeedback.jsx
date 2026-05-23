@@ -1,9 +1,7 @@
 import { Star, Target, CheckCircle, Circle } from "lucide-react";
-import { mockMissions } from "../../../constants/dummy/mission";
 
-function PerformanceFeedback() {
-    const mission = mockMissions.missions.find((item) => item.id === 2);
-    const result = mission?.result;
+function PerformanceFeedback({ feedback }) {
+    const result = feedback;
 
     if (!result) return null;
 

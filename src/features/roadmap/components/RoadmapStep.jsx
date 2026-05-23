@@ -1,7 +1,7 @@
 import RoadmapItems from "../../../components/ui/RoadmapItems";
 import EmptyState from "../../../components/layout/EmptyState";
 
-function RoadmapStep({ data = [], searchTerm = "" }) {
+function RoadmapStep({ data = [], searchTerm = "", onLevelSelect }) {
     return(
       <section id="roadmap" className="scroll-mt-20 max-w-full mx-auto">
         {/* BAGIAN BAWAH */}
@@ -11,7 +11,7 @@ function RoadmapStep({ data = [], searchTerm = "" }) {
           {/* ROADMAP ITEMS (ICON, LINE Y, CARD) */}
           <div className="mb-40">
             {data && data.length > 0 ? (
-              <RoadmapItems data={data} />
+              <RoadmapItems data={data} onLevelSelect={onLevelSelect} />
             ) : (
               <EmptyState searchTerm={searchTerm} />
             )}

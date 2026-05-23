@@ -1,13 +1,24 @@
 import { Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import { mockMissions } from "../../../constants/dummy/mission";
 import Button from "../../../components/ui/Button";
 import HeaderMission from "../../../components/ui/HeaderMission";
 
-function TaskDetailInfo({ taskDetail }) {
+const defaultTaskDetail = {
+  id: "default",
+  title: "Daily Mission Task",
+  role: "Daily Mission",
+  level: "Easy",
+  estimateTime: "Flexible",
+  description: "Complete this task and submit your work.",
+  learningGoal: "Practice the skills from your current roadmap level.",
+  instructions: [],
+};
+
+function TaskDetailInfo({ taskDetail, roadmapLevelId }) {
   const navigate = useNavigate();
-  const task = taskDetail || mockMissions.missions.find((m) => m.id === 2);
+  const task = taskDetail || defaultTaskDetail;
+  const instructions = task.instructions || [];
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-13 text-(--color-primary)">
@@ -43,7 +54,7 @@ function TaskDetailInfo({ taskDetail }) {
           </h2>
 
           <div className="flex flex-col gap-5">
-            {task.instructions.map((item, index) => (
+            {instructions.map((item, index) => (
               <div key={index} className="flex items-start gap-5">
                 <div className="min-w-7 h-7 rounded-full bg-(--color-primary) text-white flex items-center justify-center text-sm font-semibold">
                   {index + 1}
@@ -61,7 +72,12 @@ function TaskDetailInfo({ taskDetail }) {
         <Button
           text="Start Task"
           className="w-full lg:w-125 rounded-xl py-4 text-xl"
-          onClick={() => navigate("/daily-mission/task/assessment")}
+          onClick={() => {
+            const route = roadmapLevelId
+              ? `/daily-mission/task/${roadmapLevelId}/${task.id}/assessment`
+              : `/daily-mission/task/${task.id}/assessment`;
+            navigate(route);
+          }}
         />
 
         <button className="font-medium border border-(--color-primary)/50 rounded-xl px-8 py-4 text-lg hover:bg-(--color-primary)/70 cursor-pointer">

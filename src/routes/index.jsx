@@ -13,6 +13,7 @@ import DailyMissionPage from "../pages/DailyMissionPage";
 import TaskDetailPage from "../pages/TaskDetailPage";
 import TaskAssessmentPage from "../pages/TaskAssessmentPage";
 import TaskResultPage from "../pages/TaskResultPage";
+import TrendsPage from "../pages/TrendsPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,9 +24,6 @@ function ScrollToTop() {
 
   return null;
 }
-import TrendsPage from "../pages/TrendsPage";
-import TrendsPeriod from "../features/Trends/components/TrendsPeriod";
-
 export default function AppRoutes() {
   return (
     <AuthProvider>
@@ -94,19 +92,43 @@ export default function AppRoutes() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/daily-mission/task/result"
+              element={
+                <ProtectedRoute>
+                  <TaskResultPage />
+                </ProtectedRoute>
+              }
+            />
             <Route 
-              path="/daily-mission/task/assessment"
+              path="/daily-mission/task/:roadmapLevelId"
+              element={
+                <ProtectedRoute>
+                    <TaskDetailPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/daily-mission/task/:roadmapLevelId/:taskId"
+              element={
+                <ProtectedRoute>
+                    <TaskDetailPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/daily-mission/task/:taskId/assessment"
               element={
                 <ProtectedRoute>
                     <TaskAssessmentPage />
                 </ProtectedRoute>
               }
             />
-           <Route
-              path="/daily-mission/task/result"
+            <Route 
+              path="/daily-mission/task/:roadmapLevelId/:taskId/assessment"
               element={
                 <ProtectedRoute>
-                  <TaskResultPage />
+                    <TaskAssessmentPage />
                 </ProtectedRoute>
               }
             />

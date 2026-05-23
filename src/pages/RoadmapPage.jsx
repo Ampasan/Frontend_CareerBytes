@@ -1,58 +1,108 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import RoadmapHeader from "../features/roadmap/components/RoadmapHeader";
 import RoadmapAbout from "../features/roadmap/components/RoadmapAbout";
 import RoadmapStep from "../features/roadmap/components/RoadmapStep";
 import RoadmapEmptyState from "../features/roadmap/components/RoadmapEmptyState";
 import Footer from "../components/layout/Footer";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import roadmapService from "../features/roadmap/services/roadmapService";
+import { getApiErrorMessage } from "../services/api";
 
 function RoadmapPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const roadmapRole = searchParams.get("role")?.trim() || "";
   const [searchTerm, setSearchTerm] = useState("");
   const [roadmapData, setRoadmapData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchRoadmap = async (role) => {
+  const fetchRoadmap = useCallback(async (role = "", { preferDefault = false } = {}) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await roadmapService.getRoadmapByRole(role);
+      let response;
+
+      if (preferDefault) {
+        try {
+          response = await roadmapService.getDefaultRoadmap();
+        } catch (defaultError) {
+          if (!role) throw defaultError;
+          response = await roadmapService.getRoadmapByRole(role);
+        }
+      } else {
+        response = role
+          ? await roadmapService.getRoadmapByRole(role)
+          : await roadmapService.getDefaultRoadmap();
+      }
+
       if (response.success) {
         setRoadmapData(response.data);
       } else {
-        setError("Roadmap not found");
+        setError(response.message || "Roadmap not found");
       }
-    } catch {
-      setError("Failed to fetch roadmap data");
+    } catch (error) {
+      setError(getApiErrorMessage(error, "Failed to fetch roadmap data"));
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   // Initial fetch based on user role
   useEffect(() => {
-    if (user?.role) {
-      fetchRoadmap(user.role);
+    if (roadmapRole) {
+      setSearchTerm(roadmapRole);
+      fetchRoadmap(roadmapRole);
+      return;
     }
-  }, [user]);
+
+    setSearchTerm("");
+    fetchRoadmap(user?.role || "", { preferDefault: true });
+  }, [fetchRoadmap, roadmapRole, user?.role, user?.roleId]);
 
   // Handle search
   const handleSearch = (term) => {
-    setSearchTerm(term);
-    if (term.trim() !== "") {
-      fetchRoadmap(term);
+    const nextTerm = term.trim();
+
+    setSearchTerm(nextTerm);
+    if (nextTerm !== "") {
+      if (nextTerm === roadmapRole) {
+        fetchRoadmap(nextTerm);
+      } else {
+        setSearchParams({ role: nextTerm });
+      }
     } else if (user?.role) {
-      fetchRoadmap(user.role);
+      if (roadmapRole) {
+        setSearchParams({});
+      } else {
+        fetchRoadmap(user.role, { preferDefault: true });
+      }
+    } else {
+      if (roadmapRole) {
+        setSearchParams({});
+      } else {
+        fetchRoadmap("", { preferDefault: true });
+      }
     }
   };
 
   // Handle popular role shortcut
   const handleSelectRole = (role) => {
     setSearchTerm(role);
-    fetchRoadmap(role);
+    if (role === roadmapRole) {
+      fetchRoadmap(role);
+    } else {
+      setSearchParams({ role });
+    }
+  };
+
+  const handleOpenLevelTasks = (level) => {
+    if (!level?.id || (!level.isUnlocked && !level.isCompleted)) return;
+
+    navigate(`/daily-mission/task/${level.id}`);
   };
 
   return (
@@ -82,7 +132,11 @@ function RoadmapPage() {
               estimate={roadmapData.estimate}
             />
           )}
-          <RoadmapStep data={roadmapData?.steps} searchTerm={searchTerm} />
+          <RoadmapStep
+            data={roadmapData?.steps}
+            searchTerm={searchTerm}
+            onLevelSelect={handleOpenLevelTasks}
+          />
         </>
       )}
       

@@ -8,6 +8,7 @@ function TextAreaForm({
   onChange,
   error,
   rows = 5,
+  textareaRef,
 }) {
   return (
     <div className="w-full">
@@ -21,6 +22,7 @@ function TextAreaForm({
       )}
 
       <textarea
+        ref={textareaRef}
         id={name}
         name={name}
         rows={rows}

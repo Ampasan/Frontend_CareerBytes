@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../hooks/useAuth";
 import Button from "../../../components/ui/Button";
 import InputForm from "../../../components/ui/InputForm";
 import SelectCareer from "../../../components/ui/SelectCareer";
@@ -36,8 +36,8 @@ function RegisterForm() {
             return "Please enter a valid email address";
         }
 
-        if (formData.password.length < 8) {
-            return "Password must be at least 8 characters long";
+        if (formData.password.length < 6) {
+            return "Password must be at least 6 characters long";
         }
 
         if (formData.password !== formData.confirmPassword) {
@@ -62,9 +62,9 @@ function RegisterForm() {
         setLoading(false);
 
         if (result.success) {
-            setSuccess("Registration successful! Redirecting to login...");
+            setSuccess("Registration successful! Redirecting...");
             setTimeout(() => {
-                navigate("/login");
+                navigate(result.authenticated ? "/career-roadmap" : "/login");
             }, 2000);
         } else {
             setError(result.message || "Registration failed. Please try again.");

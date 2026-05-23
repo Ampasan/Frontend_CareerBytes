@@ -1,16 +1,5 @@
-import { mockMissions } from "../../../constants/dummy/mission";
-
-function SkillBreakdown() {
-    const mission = mockMissions.missions.find((item) => item.id === 2);
-    const skillBreakdown = mission?.result?.skillBreakdown;
-
-    if (!skillBreakdown) return null;
-
-    // Convert object to array for easier mapping
-    const skills = Object.entries(skillBreakdown).map(([name, value]) => ({
-        name,
-        value,
-    }));
+function SkillBreakdown({ skills = [] }) {
+    if (!skills.length) return null;
 
     return (
         <section className="w-full">

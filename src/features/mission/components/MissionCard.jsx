@@ -1,84 +1,126 @@
-import { Clock3, CircleCheck } from "lucide-react"
-import Button from "../../../components/ui/Button"
-import { mockMissions } from "../../../constants/dummy/mission"
-import { useNavigate } from "react-router-dom"
+import { Clock3, CircleCheck, LockKeyhole } from "lucide-react";
+import Button from "../../../components/ui/Button";
+import { useNavigate } from "react-router-dom";
 
-function MissionCard() {
-    const navigate = useNavigate();
+function MissionCard({ missions = [], loading = false, error = "" }) {
+  const navigate = useNavigate();
 
-    const difficultyStyle = {
-        Easy: "bg-(--color-primary)/15 text-(--color-primary)",
-        Medium: "bg-(--color-primary)/30 text-(--color-primary)",
-        Hard: "bg-(--color-primary) text-(--color-white)",
-    }
+  const difficultyStyle = {
+    "Beginner Level": "bg-(--color-primary)/15 text-(--color-primary)",
+    "Intermediate Level": "bg-(--color-primary)/30 text-(--color-primary)",
+    "Advanced Level": "bg-(--color-primary) text-(--color-white)",
+    beginner: "bg-(--color-primary)/15 text-(--color-primary)",
+    intermediate: "bg-(--color-primary)/30 text-(--color-primary)",
+    advanced: "bg-(--color-primary) text-(--color-white)",
+  };
 
+  if (loading) {
     return (
-        <section className="mt-16 lg:mt-24 bg-(--color-primary) py-12 lg:py-16">
-            <div className="max-w-7xl mx-auto px-5">
+      <section className="mt-16 lg:mt-24 bg-(--color-primary) py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {[1, 2, 3, 4].map((item) => (
+            <div key={item} className="h-58 rounded-2xl bg-white/20 animate-pulse" />
+          ))}
+        </div>
+      </section>
+    );
+  }
 
-                {/* Mission Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  if (error) {
+    return (
+      <section className="mt-16 lg:mt-24 bg-(--color-primary) py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-5">
+          <div className="rounded-2xl p-6 bg-(--color-surface) text-(--color-primary) font-semibold">
+            {error}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-                    {mockMissions.missions.map((mission) => (
-                        <div
-                            key={mission.id}
-                            className={`rounded-2xl p-5 lg:p-6 pb-10 lg:pb-12 shadow-sm transition-all ${mission.isCompleted ? "bg-(--color-mission-card-completed)/90" : "bg-(--color-surface)"}`}
-                        >
-                            <div>
-                                {/* Top Label */}
-                                <div className={`w-full rounded-full px-2.5 py-1 text-[10px] lg:text-xs mb-5 ${mission.isCompleted ? "bg-(--color-mission-label-completed) text-(--color-primary)" : "bg-(--color-mission-label) text-(--color-primary)"}`}>
-                                    {mission.role}
-                                </div>
+  return (
+    <section className="mt-16 lg:mt-24 bg-(--color-primary) py-12 lg:py-16">
+      <div className="max-w-7xl mx-auto px-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {missions.map((mission) => {
+            const isLocked = !mission.isUnlocked;
 
-                                {/* Title */}
-                                <h2 className={`text-base lg:text-lg leading-snug font-bold mb-5 ${mission.isCompleted ? "text-(--color-primary) line-through" : "text-(--color-primary)"}`}>
-                                    {mission.title}
-                                </h2>
+            return (
+              <div
+                key={mission.id}
+                className={`rounded-2xl p-5 lg:p-6 pb-10 lg:pb-12 shadow-sm transition-all ${
+                  mission.isCompleted
+                    ? "bg-(--color-mission-card-completed)/90"
+                    : "bg-(--color-surface)"
+                }`}
+              >
+                <div>
+                  <div
+                    className={`w-full rounded-full px-2.5 py-1 text-[10px] lg:text-xs mb-5 ${
+                      mission.isCompleted
+                        ? "bg-(--color-mission-label-completed) text-(--color-primary)"
+                        : "bg-(--color-mission-label) text-(--color-primary)"
+                    }`}
+                  >
+                    {mission.role}
+                  </div>
 
-                                {/* Info */}
-                                <div className="flex items-center justify-between mb-5">
+                  <h2
+                    className={`text-base lg:text-lg leading-snug font-bold mb-3 ${
+                      mission.isCompleted
+                        ? "text-(--color-primary) line-through"
+                        : "text-(--color-primary)"
+                    }`}
+                  >
+                    {mission.title}
+                  </h2>
 
-                                    {/* Duration */}
-                                    <div className="flex items-center gap-2 text-(--color-primary)">
-                                        <Clock3 size={16} strokeWidth={2.2} />
+                  <p className="text-xs lg:text-sm text-(--color-primary)/75 leading-relaxed mb-5">
+                    {mission.description}
+                  </p>
 
-                                        <span className="text-xs lg:text-sm font-medium">
-                                            {mission.estimateTime}
-                                        </span>
-                                    </div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-2 text-(--color-primary)">
+                      <Clock3 size={16} strokeWidth={2.2} />
+                      <span className="text-xs lg:text-sm font-medium">
+                        {mission.estimateTime}
+                      </span>
+                    </div>
 
-                                    {/* Difficulty */}
-                                    <div className={`px-3 py-1 rounded-full text-[10px] lg:text-xs font-medium ${difficultyStyle[mission.level] || difficultyStyle.Easy}`}>
-                                        {mission.level}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Button */}
-                            {mission.isCompleted ? (
-                                <div className="h-9.5 rounded-lg bg-(--color-primary-muted-strong) flex items-center justify-center gap-2 text-(--color-primary) font-large text-base">
-                                    <CircleCheck size={16} />
-                                    Completed
-                                </div>
-                            ) : (
-                                <Button 
-                                    text="Start Task"
-                                    className="w-full h-10 flex items-center justify-center rounded-lg text-base font-large bg-(--color-primary) hover:bg-(--color-primary)/70 text-white"
-                                    onClick={() => {
-                                        if (mission.title === "Practice Wireframing with Figma") {
-                                            navigate("/daily-mission/task");
-                                        }
-                                    }}
-                                />
-                            )}
-                        </div>
-                    ))}
-
+                    <div
+                      className={`px-3 py-1 rounded-full text-[10px] lg:text-xs font-medium ${
+                        difficultyStyle[mission.level] || difficultyStyle.beginner
+                      }`}
+                    >
+                      {mission.level}
+                    </div>
+                  </div>
                 </div>
 
-            </div>
-        </section>
-    )
+                {mission.isCompleted ? (
+                  <div className="h-9.5 rounded-lg bg-(--color-primary-muted-strong) flex items-center justify-center gap-2 text-(--color-primary) font-large text-base">
+                    <CircleCheck size={16} />
+                    Completed
+                  </div>
+                ) : isLocked ? (
+                  <div className="h-9.5 rounded-lg bg-(--color-primary-muted-strong) flex items-center justify-center gap-2 text-(--color-primary) font-large text-base opacity-70">
+                    <LockKeyhole size={16} />
+                    Locked
+                  </div>
+                ) : (
+                  <Button
+                    text="Open Tasks"
+                    className="w-full h-10 flex items-center justify-center rounded-lg text-base font-large bg-(--color-primary) hover:bg-(--color-primary)/70 text-white"
+                    onClick={() => navigate(`/daily-mission/task/${mission.id}`)}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default MissionCard
+export default MissionCard;
