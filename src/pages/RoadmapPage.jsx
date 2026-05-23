@@ -7,8 +7,94 @@ import RoadmapStep from "../features/roadmap/components/RoadmapStep";
 import RoadmapEmptyState from "../features/roadmap/components/RoadmapEmptyState";
 import Footer from "../components/layout/Footer";
 import { useAuth } from "../hooks/useAuth";
+import missionService from "../features/mission/services/missionService";
 import roadmapService from "../features/roadmap/services/roadmapService";
 import { getApiErrorMessage } from "../services/api";
+
+const clampProgress = (progress) =>
+  Math.min(Math.max(Number.isFinite(progress) ? progress : 0, 0), 100);
+
+const getSyncedStatus = (step, index, isCompleted, isUnlocked) => {
+  if (isCompleted) return "Completed";
+  if (isUnlocked || index === 0) return "On Going";
+  return false;
+};
+
+const syncChecklistProgress = (checklist = [], progress, isCompleted) => {
+  const checkedCount = Math.round((progress / 100) * checklist.length);
+
+  return checklist.map((item, index) => ({
+    ...item,
+    isCheck: isCompleted || index < checkedCount,
+  }));
+};
+
+const syncRoadmapProgressWithTasks = async (roadmap) => {
+  if (!roadmap?.steps?.length) return roadmap;
+
+  let previousStepCompleted = false;
+  const syncedSteps = [];
+
+  for (const [index, step] of roadmap.steps.entries()) {
+    if (!step?.id) {
+      syncedSteps.push(step);
+      previousStepCompleted = Boolean(step?.isCompleted);
+      continue;
+    }
+
+    try {
+      const response = await missionService.getTasksByLevel(step.id);
+      const tasks = response.data || [];
+
+      if (tasks.length === 0) {
+        const isUnlocked = Boolean(step.isUnlocked) || previousStepCompleted || index === 0;
+        const nextStep = {
+          ...step,
+          isUnlocked,
+          status: getSyncedStatus(step, index, Boolean(step.isCompleted), isUnlocked),
+        };
+
+        syncedSteps.push(nextStep);
+        previousStepCompleted = Boolean(nextStep.isCompleted);
+        continue;
+      }
+
+      const total = tasks.length;
+      const submitted = tasks.filter(
+        (task) => task.isCompleted || task.isSubmitted
+      ).length;
+      const progress = clampProgress(Math.round((submitted / total) * 100));
+      const isCompleted = submitted >= total;
+      const isUnlocked =
+        Boolean(step.isUnlocked) || previousStepCompleted || submitted > 0 || index === 0;
+
+      const nextStep = {
+        ...step,
+        progress,
+        status: getSyncedStatus(step, index, isCompleted, isUnlocked),
+        checklist: syncChecklistProgress(step.checklist, progress, isCompleted),
+        isCompleted,
+        isUnlocked,
+        taskProgress: {
+          total,
+          submitted,
+          percent: progress,
+        },
+      };
+
+      syncedSteps.push(nextStep);
+      previousStepCompleted = isCompleted;
+    } catch {
+      syncedSteps.push(step);
+      previousStepCompleted = Boolean(step.isCompleted);
+    }
+  }
+
+  return {
+    ...roadmap,
+    steps: syncedSteps,
+  };
+};
 
 function RoadmapPage() {
   const { user } = useAuth();
@@ -40,7 +126,8 @@ function RoadmapPage() {
       }
 
       if (response.success) {
-        setRoadmapData(response.data);
+        const syncedRoadmap = await syncRoadmapProgressWithTasks(response.data);
+        setRoadmapData(syncedRoadmap);
       } else {
         setError(response.message || "Roadmap not found");
       }
@@ -128,8 +215,8 @@ function RoadmapPage() {
             <RoadmapAbout 
               title={roadmapData.title}
               description={roadmapData.description}
-              level={roadmapData.level}
-              estimate={roadmapData.estimate}
+              level={roadmapData.careerLevel}
+              estimate={roadmapData.estimateYears}
             />
           )}
           <RoadmapStep

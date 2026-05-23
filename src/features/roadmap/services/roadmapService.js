@@ -48,6 +48,58 @@ const firstFilled = (...values) =>
 const sortByOrder = (items = []) =>
   [...items].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
+const getBackendCareerLevel = (roadmap = {}) =>
+  firstFilled(
+    roadmap.careerLevel,
+    roadmap.career_level,
+    roadmap.role?.careerLevel,
+    roadmap.role?.career_level
+  ) || "";
+
+const getBackendEstimateYears = (roadmap = {}) =>
+  firstFilled(
+    roadmap.estimateYears,
+    roadmap.estimate_years,
+    roadmap.role?.estimateYears,
+    roadmap.role?.estimate_years
+  ) || "";
+
+const mergeRoleMetadata = (roadmap = {}, role = {}) => ({
+  ...roadmap,
+  careerLevel: firstFilled(
+    roadmap.careerLevel,
+    roadmap.career_level,
+    roadmap.role?.careerLevel,
+    roadmap.role?.career_level,
+    role.careerLevel,
+    role.career_level
+  ),
+  estimateYears: firstFilled(
+    roadmap.estimateYears,
+    roadmap.estimate_years,
+    roadmap.role?.estimateYears,
+    roadmap.role?.estimate_years,
+    role.estimateYears,
+    role.estimate_years
+  ),
+});
+
+const normalizeRoadmapWithRoleMetadata = async (roadmap = {}) => {
+  const roleName = firstFilled(roadmap.name, roadmap.roleName, roadmap.title);
+
+  if (!roleName || (getBackendCareerLevel(roadmap) && getBackendEstimateYears(roadmap))) {
+    return normalizeRoadmap(roadmap);
+  }
+
+  try {
+    const role = await rolesService.resolveRoleByName(roleName);
+
+    return normalizeRoadmap(mergeRoleMetadata(roadmap, role));
+  } catch {
+    return normalizeRoadmap(roadmap);
+  }
+};
+
 const uniqueRoadmaps = (roadmaps = []) => {
   const seenRoadmaps = new Set();
 
@@ -164,33 +216,18 @@ const resolveRoadmapRoleNames = async (role) => {
 export const normalizeRoadmap = (roadmap = {}) => {
   const levels = sortByOrder(roadmap.levels || []);
   const title = firstFilled(roadmap.name, roadmap.roleName, roadmap.title) || "";
-  const level =
-    firstFilled(
-      roadmap.careerLevel,
-      roadmap.career_level,
-      roadmap.level,
-      roadmap.role?.careerLevel,
-      roadmap.role?.career_level,
-      roadmap.role?.level
-    ) || DEFAULT_ROADMAP_LEVEL;
-  const estimate =
-    firstFilled(
-      roadmap.estimateYears,
-      roadmap.estimate_years,
-      roadmap.estimate,
-      roadmap.duration,
-      roadmap.role?.estimateYears,
-      roadmap.role?.estimate_years,
-      roadmap.role?.estimate
-    ) || DEFAULT_ROADMAP_ESTIMATE;
+  const careerLevel = getBackendCareerLevel(roadmap);
+  const estimateYears = getBackendEstimateYears(roadmap);
 
   return {
     id: roadmap.id,
     roleId: roadmap.id,
     title,
     description: roadmap.description || "",
-    level,
-    estimate,
+    careerLevel,
+    estimateYears,
+    level: careerLevel,
+    estimate: estimateYears,
     steps: levels.map((level, index) => {
       const optimisticProgress = getOptimisticLevelProgress(level);
       const progress = optimisticProgress.percent;
@@ -224,7 +261,7 @@ const roadmapService = {
 
     return {
       success: true,
-      data: normalizeRoadmap(response.data?.data),
+      data: await normalizeRoadmapWithRoleMetadata(response.data?.data),
       message: response.data?.message || "Success",
     };
   },
@@ -245,7 +282,7 @@ const roadmapService = {
 
         return {
           success: true,
-          data: normalizeRoadmap(response.data?.data),
+          data: await normalizeRoadmapWithRoleMetadata(response.data?.data),
           message: response.data?.message || "Success",
         };
       } catch (error) {

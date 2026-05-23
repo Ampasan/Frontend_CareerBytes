@@ -111,7 +111,7 @@ function RoadmapCard({
     const variant = getRoadmapVariant(status);
     const isLanding = density === "landing";
     const isInteractive = typeof onClick === "function" && !isLanding;
-    const visibleChecklist = isLanding ? ChecklistItems?.slice(0, 2) : ChecklistItems;
+    const visibleChecklist = ChecklistItems;
     const visibleTools = isLanding ? tools?.slice(0, 2) : tools;
 
     if (isLanding) {

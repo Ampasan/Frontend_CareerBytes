@@ -8,8 +8,8 @@ export const normalizeRole = (role = {}) => {
     id: safeRole.id ?? safeRole.roleId ?? safeRole.role_id,
     name: safeRole.name || safeRole.roleName || safeRole.role_name || safeRole.title || "",
     description: safeRole.description || "",
-    careerLevel: safeRole.careerLevel || "",
-    estimateYears: safeRole.estimateYears || "",
+    careerLevel: safeRole.careerLevel || safeRole.career_level || "",
+    estimateYears: safeRole.estimateYears || safeRole.estimate_years || "",
     isPopular: Boolean(safeRole.isPopular),
   };
 };
@@ -21,8 +21,8 @@ const normalizeRoadmapRole = (roadmap = {}) => {
     id: safeRoadmap.roleId ?? safeRoadmap.id,
     name: safeRoadmap.roleName || safeRoadmap.name || safeRoadmap.title,
     description: safeRoadmap.description,
-    careerLevel: safeRoadmap.careerLevel,
-    estimateYears: safeRoadmap.estimateYears,
+    careerLevel: safeRoadmap.careerLevel || safeRoadmap.career_level,
+    estimateYears: safeRoadmap.estimateYears || safeRoadmap.estimate_years,
   });
 };
 

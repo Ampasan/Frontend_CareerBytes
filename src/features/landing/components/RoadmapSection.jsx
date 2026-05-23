@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import RoadmapItems from "../../../components/ui/RoadmapItems";
+import { useAuth } from "../../../hooks/useAuth";
 import roadmapService from "../../roadmap/services/roadmapService";
 
 const SLIDE_INTERVAL_MS = 7500;
@@ -16,6 +17,25 @@ const normalizeText = (value = "") =>
 
 const getRoadmapKey = (roadmap, index) =>
   roadmap?.id || roadmap?.roleId || roadmap?.title || index;
+
+const getComparableRoadmapKey = (roadmap) =>
+  normalizeText(roadmap?.title || roadmap?.roleId || roadmap?.id || "");
+
+const hasRoadmapSteps = (roadmap) => roadmap?.steps?.length > 0;
+
+const uniqueRoadmapEntries = (roadmaps = []) => {
+  const seenRoadmaps = new Set();
+
+  return roadmaps.filter((roadmap) => {
+    if (!hasRoadmapSteps(roadmap)) return false;
+
+    const key = getComparableRoadmapKey(roadmap);
+    if (!key || seenRoadmaps.has(key)) return false;
+
+    seenRoadmaps.add(key);
+    return true;
+  });
+};
 
 const prioritizeFeaturedRoadmap = (roadmaps = []) => {
   const featuredIndex = roadmaps.findIndex(
@@ -39,23 +59,63 @@ const getLandingStepState = (index) => {
 const getLandingChecklist = (checklist = [], status) =>
   checklist.map((item, index) => ({
     ...item,
-    isCheck: status === "Completed" || (status === "On Going" && index === 0),
+    isCheck: status === "Completed" || (status === "On Going" && index < 3),
   }));
 
 const normalizeLandingRoadmap = (roadmap) => ({
   ...roadmap,
-  steps: (roadmap.steps || []).map((step, index) => {
+  steps: (roadmap?.steps || []).map((step, index) => {
     const stepState = getLandingStepState(index);
 
     return {
       ...step,
       ...stepState,
       checklist: getLandingChecklist(step.checklist, stepState.status),
+      isUnlocked: index <= 1,
+      isCompleted: index === 0,
     };
   }),
 });
 
+const getLandingRoadmapEntries = (preferredRoadmap, roadmaps = []) => {
+  const normalizedRoadmaps = roadmaps.map(normalizeLandingRoadmap);
+
+  if (preferredRoadmap) {
+    return uniqueRoadmapEntries([
+      normalizeLandingRoadmap(preferredRoadmap),
+      ...normalizedRoadmaps,
+    ]);
+  }
+
+  return uniqueRoadmapEntries(prioritizeFeaturedRoadmap(normalizedRoadmaps));
+};
+
+const loadPreferredRoadmap = async (role) => {
+  try {
+    const response = await roadmapService.getDefaultRoadmap();
+
+    if (response.success && hasRoadmapSteps(response.data)) {
+      return response.data;
+    }
+  } catch {
+    // Fall back to the user's role below, matching the RoadmapPage behavior.
+  }
+
+  if (!role) return null;
+
+  try {
+    const response = await roadmapService.getRoadmapByRole(role);
+
+    return response.success && hasRoadmapSteps(response.data)
+      ? response.data
+      : null;
+  } catch {
+    return null;
+  }
+};
+
 function RoadmapSection() {
+    const { user } = useAuth();
     const [roadmapEntries, setRoadmapEntries] = useState([]);
     const [activeRoadmapIndex, setActiveRoadmapIndex] = useState(0);
     const [isAutoSlidePaused, setIsAutoSlidePaused] = useState(false);
@@ -85,16 +145,22 @@ function RoadmapSection() {
 
       const loadRoadmaps = async () => {
         try {
-          const response = await roadmapService.getAllRoadmaps();
+          const [preferredRoadmap, roadmapsResponse] = await Promise.all([
+            loadPreferredRoadmap(user?.role || ""),
+            roadmapService.getAllRoadmaps(),
+          ]);
 
           if (!isMounted) {
             return;
           }
 
-          if (response.success && response.data.length > 0) {
-            setRoadmapEntries(
-              prioritizeFeaturedRoadmap(response.data.map(normalizeLandingRoadmap))
-            );
+          const nextRoadmapEntries = getLandingRoadmapEntries(
+            preferredRoadmap,
+            roadmapsResponse.success ? roadmapsResponse.data : []
+          );
+
+          if (nextRoadmapEntries.length > 0) {
+            setRoadmapEntries(nextRoadmapEntries);
             setActiveRoadmapIndex(0);
             setErrorMessage("");
           } else {
@@ -116,7 +182,7 @@ function RoadmapSection() {
       return () => {
         isMounted = false;
       };
-    }, []);
+    }, [user?.role]);
 
     useEffect(() => {
       if (isAutoSlidePaused || roadmapEntries.length <= 1) return undefined;
