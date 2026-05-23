@@ -2,11 +2,11 @@ import authService from "../../features/auth/services/authService";
 
 const socialConfig = {
   google: {
-    icon: "https://res.cloudinary.com/drrmbeiyk/image/upload/v1779541130/google_sheets_c6qatv.svg",
+    icon: "https://res.cloudinary.com/drrmbeiyk/image/upload/v1779541130/google_zb3qop.svg",
     text: "Continue with Google",
   },
   github: {
-    icon: "https://res.cloudinary.com/drrmbeiyk/image/upload/v1779541128/git_zueu9c.svg",
+    icon: "https://res.cloudinary.com/drrmbeiyk/image/upload/v1779541129/github_i6l2rh.svg",
     text: "Continue with GitHub",
   },
 };
